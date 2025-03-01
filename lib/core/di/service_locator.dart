@@ -26,6 +26,7 @@ void setupDependencies() {
         LogInterceptor(requestBody: true, responseBody: true),
       );
     }
+
     return dio;
   });
 

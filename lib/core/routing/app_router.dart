@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
-import 'package:weather_app/presentation/screens/error_screen.dart';
-import 'package:weather_app/presentation/screens/home_screen.dart';
-import 'package:weather_app/presentation/screens/weather_details_screen.dart';
+import 'package:weather_app/presentation/error/error_screen.dart';
+import 'package:weather_app/presentation/home/home_screen.dart';
+import 'package:weather_app/presentation/weather_details/weather_details_screen.dart';
 
 abstract class AppRouter {
   const AppRouter._();
