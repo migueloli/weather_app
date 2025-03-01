@@ -1,0 +1,96 @@
+# Flutter/Dart specific
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+pubspec.lock
+.pub/
+.pub-cache/
+coverage/
+.fvm/flutter_sdk
+
+# Generated Dart files
+*.g.dart
+*.freezed.dart
+*.mocks.dart
+# Exception: keep the ObjectBox model file
+!lib/objectbox.g.dart
+
+# Android specific
+android/.gradle/
+android/captures/
+android/local.properties
+android/app/key.jks
+android/key.properties
+android/app/google-services.json
+android/*.iml
+android/app/upload-keystore.jks
+android/app/debug.keystore
+
+# iOS specific
+ios/.symlinks/
+ios/Flutter/Flutter.podspec
+ios/Flutter/flutter_export_environment.sh
+ios/Flutter/Generated.xcconfig
+ios/Flutter/App.framework
+ios/Pods/
+ios/Runner.xcworkspace/xcshareddata/
+ios/GoogleService-Info.plist
+ios/*.dSYM.zip
+ios/*.ipa
+
+# Web specific
+web/firebase-config.js
+web/.dart_tool/
+web/flutter_service_worker.js
+
+# MacOS specific
+macos/Pods/
+macos/.symlinks/
+macos/.dart_tool/
+macos/Flutter/Flutter.podspec
+.DS_Store
+
+# Linux specific
+linux/flutter/
+linux/.dart_tool/
+
+# Windows specific
+windows/flutter/
+windows/.dart_tool/
+
+# IDE specific
+.idea/
+.vscode/
+*.iws
+*.ipr
+*.swp
+.history/
+.project
+.classpath
+.settings/
+.atom/
+
+# Environment and configuration
+.env
+.env.local
+*.env.*
+!.env.example
+google-services.json
+firebase_options.dart
+
+# Log files
+*.log
+logs/
+firebase-debug.log
+crash.log
+
+# Other
+.metadata
+**/doc/api/
+**/ios/ServiceDefinitions.json
+**/ios/Runner/GeneratedPluginRegistrant.*
+**/android/gradlew
+**/android/gradlew.bat
+**/android/gradle/wrapper/gradle-wrapper.jar

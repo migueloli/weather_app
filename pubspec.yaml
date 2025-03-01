@@ -1,0 +1,31 @@
+name: weather_app
+description: "A weather application that provides current conditions and forecasts based on user location or search."
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.0
+  flutter: ">=3.27.0"
+
+dependencies:
+  cupertino_icons: ^1.0.8
+  dio: ^5.8.0+1
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^9.0.0
+  flutter_dotenv: ^5.2.1
+  intl: ^0.20.2
+  json_annotation: ^4.9.0
+  objectbox: ^4.1.0
+  objectbox_flutter_libs: ^4.1.0
+
+dev_dependencies:
+  build_runner: ^2.4.15
+  flutter_lints: ^5.0.0
+  flutter_test:
+    sdk: flutter
+  json_serializable: ^6.9.0
+  objectbox_generator: ^4.1.0
+
+flutter:
+  uses-material-design: true

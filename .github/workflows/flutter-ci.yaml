@@ -1,0 +1,153 @@
+name: Flutter CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+# Allow one concurrent run
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  analyze:
+    name: 🔍 Code Quality Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.29.0"
+          cache: true
+
+      - name: 📦 Install Dependencies
+        run: flutter pub get
+
+      - name: 🔍 Analyze Dart
+        run: flutter analyze
+
+      - name: 🧹 Check Formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+  test:
+    name: ✅ Test
+    needs: analyze
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.29.0"
+          cache: true
+
+      - name: 📦 Install Dependencies
+        run: flutter pub get
+
+      - name: 🏗️ Generate Code
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      - name: ✅ Run Tests with Coverage
+        run: flutter test --coverage
+
+      - name: 📊 Generate Coverage Report
+        run: |
+          # Install lcov for coverage report summary
+          sudo apt-get update && sudo apt-get install -y lcov
+          # Generate coverage report
+          genhtml coverage/lcov.info -o coverage/html
+
+      - name: 📤 Upload Coverage Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/html
+          retention-days: 7
+
+  build:
+    name: 🏗️ Build
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.29.0"
+          cache: true
+
+      - name: 📦 Install Dependencies
+        run: flutter pub get
+
+      - name: 🏗️ Generate Code
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      - name: 📱 Build Android APK
+        run: flutter build apk --release
+
+      - name: 🌐 Build Web
+        run: flutter build web --release
+
+      - name: 📤 Upload Android APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-release
+          path: build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 7
+
+      - name: 📤 Upload Web Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-release
+          path: build/web
+          retention-days: 7
+
+  build-ios:
+    name: 🍏 Build iOS
+    needs: test
+    runs-on: macos-latest
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.29.0"
+          cache: true
+
+      - name: 📦 Install Dependencies
+        run: flutter pub get
+
+      - name: 🏗️ Generate Code
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      - name: 📱 Build iOS
+        run: flutter build ios --release --no-codesign
+
+      - name: 📝 Create Build Report
+        run: |
+          mkdir -p reports
+          echo "iOS build completed at $(date)" > reports/ios_build_report.txt
+          echo "Flutter version: $(flutter --version | head -n 1)" >> reports/ios_build_report.txt
+          echo "Xcode version: $(xcodebuild -version | head -n 1)" >> reports/ios_build_report.txt
+
+      - name: 📤 Upload iOS Build Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-build-report
+          path: reports/ios_build_report.txt
+          retention-days: 7
