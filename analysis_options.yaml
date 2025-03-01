@@ -6,12 +6,12 @@ analyzer:
   strong-mode:
     implicit-casts: false
     implicit-dynamic: false
-  
+
   # Error level configuration
   errors:
     # Treat missing required parameters as errors
     missing_required_param: error
-    # Treat missing returns as errors  
+    # Treat missing returns as errors
     missing_return: error
     # Treat todos as info
     todo: info
@@ -19,7 +19,7 @@ analyzer:
     deprecated_member_use: warning
     # Invalid annotations
     invalid_annotation_target: ignore
-  
+
   # Exclude generated files from analysis
   exclude:
     - "**/*.g.dart"
@@ -126,7 +126,7 @@ linter:
     prefer_iterable_whereType: true
     prefer_mixin: true
     prefer_null_aware_operators: true
-    prefer_relative_imports: true
+    always_use_package_imports: true
     prefer_single_quotes: true
     prefer_spread_collections: true
     prefer_typing_uninitialized_variables: true
@@ -180,5 +180,5 @@ linter:
 
     # Weather app & BLoC specific recommendations
     # These rules are particularly helpful for weather apps with BLoC pattern
-    close_sinks: true  # Important for BLoC to prevent memory leaks
-    diagnostic_describe_all_properties: true  # Better debug info for weather data models
+    close_sinks: true # Important for BLoC to prevent memory leaks
+    diagnostic_describe_all_properties: true # Better debug info for weather data models
