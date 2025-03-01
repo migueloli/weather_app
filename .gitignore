@@ -8,7 +8,6 @@ pubspec.lock
 .pub/
 .pub-cache/
 coverage/
-.fvm/flutter_sdk
 
 # Generated Dart files
 *.g.dart
@@ -94,3 +93,6 @@ crash.log
 **/android/gradlew
 **/android/gradlew.bat
 **/android/gradle/wrapper/gradle-wrapper.jar
+
+# FVM Version Cache
+.fvm/
