@@ -1,0 +1,58 @@
+{
+  "@@locale": "en",
+  
+  "appTitle": "Weather App",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  
+  "errorGeneric": "Something went wrong",
+  "@errorGeneric": {
+    "description": "Generic error message"
+  },
+  
+  "errorRetry": "Please try again",
+  "@errorRetry": {
+    "description": "Message suggesting to retry after an error"
+  },
+  
+  "weatherTitle": "Weather",
+  "@weatherTitle": {
+    "description": "Title for the weather screen"
+  },
+  
+  "weatherDetails": "Weather Details",
+  "@weatherDetails": {
+    "description": "Title for the weather details screen"
+  },
+  
+  "weatherTemperature": "Temperature",
+  "@weatherTemperature": {
+    "description": "Label for temperature"
+  },
+  
+  "weatherHumidity": "Humidity",
+  "@weatherHumidity": {
+    "description": "Label for humidity"
+  },
+  
+  "weatherWindSpeed": "Wind Speed",
+  "@weatherWindSpeed": {
+    "description": "Label for wind speed"
+  },
+  
+  "weatherPressure": "Pressure",
+  "@weatherPressure": {
+    "description": "Label for pressure"
+  },
+  
+  "actionRefresh": "Refresh",
+  "@actionRefresh": {
+    "description": "Label for refresh action"
+  },
+  
+  "actionRetry": "Retry",
+  "@actionRetry": {
+    "description": "Label for retry action"
+  }
+}
