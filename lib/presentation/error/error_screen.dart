@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
+import 'package:weather_app/l10n/gen/app_localizations.dart';
 
 class ErrorScreen extends StatelessWidget {
   const ErrorScreen({required this.error, super.key});

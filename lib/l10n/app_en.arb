@@ -1,11 +1,6 @@
 {
   "@@locale": "en",
   
-  "appTitle": "Weather App",
-  "@appTitle": {
-    "description": "The title of the application"
-  },
-  
   "errorGeneric": "Something went wrong",
   "@errorGeneric": {
     "description": "Generic error message"
@@ -14,6 +9,21 @@
   "errorRetry": "Please try again",
   "@errorRetry": {
     "description": "Message suggesting to retry after an error"
+  },
+
+  "errorNetwork": "No internet connection available",
+  "@errorNetwork": {
+    "description": "Error message when network is unavailable"
+  },
+
+  "errorServer": "Server error. Please try again later",
+  "@errorServer": {
+    "description": "Error message when server returns an error"
+  },
+
+  "errorNotFound": "No results found",
+  "@errorNotFound": {
+    "description": "Message shown when search returns no results"
   },
   
   "weatherTitle": "Weather",
