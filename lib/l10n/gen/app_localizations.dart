@@ -129,6 +129,12 @@ abstract class AppLocalizations {
   /// **'Search for a city'**
   String get weatherSearchHint;
 
+  /// Label for city search
+  ///
+  /// In en, this message translates to:
+  /// **'City Search'**
+  String get citySearch;
+
   /// Title for the weather screen
   ///
   /// In en, this message translates to:

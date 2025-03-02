@@ -27,6 +27,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get weatherSearchHint => 'Search for a city';
 
   @override
+  String get citySearch => 'City Search';
+
+  @override
   String get weatherTitle => 'Weather';
 
   @override

@@ -5,10 +5,13 @@ import 'package:weather_app/core/config/env_config.dart';
 import 'package:weather_app/core/network/api_client.dart';
 import 'package:weather_app/core/network/api_key_interceptor.dart';
 import 'package:weather_app/core/network/dio_api_client.dart';
+import 'package:weather_app/data/repositories/city_repository.dart';
+import 'package:weather_app/data/services/geocoding_service.dart';
 
 final getIt = GetIt.instance;
 
 void setupDependencies() {
+  // API
   getIt.registerLazySingleton(() {
     final dio = Dio(
       BaseOptions(
@@ -26,11 +29,20 @@ void setupDependencies() {
         LogInterceptor(requestBody: true, responseBody: true),
       );
     }
-
     return dio;
   });
 
   getIt.registerLazySingleton<ApiClient>(
     () => DioApiClient(dioClient: getIt()),
+  );
+
+  // Services
+  getIt.registerLazySingleton<GeocodingService>(
+    () => GeocodingService(apiClient: getIt()),
+  );
+
+  // Repositories
+  getIt.registerLazySingleton<CityRepository>(
+    () => CityRepository(geocodingService: getIt()),
   );
 }

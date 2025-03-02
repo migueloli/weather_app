@@ -26,6 +26,16 @@
     "description": "Message shown when search returns no results"
   },
   
+  "weatherSearchHint": "Search for a city",
+  "@weatherSearchHint": {
+    "description": "Hint text for city search field"
+  },
+
+  "citySearch": "City Search",
+  "@citySearch": {
+    "description": "Label for city search"
+  },
+  
   "weatherTitle": "Weather",
   "@weatherTitle": {
     "description": "Title for the weather screen"

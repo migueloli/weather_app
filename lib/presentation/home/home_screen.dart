@@ -18,8 +18,8 @@ class HomeScreen extends StatelessWidget {
             Text(l10n.weatherTitle),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () => context.go('/weather/sample-city-id'),
-              child: Text(l10n.weatherDetails),
+              onPressed: () => context.go('/city/search'),
+              child: Text(l10n.citySearch),
             ),
           ],
         ),

@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:weather_app/presentation/city_search/city_search_screen.dart';
 import 'package:weather_app/presentation/error/error_screen.dart';
 import 'package:weather_app/presentation/home/home_screen.dart';
 import 'package:weather_app/presentation/weather_details/weather_details_screen.dart';
@@ -22,6 +23,11 @@ abstract class AppRouter {
           final cityId = state.pathParameters['cityId'] ?? '';
           return WeatherDetailsScreen(cityId: cityId);
         },
+      ),
+      GoRoute(
+        path: '/city/search',
+        name: 'city-search',
+        builder: (context, state) => const CitySearchScreen(),
       ),
     ],
     errorBuilder:
