@@ -1,0 +1,78 @@
+{
+  "@@locale": "de",
+  
+  "errorGeneric": "Etwas ist schiefgelaufen",
+  "@errorGeneric": {
+    "description": "Allgemeine Fehlermeldung"
+  },
+  
+  "errorRetry": "Bitte versuchen Sie es erneut",
+  "@errorRetry": {
+    "description": "Nachricht, die vorschlägt, es nach einem Fehler erneut zu versuchen"
+  },
+
+  "errorNetwork": "Keine Internetverbindung verfügbar",
+  "@errorNetwork": {
+    "description": "Fehlermeldung, wenn das Netzwerk nicht verfügbar ist"
+  },
+
+  "errorServer": "Serverfehler. Bitte versuchen Sie es später erneut",
+  "@errorServer": {
+    "description": "Fehlermeldung, wenn der Server einen Fehler zurückgibt"
+  },
+
+  "errorNotFound": "Keine Ergebnisse gefunden",
+  "@errorNotFound": {
+    "description": "Nachricht, die angezeigt wird, wenn die Suche keine Ergebnisse liefert"
+  },
+  
+  "weatherSearchHint": "Nach einer Stadt suchen",
+  "@weatherSearchHint": {
+    "description": "Hinweistext für das Stadtsuche-Feld"
+  },
+
+  "citySearch": "Stadtsuche",
+  "@citySearch": {
+    "description": "Bezeichnung für die Stadtsuche"
+  },
+  
+  "weatherTitle": "Wetter",
+  "@weatherTitle": {
+    "description": "Titel für den Wetterbildschirm"
+  },
+  
+  "weatherDetails": "Wetterdetails",
+  "@weatherDetails": {
+    "description": "Titel für den Wetterdetails-Bildschirm"
+  },
+  
+  "weatherTemperature": "Temperatur",
+  "@weatherTemperature": {
+    "description": "Bezeichnung für Temperatur"
+  },
+  
+  "weatherHumidity": "Luftfeuchtigkeit",
+  "@weatherHumidity": {
+    "description": "Bezeichnung für Luftfeuchtigkeit"
+  },
+  
+  "weatherWindSpeed": "Windgeschwindigkeit",
+  "@weatherWindSpeed": {
+    "description": "Bezeichnung für Windgeschwindigkeit"
+  },
+  
+  "weatherPressure": "Luftdruck",
+  "@weatherPressure": {
+    "description": "Bezeichnung für Luftdruck"
+  },
+  
+  "actionRefresh": "Aktualisieren",
+  "@actionRefresh": {
+    "description": "Bezeichnung für Aktualisierungsaktion"
+  },
+  
+  "actionRetry": "Wiederholen",
+  "@actionRetry": {
+    "description": "Bezeichnung für Wiederholungsaktion"
+  }
+}

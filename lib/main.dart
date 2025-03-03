@@ -13,7 +13,7 @@ void main() async {
     debugPrint('Flutter error: ${details.exception}');
     debugPrint('Stack trace: ${details.stack}');
   };
-  setupDependencies();
+  await setupDependencies();
 
   runApp(const WeatherApp());
 }

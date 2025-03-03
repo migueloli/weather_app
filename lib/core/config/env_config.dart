@@ -1,6 +1,6 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class EnvConfig {
+abstract class EnvConfig {
   EnvConfig._();
 
   static Future<void> initialize() async {

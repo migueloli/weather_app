@@ -1,0 +1,106 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:1441911497653429776",
+      "lastPropertyId": "8:7165165734970507908",
+      "name": "CityEntity",
+      "properties": [
+        {
+          "id": "1:2395781566478709838",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8048095066443829526",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:1152604935437928035",
+          "name": "lat",
+          "type": 8
+        },
+        {
+          "id": "4:460455100787761654",
+          "name": "lon",
+          "type": 8
+        },
+        {
+          "id": "5:2925861445964293376",
+          "name": "country",
+          "type": 9
+        },
+        {
+          "id": "6:2082212618908804478",
+          "name": "state",
+          "type": 9
+        },
+        {
+          "id": "7:7412129263334679211",
+          "name": "savedAtTimestamp",
+          "type": 6
+        },
+        {
+          "id": "8:7165165734970507908",
+          "name": "coordinates",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:2948583525486954945",
+      "lastPropertyId": "6:7407517599489945588",
+      "name": "WeatherEntity",
+      "properties": [
+        {
+          "id": "1:7983467925415125116",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5997478955146787717",
+          "name": "lat",
+          "type": 8
+        },
+        {
+          "id": "3:3888875273938334763",
+          "name": "lon",
+          "type": 8
+        },
+        {
+          "id": "4:810928007147362113",
+          "name": "weatherData",
+          "type": 9
+        },
+        {
+          "id": "5:7896962551791066073",
+          "name": "timestamp",
+          "type": 6
+        },
+        {
+          "id": "6:7407517599489945588",
+          "name": "coordinates",
+          "type": 9
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "2:2948583525486954945",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}

@@ -18,11 +18,17 @@ abstract class AppRouter {
         builder: (context, state) => const HomeScreen(),
       ),
       GoRoute(
-        path: '/weather/:cityId',
+        path: '/weather',
         name: 'weather-details',
         builder: (context, state) {
-          final cityId = state.pathParameters['cityId'] ?? '';
-          return WeatherDetailsScreen(cityId: cityId);
+          return WeatherDetailsScreen(
+            lat:
+                double.tryParse(state.uri.queryParameters['lat'] ?? '0.0') ??
+                0.0,
+            lon:
+                double.tryParse(state.uri.queryParameters['lon'] ?? '0.0') ??
+                0.0,
+          );
         },
       ),
       GoRoute(

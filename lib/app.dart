@@ -10,6 +10,7 @@ class WeatherApp extends StatelessWidget {
     // Build the app with localized strings
     return MaterialApp.router(
       title: 'Weather App',
+      debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.router,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),

@@ -1,18 +1,33 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:get_it/get_it.dart';
+import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
 import 'package:weather_app/core/config/env_config.dart';
 import 'package:weather_app/core/network/api_client.dart';
 import 'package:weather_app/core/network/api_key_interceptor.dart';
 import 'package:weather_app/core/network/dio_api_client.dart';
+import 'package:weather_app/data/datasources/city_remote_data_source_impl.dart';
+import 'package:weather_app/data/datasources/contracts/city_remote_data_source.dart';
 import 'package:weather_app/data/repositories/city_repository.dart';
-import 'package:weather_app/data/services/geocoding_service.dart';
+import 'package:weather_app/data/repositories/local_city_repository.dart';
+import 'package:weather_app/domain/repositories/city_repository_interface.dart';
+import 'package:weather_app/domain/repositories/local_city_repository_interface.dart';
+import 'package:weather_app/domain/use_cases/manage_saved_cities_use_case.dart';
+import 'package:weather_app/domain/use_cases/search_cities_use_case.dart';
+import 'package:weather_app/objectbox.g.dart';
+import 'package:weather_app/presentation/city_search/bloc/city_search_bloc.dart';
+import 'package:weather_app/presentation/common/blocs/city_save_bloc.dart';
 
 final getIt = GetIt.instance;
 
-void setupDependencies() {
-  // API
-  getIt.registerLazySingleton(() {
+Future<void> setupDependencies() async {
+  // Register ObjectBox Store asynchronously & wait for completion
+  final store = await _initObjectBox();
+  getIt.registerSingleton<Store>(store);
+
+  // Register API Client
+  getIt.registerLazySingleton<Dio>(() {
     final dio = Dio(
       BaseOptions(
         baseUrl: EnvConfig.weatherApiBaseUrl,
@@ -36,13 +51,43 @@ void setupDependencies() {
     () => DioApiClient(dioClient: getIt()),
   );
 
-  // Services
-  getIt.registerLazySingleton<GeocodingService>(
-    () => GeocodingService(apiClient: getIt()),
+  // Register datasources
+  getIt.registerLazySingleton<CityRemoteDataSource>(
+    () => CityRemoteDataSourceImpl(apiClient: getIt()),
   );
 
-  // Repositories
-  getIt.registerLazySingleton<CityRepository>(
-    () => CityRepository(geocodingService: getIt()),
+  // Register Repository Implementations
+  getIt.registerLazySingleton<CityRepositoryInterface>(
+    () => CityRepository(remoteDataSource: getIt()),
   );
+
+  getIt.registerLazySingleton<LocalCityRepositoryInterface>(
+    () => LocalCityRepository(localDataSource: getIt()),
+  );
+
+  // Register Use Cases
+  getIt.registerLazySingleton<SearchCitiesUseCase>(
+    () => SearchCitiesUseCase(getIt<CityRepositoryInterface>()),
+  );
+
+  getIt.registerLazySingleton<ManageSavedCitiesUseCase>(
+    () => ManageSavedCitiesUseCase(getIt<LocalCityRepositoryInterface>()),
+  );
+
+  // Register BLoCs
+  getIt.registerFactory(
+    () => CitySearchBloc(searchCitiesUseCase: getIt<SearchCitiesUseCase>()),
+  );
+
+  getIt.registerFactory(
+    () => CitySaveBloc(
+      manageSavedCitiesUseCase: getIt<ManageSavedCitiesUseCase>(),
+    ),
+  );
+}
+
+Future<Store> _initObjectBox() async {
+  final docsDir = await getApplicationDocumentsDirectory();
+  final directory = p.join(docsDir.path, 'weather_app_db');
+  return openStore(directory: directory);
 }
