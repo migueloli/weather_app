@@ -1,3 +1,6 @@
+typedef ResultCallback<R, T> = R Function(T);
+typedef ResultErrorCallback<R, E> = R Function(E);
+
 class Result<T, E> {
   const Result._({required this.isSuccess, T? success, E? error})
     : _success = success,
@@ -41,7 +44,10 @@ class Result<T, E> {
   }
 
   /// Handle both success and failure cases
-  R fold<R>(R Function(T) onSuccess, R Function(E) onFailure) {
+  R fold<R>(
+    ResultCallback<R, T> onSuccess,
+    ResultErrorCallback<R, E> onFailure,
+  ) {
     if (isSuccess) {
       return onSuccess(_success as T);
     } else {
@@ -51,13 +57,13 @@ class Result<T, E> {
 
   /// Executes one of the provided callbacks depending on the result state
   void when({
-    required void Function(T) onSuccess,
-    required void Function(E) onFailure,
+    ResultCallback<void, T>? onSuccess,
+    ResultErrorCallback<void, E>? onFailure,
   }) {
     if (isSuccess) {
-      onSuccess(_success as T);
+      onSuccess?.call(_success as T);
     } else {
-      onFailure(_error as E);
+      onFailure?.call(_error as E);
     }
   }
 }

@@ -45,21 +45,26 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       lon: event.city.lon,
     );
 
-    if (result.isFailure) {
-      final updatedLoadingWeather = Set<String>.from(state.loadingWeather);
-      updatedLoadingWeather.remove(cityKey);
+    result.when(
+      onSuccess: (weather) => _onWeatherFetched(weather, cityKey, emit),
+      onFailure: (error) => _onWeatherFetchFailed(cityKey, emit),
+    );
+  }
 
-      emit(state.copyWith(loadingWeather: updatedLoadingWeather));
-      return;
-    }
+  void _onWeatherFetchFailed(String cityKey, Emitter<HomeState> emit) {
+    final updatedLoadingWeather = Set<String>.from(state.loadingWeather);
+    updatedLoadingWeather.remove(cityKey);
 
-    final weather = result.value;
+    emit(state.copyWith(loadingWeather: updatedLoadingWeather));
+  }
 
-    // Update the weather data map
+  void _onWeatherFetched(
+    Weather weather,
+    String cityKey,
+    Emitter<HomeState> emit,
+  ) {
     final updatedWeatherData = Map<String, Weather>.from(state.weatherData);
     updatedWeatherData[cityKey] = weather;
-
-    // Remove from loading set
     final updatedLoadingWeather = Set<String>.from(state.loadingWeather);
     updatedLoadingWeather.remove(cityKey);
 
@@ -78,17 +83,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     await _citiesSubscription?.cancel();
     _citiesSubscription = null;
 
-    final result = _getSavedCitiesUseCase();
-    if (result.isFailure) {
-      emit(
-        state.copyWith(status: HomeStatus.failure, error: () => result.error),
-      );
-      return;
-    }
-
-    _citiesSubscription = result.value.listen((cities) {
-      add(CitiesUpdated(cities));
-    });
+    _getSavedCitiesUseCase().when(
+      onSuccess:
+          (citiesStream) =>
+              _citiesSubscription = citiesStream.listen((cities) {
+                add(CitiesUpdated(cities));
+              }),
+      onFailure:
+          (error) => emit(
+            state.copyWith(status: HomeStatus.failure, error: () => error),
+          ),
+    );
   }
 
   Future<void> _onRemoveSavedCity(
@@ -96,9 +101,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     Emitter<HomeState> emit,
   ) async {
     final result = await _removeSavedCityUseCase(event.city);
-    if (result.isFailure) {
-      emit(state.copyWith(error: () => result.error));
-    }
+    result.when(onFailure: (error) => emit(state.copyWith(error: () => error)));
   }
 
   void _onCitiesUpdated(CitiesUpdated event, Emitter<HomeState> emit) {

@@ -56,18 +56,21 @@ class CitySearchBloc extends Bloc<CitySearchEvent, CitySearchState> {
     emit(state.copyWith(status: CitySearchStatus.loading, query: event.query));
 
     final result = await _searchCitiesUseCase(event.query);
-    if (result.isFailure) {
-      emit(
-        state.copyWith(
-          status: CitySearchStatus.failure,
-          error: () => result.error,
-        ),
-      );
-      return;
-    }
-
-    emit(
-      state.copyWith(status: CitySearchStatus.success, cities: result.value),
+    result.when(
+      onSuccess:
+          (cities) => emit(
+            state.copyWith(
+              status: CitySearchStatus.success,
+              cities: result.value,
+            ),
+          ),
+      onFailure:
+          (error) => emit(
+            state.copyWith(
+              status: CitySearchStatus.failure,
+              error: () => error,
+            ),
+          ),
     );
   }
 
@@ -76,9 +79,7 @@ class CitySearchBloc extends Bloc<CitySearchEvent, CitySearchState> {
     Emitter<CitySearchState> emit,
   ) async {
     final result = await _saveCityUseCase(event.city);
-    if (result.isFailure) {
-      emit(state.copyWith(error: () => result.error));
-    }
+    result.when(onFailure: (error) => emit(state.copyWith(error: () => error)));
   }
 
   Future<void> _onRemoveCity(
@@ -86,9 +87,7 @@ class CitySearchBloc extends Bloc<CitySearchEvent, CitySearchState> {
     Emitter<CitySearchState> emit,
   ) async {
     final result = await _removeCityUseCase(event.city);
-    if (result.isFailure) {
-      emit(state.copyWith(error: () => result.error));
-    }
+    result.when(onFailure: (error) => emit(state.copyWith(error: () => error)));
   }
 
   void _onCitiesUpdated(CitiesUpdated event, Emitter<CitySearchState> emit) {
@@ -112,14 +111,13 @@ class CitySearchBloc extends Bloc<CitySearchEvent, CitySearchState> {
     await _citiesSubscription?.cancel();
     _citiesSubscription = null;
 
-    final result = _getSavedCitiesUseCase();
-    if (result.isFailure) {
-      return;
-    }
-
-    _citiesSubscription = result.value.listen((cities) {
-      add(CitiesUpdated(cities));
-    });
+    _getSavedCitiesUseCase().when(
+      onSuccess:
+          (citiesStream) =>
+              _citiesSubscription = citiesStream.listen((cities) {
+                add(CitiesUpdated(cities));
+              }),
+    );
   }
 
   Stream<E> _debounceSearch<E>(Stream<E> events, EventMapper<E> mapper) =>
