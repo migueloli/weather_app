@@ -4,20 +4,22 @@ import 'package:weather_app/presentation/city_search/city_search_screen.dart';
 import 'package:weather_app/presentation/error/error_screen.dart';
 import 'package:weather_app/presentation/home/home_screen.dart';
 
+part 'app_routes.dart';
+
 abstract class AppRouter {
   const AppRouter._();
 
   static final GoRouter router = GoRouter(
-    initialLocation: '/',
+    initialLocation: AppRoutes.home,
     debugLogDiagnostics: kDebugMode,
     routes: [
       GoRoute(
-        path: '/',
+        path: AppRoutes.home,
         name: 'home',
         builder: (context, state) => const HomeScreen(),
       ),
       GoRoute(
-        path: '/city/search',
+        path: AppRoutes.citySearch,
         name: 'city-search',
         builder: (context, state) => const CitySearchScreen(),
       ),

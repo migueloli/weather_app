@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:weather_app/core/routing/app_router.dart';
 import 'package:weather_app/l10n/gen/app_localizations.dart';
 import 'package:weather_app/presentation/common/widgets/empty_state.dart';
 import 'package:weather_app/presentation/common/widgets/error_state.dart';
@@ -43,7 +44,7 @@ class HomeBody extends StatelessWidget {
               subtitle: l10n.addCityToSeeWeather,
               icon: Icons.location_city,
               action: ElevatedButton.icon(
-                onPressed: () => context.push('/city/search'),
+                onPressed: () => context.push(AppRoutes.citySearch),
                 icon: const Icon(Icons.add),
                 label: Text(l10n.searchForCities),
               ),
