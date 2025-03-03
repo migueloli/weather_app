@@ -1,7 +1,9 @@
-class WeatherRain {
-  WeatherRain({this.oneHour, this.threeHours});
+import 'package:weather_app/core/utils/json_types.dart';
 
-  factory WeatherRain.fromJson(Map<String, dynamic> json) {
+class WeatherRain {
+  const WeatherRain({this.oneHour, this.threeHours});
+
+  factory WeatherRain.fromJson(JsonObject json) {
     return WeatherRain(
       oneHour: json['1h']?.toDouble(),
       threeHours: json['3h']?.toDouble(),
@@ -10,7 +12,7 @@ class WeatherRain {
   final double? oneHour;
   final double? threeHours;
 
-  Map<String, dynamic> toJson() {
+  JsonObject toJson() {
     return {'1h': oneHour, '3h': threeHours};
   }
 }

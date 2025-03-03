@@ -1,6 +1,5 @@
 import 'package:weather_app/data/datasources/contracts/city_local_data_source.dart';
 import 'package:weather_app/data/entity/city_entity.dart';
-import 'package:weather_app/data/models/city.dart';
 import 'package:weather_app/objectbox.g.dart';
 
 class CityLocalDataSourceImpl implements CityLocalDataSource {
@@ -11,7 +10,7 @@ class CityLocalDataSourceImpl implements CityLocalDataSource {
   late final Box<CityEntity> _cityBox;
 
   @override
-  Future<bool> saveCity(City city) async {
+  Future<bool> saveCity(CityEntity city) async {
     try {
       final coordinatesString = '[${city.lat}, ${city.lon}]';
       final query =
@@ -23,13 +22,9 @@ class CityLocalDataSourceImpl implements CityLocalDataSource {
       query.close();
 
       if (existingCity != null) {
-        // City already exists
         return false;
       }
-
-      // Add the city to the database
-      final cityEntity = CityEntity.fromCity(city);
-      _cityBox.put(cityEntity);
+      _cityBox.put(city);
       return true;
     } catch (e) {
       return false;
@@ -61,24 +56,15 @@ class CityLocalDataSourceImpl implements CityLocalDataSource {
   }
 
   @override
-  List<City> getAllCities({bool sortByRecent = true}) {
+  List<CityEntity> getAllCities({bool sortByRecent = true}) {
     try {
-      final queryBuilder = _cityBox.query();
+      final query =
+          _getAllCitiesQueryBuilder(sortByRecent: sortByRecent).build();
 
-      if (sortByRecent) {
-        queryBuilder.order(
-          CityEntity_.savedAtTimestamp,
-          flags: Order.descending,
-        );
-      } else {
-        queryBuilder.order(CityEntity_.name);
-      }
-
-      final query = queryBuilder.build();
       final results = query.find();
       query.close();
 
-      return results.map((entity) => entity.toCity()).toList();
+      return results.toList();
     } catch (e) {
       return [];
     }
@@ -107,5 +93,25 @@ class CityLocalDataSourceImpl implements CityLocalDataSource {
   @override
   int getCityCount() {
     return _cityBox.count();
+  }
+
+  @override
+  Stream<List<CityEntity>> getSavedCitiesStream({bool sortByRecent = true}) {
+    return _getAllCitiesQueryBuilder(
+      sortByRecent: sortByRecent,
+    ).watch(triggerImmediately: true).map((query) => query.find());
+  }
+
+  QueryBuilder<CityEntity> _getAllCitiesQueryBuilder({
+    bool sortByRecent = true,
+  }) {
+    final queryBuilder = _cityBox.query();
+
+    if (sortByRecent) {
+      queryBuilder.order(CityEntity_.savedAtTimestamp, flags: Order.descending);
+    } else {
+      queryBuilder.order(CityEntity_.name);
+    }
+    return queryBuilder;
   }
 }

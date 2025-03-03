@@ -9,6 +9,18 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get appTitle => 'Weather App';
+
+  @override
+  String get noSavedCities => 'No saved cities';
+
+  @override
+  String get addCityToSeeWeather => 'Add a city to see weather information';
+
+  @override
+  String get searchForCities => 'Search for cities';
+
+  @override
   String get errorGeneric => 'Something went wrong';
 
   @override

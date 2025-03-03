@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:weather_app/data/models/city.dart';
-import 'package:weather_app/presentation/common/blocs/city_save_bloc.dart';
-import 'package:weather_app/presentation/common/blocs/city_save_event.dart';
+import 'package:weather_app/presentation/city_search/bloc/city_search_bloc.dart';
+import 'package:weather_app/presentation/city_search/bloc/city_search_event.dart';
 
 class CitySearchListItem extends StatelessWidget {
   const CitySearchListItem({
@@ -42,11 +42,13 @@ class CitySearchListItem extends StatelessWidget {
                   color: isSaved ? Colors.blue : null,
                 ),
                 onPressed: () {
-                  final citySaveBloc = BlocProvider.of<CitySaveBloc>(context);
+                  final citySearchBloc = BlocProvider.of<CitySearchBloc>(
+                    context,
+                  );
                   if (isSaved) {
-                    citySaveBloc.add(RemoveCity(lat: city.lat, lon: city.lon));
+                    citySearchBloc.add(RemoveCity(city));
                   } else {
-                    citySaveBloc.add(AddCity(city));
+                    citySearchBloc.add(SaveCity(city));
                   }
                 },
               ),

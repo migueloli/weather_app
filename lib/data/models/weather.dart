@@ -1,4 +1,4 @@
-import 'package:weather_app/data/models/json_list.dart';
+import 'package:weather_app/core/utils/json_types.dart';
 import 'package:weather_app/data/models/weather_clouds.dart';
 import 'package:weather_app/data/models/weather_condition.dart';
 import 'package:weather_app/data/models/weather_coordinates.dart';
@@ -8,7 +8,7 @@ import 'package:weather_app/data/models/weather_sys.dart';
 import 'package:weather_app/data/models/weather_wind.dart';
 
 class Weather {
-  Weather({
+  const Weather({
     required this.coord,
     required this.weather,
     required this.base,
@@ -25,11 +25,16 @@ class Weather {
     this.rain,
   });
 
-  factory Weather.fromJson(Map<String, dynamic> json) {
+  factory Weather.fromJson(JsonObject json) {
+    // Extract weather data from the JSON
     return Weather(
       coord: WeatherCoordinates.fromJson(json['coord']),
       weather:
-          (json['weather'] as JsonList).map(WeatherCondition.fromJson).toList(),
+          (json['weather'] as List?)
+              ?.map((item) => WeatherCondition.fromJson(item as JsonObject))
+              .toList() ??
+          [],
+
       base: json['base'],
       main: WeatherMain.fromJson(json['main']),
       visibility: json['visibility'],
@@ -59,7 +64,7 @@ class Weather {
   final String name;
   final int cod;
 
-  Map<String, dynamic> toJson() {
+  JsonObject toJson() {
     return {
       'coord': coord.toJson(),
       'weather': weather.map((w) => w.toJson()).toList(),

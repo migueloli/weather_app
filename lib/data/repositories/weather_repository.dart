@@ -6,11 +6,12 @@ import 'package:weather_app/data/models/weather.dart';
 import 'package:weather_app/domain/repositories/weather_repository_interface.dart';
 
 class WeatherRepository implements WeatherRepositoryInterface {
-  WeatherRepository({
+  const WeatherRepository({
     required WeatherRemoteDataSource remoteDataSource,
     required WeatherLocalDataSource localDataSource,
   }) : _remoteDataSource = remoteDataSource,
        _localDataSource = localDataSource;
+
   final WeatherRemoteDataSource _remoteDataSource;
   final WeatherLocalDataSource _localDataSource;
 

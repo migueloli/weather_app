@@ -1,7 +1,9 @@
-class WeatherCoordinates {
-  WeatherCoordinates({required this.lon, required this.lat});
+import 'package:weather_app/core/utils/json_types.dart';
 
-  factory WeatherCoordinates.fromJson(Map<String, dynamic> json) {
+class WeatherCoordinates {
+  const WeatherCoordinates({required this.lon, required this.lat});
+
+  factory WeatherCoordinates.fromJson(JsonObject json) {
     return WeatherCoordinates(
       lon: json['lon'].toDouble(),
       lat: json['lat'].toDouble(),
@@ -10,7 +12,7 @@ class WeatherCoordinates {
   final double lon;
   final double lat;
 
-  Map<String, dynamic> toJson() {
+  JsonObject toJson() {
     return {'lon': lon, 'lat': lat};
   }
 

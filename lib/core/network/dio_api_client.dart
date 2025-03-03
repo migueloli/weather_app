@@ -7,7 +7,7 @@ import 'package:weather_app/core/exception/network_exception.dart';
 import 'package:weather_app/core/network/api_client.dart';
 
 class DioApiClient implements ApiClient {
-  DioApiClient({required Dio dioClient}) : _dio = dioClient;
+  const DioApiClient({required Dio dioClient}) : _dio = dioClient;
 
   final Dio _dio;
 

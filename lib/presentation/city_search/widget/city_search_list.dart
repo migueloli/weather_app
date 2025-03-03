@@ -7,8 +7,6 @@ import 'package:weather_app/presentation/city_search/bloc/city_search_bloc.dart'
 import 'package:weather_app/presentation/city_search/bloc/city_search_state.dart';
 import 'package:weather_app/presentation/city_search/widget/city_search_list_item.dart';
 import 'package:weather_app/presentation/city_search/widget/city_search_skeleton.dart';
-import 'package:weather_app/presentation/common/blocs/city_save_bloc.dart';
-import 'package:weather_app/presentation/common/blocs/city_save_state.dart';
 import 'package:weather_app/presentation/common/widgets/empty_state.dart';
 import 'package:weather_app/presentation/common/widgets/error_state.dart';
 
@@ -44,27 +42,20 @@ class CitySearchList extends StatelessWidget {
           );
         }
 
-        return BlocBuilder<CitySaveBloc, CitySaveState>(
-          builder: (context, savedCitiesState) {
-            return RefreshIndicator(
-              onRefresh: () async {
-                onRetry();
-              },
-              child: ListView.builder(
-                itemCount: state.cities.length,
-                itemBuilder: (context, index) {
-                  final city = state.cities[index];
-                  // Check if this city is already saved
-                  final isSaved = savedCitiesState.cities.any(
-                    (savedCity) =>
-                        savedCity.lat == city.lat && savedCity.lon == city.lon,
-                  );
-
-                  return CitySearchListItem(city: city, isSaved: isSaved);
-                },
-              ),
-            );
+        return RefreshIndicator(
+          onRefresh: () async {
+            onRetry();
           },
+          child: ListView.builder(
+            itemCount: state.cities.length,
+            itemBuilder: (context, index) {
+              final city = state.cities[index];
+              return CitySearchListItem(
+                city: city,
+                isSaved: state.savedCities.contains(city.coordinates),
+              );
+            },
+          ),
         );
       },
     );

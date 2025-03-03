@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:weather_app/core/exception/app_exception.dart';
 import 'package:weather_app/data/models/city.dart';
 
@@ -8,29 +9,33 @@ class CitySearchState extends Equatable {
   const CitySearchState({
     this.status = CitySearchStatus.initial,
     this.cities = const [],
+    this.savedCities = const {},
     this.query = '',
     this.error,
   });
 
   final CitySearchStatus status;
   final List<City> cities;
+  final Set<String> savedCities;
   final String query;
   final AppException? error;
 
   CitySearchState copyWith({
     CitySearchStatus? status,
     List<City>? cities,
+    Set<String>? savedCities,
     String? query,
-    AppException? error,
+    ValueGetter<AppException?>? error,
   }) {
     return CitySearchState(
       status: status ?? this.status,
       cities: cities ?? this.cities,
+      savedCities: savedCities ?? this.savedCities,
       query: query ?? this.query,
-      error: error,
+      error: error != null ? error() : this.error,
     );
   }
 
   @override
-  List<Object?> get props => [status, cities, query, error];
+  List<Object?> get props => [status, cities, savedCities, query, error];
 }

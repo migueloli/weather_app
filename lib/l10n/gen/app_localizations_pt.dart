@@ -9,6 +9,18 @@ class AppLocalizationsPt extends AppLocalizations {
   AppLocalizationsPt([String locale = 'pt']) : super(locale);
 
   @override
+  String get appTitle => 'Weather App';
+
+  @override
+  String get noSavedCities => 'Sem cidades salvas';
+
+  @override
+  String get addCityToSeeWeather => 'Adicione uma cidade para ver informações meteorológicas';
+
+  @override
+  String get searchForCities => 'Buscar cidades';
+
+  @override
   String get errorGeneric => 'Algo deu errado';
 
   @override

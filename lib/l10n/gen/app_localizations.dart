@@ -97,6 +97,30 @@ abstract class AppLocalizations {
     Locale('pt')
   ];
 
+  /// Default title of the app
+  ///
+  /// In en, this message translates to:
+  /// **'Weather App'**
+  String get appTitle;
+
+  /// Title for empty state when no cities are saved
+  ///
+  /// In en, this message translates to:
+  /// **'No saved cities'**
+  String get noSavedCities;
+
+  /// Subtitle for empty state suggesting to add cities
+  ///
+  /// In en, this message translates to:
+  /// **'Add a city to see weather information'**
+  String get addCityToSeeWeather;
+
+  /// Label for button to search for cities
+  ///
+  /// In en, this message translates to:
+  /// **'Search for cities'**
+  String get searchForCities;
+
   /// Generic error message
   ///
   /// In en, this message translates to:

@@ -3,11 +3,11 @@ import 'package:weather_app/data/datasources/contracts/weather_remote_data_sourc
 import 'package:weather_app/data/models/weather.dart';
 
 class WeatherRemoteDataSourceImpl implements WeatherRemoteDataSource {
-  WeatherRemoteDataSourceImpl({required ApiClient apiClient})
+  const WeatherRemoteDataSourceImpl({required ApiClient apiClient})
     : _apiClient = apiClient;
 
   final ApiClient _apiClient;
-  final String baseUrl = '/data/2.5';
+  static const String _baseUrl = '/data/2.5';
 
   @override
   Future<Weather> getWeather({
@@ -30,7 +30,7 @@ class WeatherRemoteDataSourceImpl implements WeatherRemoteDataSource {
 
     // Make API call
     final response = await _apiClient.get(
-      '$baseUrl/weather',
+      '$_baseUrl/weather',
       queryParameters: queryParams,
     );
 

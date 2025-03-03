@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:weather_app/core/utils/json_types.dart';
 
 class City extends Equatable {
   const City({
@@ -10,7 +11,7 @@ class City extends Equatable {
     this.localNames = const {},
   });
 
-  factory City.fromJson(Map<String, dynamic> json) {
+  factory City.fromJson(JsonObject json) {
     return City(
       name: json['name'] as String,
       lat: json['lat'] as double,
@@ -30,6 +31,8 @@ class City extends Equatable {
   final String country;
   final String? state;
   final Map<String, String> localNames;
+
+  String get coordinates => '[$lat,$lon]';
 
   String get displayName {
     final buffer = StringBuffer(name);
@@ -51,7 +54,7 @@ class City extends Equatable {
 
   String getLocalName(String localeCode) => localNames[localeCode] ?? name;
 
-  Map<String, dynamic> toJson() {
+  JsonObject toJson() {
     return {
       'name': name,
       'lat': lat,

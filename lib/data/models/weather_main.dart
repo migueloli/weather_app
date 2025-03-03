@@ -1,5 +1,7 @@
+import 'package:weather_app/core/utils/json_types.dart';
+
 class WeatherMain {
-  WeatherMain({
+  const WeatherMain({
     required this.temp,
     required this.feelsLike,
     required this.tempMin,
@@ -10,7 +12,7 @@ class WeatherMain {
     this.grndLevel,
   });
 
-  factory WeatherMain.fromJson(Map<String, dynamic> json) {
+  factory WeatherMain.fromJson(JsonObject json) {
     return WeatherMain(
       temp: json['temp'].toDouble(),
       feelsLike: json['feels_like'].toDouble(),
@@ -31,7 +33,7 @@ class WeatherMain {
   final int? seaLevel;
   final int? grndLevel;
 
-  Map<String, dynamic> toJson() {
+  JsonObject toJson() {
     return {
       'temp': temp,
       'feels_like': feelsLike,

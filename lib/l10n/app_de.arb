@@ -1,6 +1,26 @@
 {
   "@@locale": "de",
   
+  "appTitle": "Wetter-App",
+  "@appTitle": {
+    "description": "Standardtitel der App"
+  },
+
+  "noSavedCities": "Keine gespeicherten Städte",
+  "@noSavedCities": {
+    "description": "Title for empty state when no cities are saved"
+  },
+
+  "addCityToSeeWeather": "Fügen Sie eine Stadt hinzu, um Wetterinformationen zu sehen",
+  "@addCityToSeeWeather": {
+    "description": "Subtitle for empty state suggesting to add cities"
+  },
+
+  "searchForCities": "Städte suchen",
+  "@searchForCities": {
+    "description": "Label for button to search for cities"
+  },
+
   "errorGeneric": "Etwas ist schiefgelaufen",
   "@errorGeneric": {
     "description": "Allgemeine Fehlermeldung"

@@ -1,28 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:weather_app/core/di/service_locator.dart';
 import 'package:weather_app/l10n/gen/app_localizations.dart';
+import 'package:weather_app/presentation/home/bloc/home_bloc.dart';
+import 'package:weather_app/presentation/home/widget/home_body.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
-    return Scaffold(
-      appBar: AppBar(title: Text(l10n.weatherTitle)),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(l10n.weatherTitle),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => context.go('/city/search'),
-              child: Text(l10n.citySearch),
+    return BlocProvider(
+      create: (context) => getIt<HomeBloc>(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(l10n.appTitle),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.add),
+              onPressed: () => context.push('/city/search'),
             ),
           ],
         ),
+        body: const HomeBody(),
       ),
     );
   }

@@ -1,12 +1,14 @@
+import 'package:weather_app/core/utils/json_types.dart';
+
 class WeatherCondition {
-  WeatherCondition({
+  const WeatherCondition({
     required this.id,
     required this.main,
     required this.description,
     required this.icon,
   });
 
-  factory WeatherCondition.fromJson(Map<String, dynamic> json) {
+  factory WeatherCondition.fromJson(JsonObject json) {
     return WeatherCondition(
       id: json['id'],
       main: json['main'],
@@ -19,7 +21,7 @@ class WeatherCondition {
   final String description;
   final String icon;
 
-  Map<String, dynamic> toJson() {
+  JsonObject toJson() {
     return {'id': id, 'main': main, 'description': description, 'icon': icon};
   }
 

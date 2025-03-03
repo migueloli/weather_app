@@ -1,6 +1,26 @@
 {
   "@@locale": "en",
   
+  "appTitle": "Weather App",
+  "@appTitle": {
+    "description": "Default title of the app"
+  },
+
+  "noSavedCities": "No saved cities",
+  "@noSavedCities": {
+    "description": "Title for empty state when no cities are saved"
+  },
+
+  "addCityToSeeWeather": "Add a city to see weather information",
+  "@addCityToSeeWeather": {
+    "description": "Subtitle for empty state suggesting to add cities"
+  },
+
+  "searchForCities": "Search for cities",
+  "@searchForCities": {
+    "description": "Label for button to search for cities"
+  },
+
   "errorGeneric": "Something went wrong",
   "@errorGeneric": {
     "description": "Generic error message"

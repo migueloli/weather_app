@@ -21,13 +21,14 @@ import 'package:weather_app/data/repositories/weather_repository.dart';
 import 'package:weather_app/domain/repositories/city_repository_interface.dart';
 import 'package:weather_app/domain/repositories/local_city_repository_interface.dart';
 import 'package:weather_app/domain/repositories/weather_repository_interface.dart';
+import 'package:weather_app/domain/use_cases/get_saved_cities_use_case.dart';
+import 'package:weather_app/domain/use_cases/get_weather_updated_timestamp_use_case.dart';
 import 'package:weather_app/domain/use_cases/get_weather_use_case.dart';
-import 'package:weather_app/domain/use_cases/manage_saved_cities_use_case.dart';
+import 'package:weather_app/domain/use_cases/remove_saved_city_use_case.dart';
 import 'package:weather_app/domain/use_cases/search_cities_use_case.dart';
 import 'package:weather_app/objectbox.g.dart';
 import 'package:weather_app/presentation/city_search/bloc/city_search_bloc.dart';
-import 'package:weather_app/presentation/common/blocs/city_save_bloc.dart';
-import 'package:weather_app/presentation/weather_details/bloc/weather_bloc.dart';
+import 'package:weather_app/presentation/home/bloc/home_bloc.dart';
 
 final getIt = GetIt.instance;
 
@@ -94,30 +95,41 @@ Future<void> setupDependencies() async {
 
   // Register Use Cases
   getIt.registerLazySingleton<GetWeatherUseCase>(
-    () => GetWeatherUseCase(getIt<WeatherRepositoryInterface>()),
+    () => GetWeatherUseCase(getIt()),
+  );
+
+  getIt.registerLazySingleton<GetWeatherUpdatedTimestampUseCase>(
+    () => GetWeatherUpdatedTimestampUseCase(getIt()),
   );
 
   getIt.registerLazySingleton<SearchCitiesUseCase>(
-    () => SearchCitiesUseCase(getIt<CityRepositoryInterface>()),
+    () => SearchCitiesUseCase(getIt()),
   );
 
-  getIt.registerLazySingleton<ManageSavedCitiesUseCase>(
-    () => ManageSavedCitiesUseCase(getIt<LocalCityRepositoryInterface>()),
+  getIt.registerFactory(
+    () => RemoveSavedCityUseCase(localCityRepository: getIt()),
+  );
+
+  getIt.registerFactory(
+    () => GetSavedCitiesUseCase(localCityRepository: getIt()),
   );
 
   // Register BLoCs
   getIt.registerFactory(
-    () => CitySearchBloc(searchCitiesUseCase: getIt<SearchCitiesUseCase>()),
-  );
-
-  getIt.registerFactory(
-    () => CitySaveBloc(
-      manageSavedCitiesUseCase: getIt<ManageSavedCitiesUseCase>(),
+    () => CitySearchBloc(
+      searchCitiesUseCase: getIt(),
+      saveCityUseCase: getIt(),
+      removeSavedCityUseCase: getIt(),
+      getSavedCitiesUseCase: getIt(),
     ),
   );
 
   getIt.registerFactory(
-    () => WeatherBloc(getWeatherUseCase: getIt<GetWeatherUseCase>()),
+    () => HomeBloc(
+      getSavedCitiesUseCase: getIt(),
+      removeSavedCityUseCase: getIt(),
+      getWeatherUseCase: getIt(),
+    ),
   );
 }
 

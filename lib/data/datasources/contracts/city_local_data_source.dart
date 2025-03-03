@@ -1,9 +1,12 @@
-import 'package:weather_app/data/models/city.dart';
+import 'package:weather_app/data/entity/city_entity.dart';
 
 abstract class CityLocalDataSource {
-  Future<bool> saveCity(City city);
+  const CityLocalDataSource();
+
+  Future<bool> saveCity(CityEntity city);
   Future<bool> removeCity(double lat, double lon);
-  List<City> getAllCities({bool sortByRecent = true});
+  List<CityEntity> getAllCities({bool sortByRecent = true});
   bool isCitySaved(double lat, double lon);
   int getCityCount();
+  Stream<List<CityEntity>> getSavedCitiesStream({bool sortByRecent = true});
 }

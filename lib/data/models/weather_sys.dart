@@ -1,5 +1,7 @@
+import 'package:weather_app/core/utils/json_types.dart';
+
 class WeatherSys {
-  WeatherSys({
+  const WeatherSys({
     required this.country,
     required this.sunrise,
     required this.sunset,
@@ -7,7 +9,7 @@ class WeatherSys {
     this.id,
   });
 
-  factory WeatherSys.fromJson(Map<String, dynamic> json) {
+  factory WeatherSys.fromJson(JsonObject json) {
     return WeatherSys(
       type: json['type'],
       id: json['id'],
@@ -22,7 +24,7 @@ class WeatherSys {
   final int sunrise;
   final int sunset;
 
-  Map<String, dynamic> toJson() {
+  JsonObject toJson() {
     return {
       'type': type,
       'id': id,

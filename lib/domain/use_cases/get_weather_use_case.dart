@@ -2,10 +2,11 @@ import 'package:weather_app/data/models/weather.dart';
 import 'package:weather_app/domain/repositories/weather_repository_interface.dart';
 
 class GetWeatherUseCase {
-  GetWeatherUseCase(this._weatherRepository);
+  const GetWeatherUseCase(this._weatherRepository);
+
   final WeatherRepositoryInterface _weatherRepository;
 
-  Future<Weather> execute({
+  Future<Weather> call({
     required double lat,
     required double lon,
     String units = 'metric',
@@ -19,9 +20,5 @@ class GetWeatherUseCase {
       lang: lang,
       forceRefresh: forceRefresh,
     );
-  }
-
-  int? getLastUpdatedTimestamp(double lat, double lon) {
-    return _weatherRepository.getLastUpdatedTimestamp(lat, lon);
   }
 }

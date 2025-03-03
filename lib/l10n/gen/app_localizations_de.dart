@@ -9,6 +9,18 @@ class AppLocalizationsDe extends AppLocalizations {
   AppLocalizationsDe([String locale = 'de']) : super(locale);
 
   @override
+  String get appTitle => 'Wetter-App';
+
+  @override
+  String get noSavedCities => 'Keine gespeicherten Städte';
+
+  @override
+  String get addCityToSeeWeather => 'Fügen Sie eine Stadt hinzu, um Wetterinformationen zu sehen';
+
+  @override
+  String get searchForCities => 'Städte suchen';
+
+  @override
   String get errorGeneric => 'Etwas ist schiefgelaufen';
 
   @override

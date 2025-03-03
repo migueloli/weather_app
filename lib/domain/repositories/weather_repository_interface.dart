@@ -1,6 +1,8 @@
 import 'package:weather_app/data/models/weather.dart';
 
 abstract class WeatherRepositoryInterface {
+  const WeatherRepositoryInterface();
+
   Future<Weather> getWeather({
     required double lat,
     required double lon,

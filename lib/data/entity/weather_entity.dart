@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:objectbox/objectbox.dart';
+import 'package:weather_app/core/utils/json_types.dart';
 import 'package:weather_app/data/models/weather.dart';
 
 @Entity()
@@ -29,15 +30,11 @@ class WeatherEntity {
   final String coordinates;
   final double lat;
   final double lon;
-
-  // Store the full JSON of the weather data
   final String weatherData;
-
-  // When this data was fetched
   final int timestamp;
 
   Weather toWeather() {
-    final json = jsonDecode(weatherData) as Map<String, dynamic>;
+    final json = jsonDecode(weatherData) as JsonObject;
     return Weather.fromJson(json);
   }
 

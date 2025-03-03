@@ -5,8 +5,9 @@ import 'package:weather_app/data/models/city.dart';
 import 'package:weather_app/domain/repositories/city_repository_interface.dart';
 
 class CityRepository implements CityRepositoryInterface {
-  CityRepository({required CityRemoteDataSource remoteDataSource})
+  const CityRepository({required CityRemoteDataSource remoteDataSource})
     : _remoteDataSource = remoteDataSource;
+
   final CityRemoteDataSource _remoteDataSource;
 
   @override

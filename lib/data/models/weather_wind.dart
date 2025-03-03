@@ -1,7 +1,9 @@
-class WeatherWind {
-  WeatherWind({required this.speed, required this.deg, this.gust});
+import 'package:weather_app/core/utils/json_types.dart';
 
-  factory WeatherWind.fromJson(Map<String, dynamic> json) {
+class WeatherWind {
+  const WeatherWind({required this.speed, required this.deg, this.gust});
+
+  factory WeatherWind.fromJson(JsonObject json) {
     return WeatherWind(
       speed: json['speed'].toDouble(),
       deg: json['deg'],
@@ -12,7 +14,7 @@ class WeatherWind {
   final int deg;
   final double? gust;
 
-  Map<String, dynamic> toJson() {
+  JsonObject toJson() {
     return {'speed': speed, 'deg': deg, 'gust': gust};
   }
 }

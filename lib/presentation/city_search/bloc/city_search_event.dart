@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:weather_app/data/models/city.dart';
 
 abstract class CitySearchEvent extends Equatable {
   const CitySearchEvent();
@@ -16,4 +17,33 @@ class SearchCities extends CitySearchEvent {
   List<Object?> get props => [query];
 }
 
-class ClearSearch extends CitySearchEvent {}
+class SaveCity extends CitySearchEvent {
+  const SaveCity(this.city);
+
+  final City city;
+
+  @override
+  List<Object?> get props => [city];
+}
+
+class RemoveCity extends CitySearchEvent {
+  const RemoveCity(this.city);
+
+  final City city;
+
+  @override
+  List<Object?> get props => [city];
+}
+
+class CitiesUpdated extends CitySearchEvent {
+  const CitiesUpdated(this.cities);
+
+  final List<City> cities;
+
+  @override
+  List<Object?> get props => [cities];
+}
+
+class ClearSearch extends CitySearchEvent {
+  const ClearSearch();
+}
