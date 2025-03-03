@@ -11,19 +11,15 @@ class CityRemoteDataSourceImpl implements CityRemoteDataSource {
 
   @override
   Future<List<City>> searchCities(String cityName, {int limit = 5}) async {
-    try {
-      final response = await _apiClient.get(
-        '$_basePath/direct',
-        queryParameters: {'q': cityName, 'limit': limit.toString()},
-      );
+    final response = await _apiClient.get(
+      '$_basePath/direct',
+      queryParameters: {'q': cityName, 'limit': limit.toString()},
+    );
 
-      if (response is List) {
-        return response.map((cityJson) => City.fromJson(cityJson)).toList();
-      }
-
-      return [];
-    } catch (e) {
-      rethrow;
+    if (response is List) {
+      return response.map((cityJson) => City.fromJson(cityJson)).toList();
     }
+
+    return [];
   }
 }

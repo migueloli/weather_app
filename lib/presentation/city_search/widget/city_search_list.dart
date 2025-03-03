@@ -1,14 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/core/exception/app_exception_message_extension.dart';
 import 'package:weather_app/l10n/gen/app_localizations.dart';
 import 'package:weather_app/presentation/city_search/bloc/city_search_bloc.dart';
 import 'package:weather_app/presentation/city_search/bloc/city_search_state.dart';
 import 'package:weather_app/presentation/city_search/widget/city_search_list_item.dart';
 import 'package:weather_app/presentation/city_search/widget/city_search_skeleton.dart';
 import 'package:weather_app/presentation/common/widgets/empty_state.dart';
-import 'package:weather_app/presentation/common/widgets/error_state.dart';
+import 'package:weather_app/presentation/common/widgets/error_view.dart';
 
 class CitySearchList extends StatelessWidget {
   const CitySearchList({required this.onRetry, super.key});
@@ -26,12 +25,7 @@ class CitySearchList extends StatelessWidget {
         }
 
         if (state.status == CitySearchStatus.failure) {
-          return ErrorState(
-            onRetry: onRetry,
-            errorMessage:
-                state.error?.getLocalizedMessage(context) ?? l10n.errorGeneric,
-            icon: Icons.cloud_off,
-          );
+          return ErrorView(onRetry: onRetry, error: state.error);
         }
 
         if (state.status == CitySearchStatus.success && state.cities.isEmpty) {

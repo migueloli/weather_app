@@ -40,7 +40,9 @@ class _CitySearchBodyState extends State<CitySearchBody> {
                 icon: const Icon(Icons.clear),
                 onPressed: () {
                   _searchController.clear();
-                  BlocProvider.of<CitySearchBloc>(context).add(ClearSearch());
+                  BlocProvider.of<CitySearchBloc>(
+                    context,
+                  ).add(const ClearSearch());
                 },
               ),
               border: OutlineInputBorder(

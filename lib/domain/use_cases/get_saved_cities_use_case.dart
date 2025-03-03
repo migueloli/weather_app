@@ -1,3 +1,5 @@
+import 'package:weather_app/core/error/app_exception.dart';
+import 'package:weather_app/core/utils/result.dart';
 import 'package:weather_app/data/models/city.dart';
 import 'package:weather_app/domain/repositories/local_city_repository_interface.dart';
 
@@ -8,7 +10,7 @@ class GetSavedCitiesUseCase {
 
   final LocalCityRepositoryInterface _localCityRepository;
 
-  Stream<List<City>> call() {
+  Result<Stream<List<City>>, AppException> call() {
     return _localCityRepository.getAllCitiesStream();
   }
 }

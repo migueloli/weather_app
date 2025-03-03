@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:go_router/go_router.dart';
+import 'package:weather_app/core/error/error_handler.dart';
 import 'package:weather_app/presentation/city_search/city_search_screen.dart';
 import 'package:weather_app/presentation/error/error_screen.dart';
 import 'package:weather_app/presentation/home/home_screen.dart';
@@ -25,6 +26,7 @@ abstract class AppRouter {
       ),
     ],
     errorBuilder:
-        (context, state) => ErrorScreen(error: state.error.toString()),
+        (context, state) =>
+            ErrorScreen(error: ErrorHandler.handleError(state.error)),
   );
 }

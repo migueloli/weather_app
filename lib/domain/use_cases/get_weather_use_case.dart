@@ -1,3 +1,5 @@
+import 'package:weather_app/core/error/app_exception.dart';
+import 'package:weather_app/core/utils/result.dart';
 import 'package:weather_app/data/models/weather.dart';
 import 'package:weather_app/domain/repositories/weather_repository_interface.dart';
 
@@ -6,7 +8,7 @@ class GetWeatherUseCase {
 
   final WeatherRepositoryInterface _weatherRepository;
 
-  Future<Weather> call({
+  Future<Result<Weather, AppException>> call({
     required double lat,
     required double lon,
     String units = 'metric',

@@ -47,3 +47,7 @@ class CitiesUpdated extends CitySearchEvent {
 class ClearSearch extends CitySearchEvent {
   const ClearSearch();
 }
+
+class LoadSavedCities extends CitySearchEvent {
+  const LoadSavedCities();
+}

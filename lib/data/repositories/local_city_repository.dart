@@ -1,3 +1,6 @@
+import 'package:weather_app/core/error/app_exception.dart';
+import 'package:weather_app/core/error/error_handler.dart';
+import 'package:weather_app/core/utils/result.dart';
 import 'package:weather_app/data/datasources/contracts/city_local_data_source.dart';
 import 'package:weather_app/data/entity/city_entity.dart';
 import 'package:weather_app/data/models/city.dart';
@@ -10,37 +13,69 @@ class LocalCityRepository implements LocalCityRepositoryInterface {
   final CityLocalDataSource _localDataSource;
 
   @override
-  Future<bool> saveCity(City city) {
-    return _localDataSource.saveCity(CityEntity.fromCity(city));
+  Future<Result<bool, AppException>> saveCity(City city) async {
+    try {
+      return Result.success(
+        await _localDataSource.saveCity(CityEntity.fromCity(city)),
+      );
+    } on Exception catch (e, st) {
+      return Result.failure(ErrorHandler.handleError(e, st));
+    }
   }
 
   @override
-  Future<bool> removeCity(City city) {
-    return _localDataSource.removeCity(city.lat, city.lon);
+  Future<Result<bool, AppException>> removeCity(City city) async {
+    try {
+      return Result.success(
+        await _localDataSource.removeCity(city.lat, city.lon),
+      );
+    } on Exception catch (e, st) {
+      return Result.failure(ErrorHandler.handleError(e, st));
+    }
   }
 
   @override
-  List<City> getAllCities({bool sortByRecent = true}) {
-    return _localDataSource
-        .getAllCities(sortByRecent: sortByRecent)
-        .map((city) => city.toCity())
-        .toList();
+  Result<List<City>, AppException> getAllCities({bool sortByRecent = true}) {
+    try {
+      return Result.success(
+        _localDataSource
+            .getAllCities(sortByRecent: sortByRecent)
+            .map((city) => city.toCity())
+            .toList(),
+      );
+    } on Exception catch (e, st) {
+      return Result.failure(ErrorHandler.handleError(e, st));
+    }
   }
 
   @override
-  bool isCitySaved(double lat, double lon) {
-    return _localDataSource.isCitySaved(lat, lon);
+  Result<bool, AppException> isCitySaved(double lat, double lon) {
+    try {
+      return Result.success(_localDataSource.isCitySaved(lat, lon));
+    } on Exception catch (e, st) {
+      return Result.failure(ErrorHandler.handleError(e, st));
+    }
   }
 
   @override
-  int getCityCount() {
-    return _localDataSource.getCityCount();
+  Result<int, AppException> getCityCount() {
+    try {
+      return Result.success(_localDataSource.getCityCount());
+    } on Exception catch (e, st) {
+      return Result.failure(ErrorHandler.handleError(e, st));
+    }
   }
 
   @override
-  Stream<List<City>> getAllCitiesStream() {
-    return _localDataSource.getSavedCitiesStream().map(
-      (city) => city.map((e) => e.toCity()).toList(),
-    );
+  Result<Stream<List<City>>, AppException> getAllCitiesStream() {
+    try {
+      return Result.success(
+        _localDataSource.getSavedCitiesStream().map(
+          (city) => city.map((e) => e.toCity()).toList(),
+        ),
+      );
+    } on Exception catch (e, st) {
+      return Result.failure(ErrorHandler.handleError(e, st));
+    }
   }
 }

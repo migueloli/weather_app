@@ -6,6 +6,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:weather_app/core/config/env_config.dart';
 import 'package:weather_app/core/network/api_client.dart';
 import 'package:weather_app/core/network/api_key_interceptor.dart';
+import 'package:weather_app/core/network/connectivity_service.dart';
 import 'package:weather_app/core/network/dio_api_client.dart';
 import 'package:weather_app/data/datasources/city_local_data_source_impl.dart';
 import 'package:weather_app/data/datasources/city_remote_data_source_impl.dart';
@@ -49,7 +50,7 @@ Future<void> setupDependencies() async {
       ),
     );
 
-    dio.interceptors.add(ApiKeyInterceptor());
+    dio.interceptors.add(const ApiKeyInterceptor());
     if (kDebugMode) {
       dio.interceptors.add(
         LogInterceptor(requestBody: true, responseBody: true),
@@ -60,6 +61,11 @@ Future<void> setupDependencies() async {
 
   getIt.registerLazySingleton<ApiClient>(
     () => DioApiClient(dioClient: getIt()),
+  );
+
+  getIt.registerLazySingleton<ConnectivityService>(
+    ConnectivityService.new,
+    dispose: (param) => param.dispose(),
   );
 
   // Register datasources

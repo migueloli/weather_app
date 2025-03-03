@@ -1,9 +1,11 @@
+import 'package:weather_app/core/error/app_exception.dart';
+import 'package:weather_app/core/utils/result.dart';
 import 'package:weather_app/data/models/weather.dart';
 
 abstract class WeatherRepositoryInterface {
   const WeatherRepositoryInterface();
 
-  Future<Weather> getWeather({
+  Future<Result<Weather, AppException>> getWeather({
     required double lat,
     required double lon,
     String units = 'metric',
@@ -11,5 +13,5 @@ abstract class WeatherRepositoryInterface {
     bool forceRefresh = false,
   });
 
-  int? getLastUpdatedTimestamp(double lat, double lon);
+  Result<int?, AppException> getLastUpdatedTimestamp(double lat, double lon);
 }

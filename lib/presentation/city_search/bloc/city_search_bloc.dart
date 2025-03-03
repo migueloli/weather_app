@@ -2,9 +2,6 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stream_transform/stream_transform.dart';
-import 'package:weather_app/core/exception/api_exception.dart';
-import 'package:weather_app/core/exception/app_exception.dart';
-import 'package:weather_app/core/exception/app_exception_type.dart';
 import 'package:weather_app/data/models/city.dart';
 import 'package:weather_app/domain/use_cases/get_saved_cities_use_case.dart';
 import 'package:weather_app/domain/use_cases/remove_saved_city_use_case.dart';
@@ -29,10 +26,9 @@ class CitySearchBloc extends Bloc<CitySearchEvent, CitySearchState> {
     on<RemoveCity>(_onRemoveCity);
     on<CitiesUpdated>(_onCitiesUpdated);
     on<ClearSearch>(_onClearSearch);
+    on<LoadSavedCities>(_onLoadSavedCities);
 
-    _citiesSubscription = _getSavedCitiesUseCase().listen((cities) {
-      add(CitiesUpdated(cities));
-    });
+    add(const LoadSavedCities());
   }
 
   final SearchCitiesUseCase _searchCitiesUseCase;
@@ -40,12 +36,16 @@ class CitySearchBloc extends Bloc<CitySearchEvent, CitySearchState> {
   final RemoveSavedCityUseCase _removeCityUseCase;
   final GetSavedCitiesUseCase _getSavedCitiesUseCase;
   final _debounceDuration = const Duration(milliseconds: 500);
-  late StreamSubscription<List<City>> _citiesSubscription;
+  StreamSubscription<List<City>>? _citiesSubscription;
 
   Future<void> _onSearchCities(
     SearchCities event,
     Emitter<CitySearchState> emit,
   ) async {
+    if (_citiesSubscription == null) {
+      await _createCitiesStream(emit);
+    }
+
     if (event.query.trim().isEmpty) {
       emit(
         state.copyWith(status: CitySearchStatus.initial, cities: [], query: ''),
@@ -55,32 +55,40 @@ class CitySearchBloc extends Bloc<CitySearchEvent, CitySearchState> {
 
     emit(state.copyWith(status: CitySearchStatus.loading, query: event.query));
 
-    try {
-      final cities = await _searchCitiesUseCase(event.query);
-      emit(state.copyWith(status: CitySearchStatus.success, cities: cities));
-    } on AppException catch (e) {
-      emit(state.copyWith(status: CitySearchStatus.failure, error: () => e));
-    } on Exception catch (e) {
+    final result = await _searchCitiesUseCase(event.query);
+    if (result.isFailure) {
       emit(
         state.copyWith(
           status: CitySearchStatus.failure,
-          error:
-              () => ApiException(
-                statusCode: -1,
-                message: e.toString(),
-                type: AppExceptionType.unknown,
-              ),
+          error: () => result.error,
         ),
       );
+      return;
+    }
+
+    emit(
+      state.copyWith(status: CitySearchStatus.success, cities: result.value),
+    );
+  }
+
+  Future<void> _onSaveCity(
+    SaveCity event,
+    Emitter<CitySearchState> emit,
+  ) async {
+    final result = await _saveCityUseCase(event.city);
+    if (result.isFailure) {
+      emit(state.copyWith(error: () => result.error));
     }
   }
 
-  void _onSaveCity(SaveCity event, Emitter<CitySearchState> emit) {
-    _saveCityUseCase(event.city);
-  }
-
-  void _onRemoveCity(RemoveCity event, Emitter<CitySearchState> emit) {
-    _removeCityUseCase(event.city);
+  Future<void> _onRemoveCity(
+    RemoveCity event,
+    Emitter<CitySearchState> emit,
+  ) async {
+    final result = await _removeCityUseCase(event.city);
+    if (result.isFailure) {
+      emit(state.copyWith(error: () => result.error));
+    }
   }
 
   void _onCitiesUpdated(CitiesUpdated event, Emitter<CitySearchState> emit) {
@@ -95,12 +103,31 @@ class CitySearchBloc extends Bloc<CitySearchEvent, CitySearchState> {
     emit(const CitySearchState());
   }
 
+  void _onLoadSavedCities(
+    LoadSavedCities event,
+    Emitter<CitySearchState> emit,
+  ) => _createCitiesStream(emit);
+
+  Future<void> _createCitiesStream(Emitter<CitySearchState> emit) async {
+    await _citiesSubscription?.cancel();
+    _citiesSubscription = null;
+
+    final result = _getSavedCitiesUseCase();
+    if (result.isFailure) {
+      return;
+    }
+
+    _citiesSubscription = result.value.listen((cities) {
+      add(CitiesUpdated(cities));
+    });
+  }
+
   Stream<E> _debounceSearch<E>(Stream<E> events, EventMapper<E> mapper) =>
       events.debounce(_debounceDuration).switchMap(mapper);
 
   @override
   Future<void> close() {
-    _citiesSubscription.cancel();
+    _citiesSubscription?.cancel();
     return super.close();
   }
 }

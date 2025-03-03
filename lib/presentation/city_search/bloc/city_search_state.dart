@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:weather_app/core/exception/app_exception.dart';
+import 'package:weather_app/core/error/app_exception.dart';
 import 'package:weather_app/data/models/city.dart';
 
 enum CitySearchStatus { initial, loading, success, failure }

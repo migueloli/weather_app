@@ -1,4 +1,6 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import 'package:weather_app/core/error/app_exception.dart';
 import 'package:weather_app/data/models/city.dart';
 import 'package:weather_app/data/models/weather.dart';
 
@@ -10,26 +12,23 @@ class HomeState extends Equatable {
     this.cities = const [],
     this.weatherData = const {},
     this.loadingWeather = const {},
-    this.errorMessage,
+    this.error,
   });
 
   final HomeStatus status;
   final List<City> cities;
   final Map<String, Weather> weatherData;
   final Set<String> loadingWeather;
-  final String? errorMessage;
-
-  // Get a unique key for a city based on coordinates
-  static String getCityKey(double lat, double lon) => '$lat,$lon';
+  final AppException? error;
 
   // Get weather for a specific city
   Weather? getWeatherForCity(City city) {
-    return weatherData[getCityKey(city.lat, city.lon)];
+    return weatherData[city.coordinates];
   }
 
   // Check if weather is loading for a city
   bool isLoadingWeatherForCity(City city) {
-    return loadingWeather.contains(getCityKey(city.lat, city.lon));
+    return loadingWeather.contains(city.coordinates);
   }
 
   HomeState copyWith({
@@ -37,14 +36,14 @@ class HomeState extends Equatable {
     List<City>? cities,
     Map<String, Weather>? weatherData,
     Set<String>? loadingWeather,
-    String? errorMessage,
+    ValueGetter<AppException?>? error,
   }) {
     return HomeState(
       status: status ?? this.status,
       cities: cities ?? this.cities,
       weatherData: weatherData ?? this.weatherData,
       loadingWeather: loadingWeather ?? this.loadingWeather,
-      errorMessage: errorMessage ?? this.errorMessage,
+      error: error != null ? error() : this.error,
     );
   }
 
@@ -54,6 +53,6 @@ class HomeState extends Equatable {
     cities,
     weatherData,
     loadingWeather,
-    errorMessage,
+    error,
   ];
 }

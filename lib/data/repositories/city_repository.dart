@@ -1,5 +1,6 @@
-import 'package:weather_app/core/exception/api_exception.dart';
-import 'package:weather_app/core/exception/network_exception.dart';
+import 'package:weather_app/core/error/app_exception.dart';
+import 'package:weather_app/core/error/error_handler.dart';
+import 'package:weather_app/core/utils/result.dart';
 import 'package:weather_app/data/datasources/contracts/city_remote_data_source.dart';
 import 'package:weather_app/data/models/city.dart';
 import 'package:weather_app/domain/repositories/city_repository_interface.dart';
@@ -11,19 +12,11 @@ class CityRepository implements CityRepositoryInterface {
   final CityRemoteDataSource _remoteDataSource;
 
   @override
-  Future<List<City>> searchCities(String query) async {
-    if (query.trim().isEmpty) {
-      return [];
-    }
-
+  Future<Result<List<City>, AppException>> searchCities(String query) async {
     try {
-      return await _remoteDataSource.searchCities(query);
-    } on NetworkException {
-      rethrow;
-    } on ApiException {
-      rethrow;
-    } catch (e) {
-      rethrow;
+      return Result.success(await _remoteDataSource.searchCities(query));
+    } on Exception catch (e, st) {
+      return Result.failure(ErrorHandler.handleError(e, st));
     }
   }
 }

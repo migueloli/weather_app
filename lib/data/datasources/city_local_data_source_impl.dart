@@ -11,83 +11,66 @@ class CityLocalDataSourceImpl implements CityLocalDataSource {
 
   @override
   Future<bool> saveCity(CityEntity city) async {
-    try {
-      final coordinatesString = '[${city.lat}, ${city.lon}]';
-      final query =
-          _cityBox
-              .query(CityEntity_.coordinates.equals(coordinatesString))
-              .build();
+    final coordinatesString = '[${city.lat}, ${city.lon}]';
+    final query =
+        _cityBox
+            .query(CityEntity_.coordinates.equals(coordinatesString))
+            .build();
 
-      final existingCity = query.findFirst();
-      query.close();
+    final existingCity = query.findFirst();
+    query.close();
 
-      if (existingCity != null) {
-        return false;
-      }
-      _cityBox.put(city);
-      return true;
-    } catch (e) {
+    if (existingCity != null) {
       return false;
     }
+    _cityBox.put(city);
+    return true;
   }
 
   @override
   Future<bool> removeCity(double lat, double lon) async {
-    try {
-      final coordinatesString = '[$lat, $lon]';
+    final coordinatesString = '[$lat, $lon]';
 
-      final query =
-          _cityBox
-              .query(CityEntity_.coordinates.equals(coordinatesString))
-              .build();
+    final query =
+        _cityBox
+            .query(CityEntity_.coordinates.equals(coordinatesString))
+            .build();
 
-      final existingCity = query.findFirst();
-      query.close();
+    final existingCity = query.findFirst();
+    query.close();
 
-      if (existingCity != null) {
-        _cityBox.remove(existingCity.id);
-        return true;
-      }
-
-      return false;
-    } catch (e) {
-      return false;
+    if (existingCity != null) {
+      _cityBox.remove(existingCity.id);
+      return true;
     }
+
+    return false;
   }
 
   @override
   List<CityEntity> getAllCities({bool sortByRecent = true}) {
-    try {
-      final query =
-          _getAllCitiesQueryBuilder(sortByRecent: sortByRecent).build();
+    final query = _getAllCitiesQueryBuilder(sortByRecent: sortByRecent).build();
 
-      final results = query.find();
-      query.close();
+    final results = query.find();
+    query.close();
 
-      return results.toList();
-    } catch (e) {
-      return [];
-    }
+    return results.toList();
   }
 
   @override
   bool isCitySaved(double lat, double lon) {
-    try {
-      // Create coordinates string in the same format as in the entity
-      final coordinatesString = '[$lat, $lon]';
+    // Create coordinates string in the same format as in the entity
+    final coordinatesString = '[$lat, $lon]';
 
-      final query =
-          _cityBox
-              .query(CityEntity_.coordinates.equals(coordinatesString))
-              .build();
+    final query =
+        _cityBox
+            .query(CityEntity_.coordinates.equals(coordinatesString))
+            .build();
 
-      final exists = query.count() > 0;
-      query.close();
+    final exists = query.count() > 0;
+    query.close();
 
-      return exists;
-    } catch (e) {
-      return false;
-    }
+    return exists;
   }
 
   @override

@@ -21,21 +21,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get searchForCities => 'Städte suchen';
 
   @override
-  String get errorGeneric => 'Etwas ist schiefgelaufen';
-
-  @override
-  String get errorRetry => 'Bitte versuchen Sie es erneut';
-
-  @override
-  String get errorNetwork => 'Keine Internetverbindung verfügbar';
-
-  @override
-  String get errorServer => 'Serverfehler. Bitte versuchen Sie es später erneut';
-
-  @override
-  String get errorNotFound => 'Keine Ergebnisse gefunden';
-
-  @override
   String get weatherSearchHint => 'Nach einer Stadt suchen';
 
   @override
@@ -60,8 +45,47 @@ class AppLocalizationsDe extends AppLocalizations {
   String get weatherPressure => 'Luftdruck';
 
   @override
+  String get errorGeneric => 'Etwas ist schiefgelaufen';
+
+  @override
+  String get errorRetry => 'Bitte versuchen Sie es erneut';
+
+  @override
+  String get errorNetwork => 'Keine Internetverbindung verfügbar';
+
+  @override
+  String get errorServer => 'Serverfehler. Bitte versuchen Sie es später erneut';
+
+  @override
+  String get errorNotFound => 'Keine Ergebnisse gefunden';
+
+  @override
+  String get errorAuthorization => 'Authorization error. Please login again.';
+
+  @override
+  String get errorDataFormat => 'Invalid data received. Please try again.';
+
+  @override
+  String get errorUnknown => 'An unexpected error occurred. Please try again.';
+
+  @override
+  String get errorClient => 'Request error. Please try again.';
+
+  @override
+  String get errorCancelled => 'Operation was cancelled.';
+
+  @override
+  String get errorLocationPermission => 'Location permission denied. Weather for your location is unavailable.';
+
+  @override
+  String get errorStorage => 'Storage error. Please check your device storage.';
+
+  @override
   String get actionRefresh => 'Aktualisieren';
 
   @override
   String get actionRetry => 'Wiederholen';
+
+  @override
+  String get actionGoBack => 'Go Back';
 }

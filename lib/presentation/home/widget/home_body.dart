@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:weather_app/core/routing/app_router.dart';
 import 'package:weather_app/l10n/gen/app_localizations.dart';
 import 'package:weather_app/presentation/common/widgets/empty_state.dart';
-import 'package:weather_app/presentation/common/widgets/error_state.dart';
+import 'package:weather_app/presentation/common/widgets/error_view.dart';
 import 'package:weather_app/presentation/home/bloc/home_bloc.dart';
 import 'package:weather_app/presentation/home/bloc/home_event.dart';
 import 'package:weather_app/presentation/home/bloc/home_state.dart';
@@ -20,7 +20,7 @@ class HomeBody extends StatelessWidget {
 
     return RefreshIndicator(
       onRefresh: () async {
-        homeBloc.add(const RefreshSavedCities());
+        homeBloc.add(const LoadSavedCities());
       },
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
@@ -29,12 +29,11 @@ class HomeBody extends StatelessWidget {
           }
 
           if (state.status == HomeStatus.failure) {
-            return ErrorState(
-              errorMessage: state.errorMessage ?? l10n.errorGeneric,
+            return ErrorView(
+              error: state.error,
               onRetry: () {
-                homeBloc.add(const RefreshSavedCities());
+                homeBloc.add(const LoadSavedCities());
               },
-              icon: Icons.cloud_off,
             );
           }
 

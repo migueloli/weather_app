@@ -20,31 +20,6 @@
   "@searchForCities": {
     "description": "Label for button to search for cities"
   },
-
-  "errorGeneric": "Something went wrong",
-  "@errorGeneric": {
-    "description": "Generic error message"
-  },
-  
-  "errorRetry": "Please try again",
-  "@errorRetry": {
-    "description": "Message suggesting to retry after an error"
-  },
-
-  "errorNetwork": "No internet connection available",
-  "@errorNetwork": {
-    "description": "Error message when network is unavailable"
-  },
-
-  "errorServer": "Server error. Please try again later",
-  "@errorServer": {
-    "description": "Error message when server returns an error"
-  },
-
-  "errorNotFound": "No results found",
-  "@errorNotFound": {
-    "description": "Message shown when search returns no results"
-  },
   
   "weatherSearchHint": "Search for a city",
   "@weatherSearchHint": {
@@ -85,7 +60,67 @@
   "@weatherPressure": {
     "description": "Label for pressure"
   },
+
+  "errorGeneric": "Something went wrong",
+  "@errorGeneric": {
+    "description": "Generic error message"
+  },
   
+  "errorRetry": "Please try again",
+  "@errorRetry": {
+    "description": "Message suggesting to retry after an error"
+  },
+
+  "errorNetwork": "No internet connection available",
+  "@errorNetwork": {
+    "description": "Error message when network is unavailable"
+  },
+
+  "errorServer": "Server error. Please try again later",
+  "@errorServer": {
+    "description": "Error message when server returns an error"
+  },
+
+  "errorNotFound": "No results found",
+  "@errorNotFound": {
+    "description": "Message shown when search returns no results"
+  },
+
+  "errorAuthorization": "Authorization error. Please login again.",
+  "@errorAuthorization": {
+    "description": "Error message shown for authorization issues"
+  },
+  
+  "errorDataFormat": "Invalid data received. Please try again.",
+  "@errorDataFormat": {
+    "description": "Error message shown when received data is invalid"
+  },
+  
+  "errorUnknown": "An unexpected error occurred. Please try again.",
+  "@errorUnknown": {
+    "description": "Generic error message for unknown errors"
+  },
+  
+  "errorClient": "Request error. Please try again.",
+  "@errorClient": {
+    "description": "Error message shown for client-side errors"
+  },
+  
+  "errorCancelled": "Operation was cancelled.",
+  "@errorCancelled": {
+    "description": "Error message shown when operation is cancelled"
+  },
+  
+  "errorLocationPermission": "Location permission denied. Weather for your location is unavailable.",
+  "@errorLocationPermission": {
+    "description": "Error message shown when location permission is denied"
+  },
+  
+  "errorStorage": "Storage error. Please check your device storage.",
+  "@errorStorage": {
+    "description": "Error message shown for storage-related errors"
+  },
+
   "actionRefresh": "Refresh",
   "@actionRefresh": {
     "description": "Label for refresh action"
@@ -94,5 +129,10 @@
   "actionRetry": "Retry",
   "@actionRetry": {
     "description": "Label for retry action"
+  },
+  
+  "actionGoBack": "Go Back",
+  "@actionGoBack": {
+    "description": "Label for go back action"
   }
 }

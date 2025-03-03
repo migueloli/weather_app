@@ -18,64 +18,75 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
        _removeSavedCityUseCase = removeSavedCityUseCase,
        _getWeatherUseCase = getWeatherUseCase,
        super(const HomeState()) {
-    on<RefreshSavedCities>(_onRefreshSavedCities);
+    on<LoadSavedCities>(_onLoadSavedCities);
     on<RemoveSavedCity>(_onRemoveSavedCity);
     on<FetchWeatherForCity>(_onFetchWeatherForCity);
     on<CitiesUpdated>(_onCitiesUpdated);
 
-    _citiesSubscription = _getSavedCitiesUseCase().listen((cities) {
-      add(CitiesUpdated(cities));
-    });
+    add(const LoadSavedCities());
   }
 
   final GetSavedCitiesUseCase _getSavedCitiesUseCase;
   final RemoveSavedCityUseCase _removeSavedCityUseCase;
   final GetWeatherUseCase _getWeatherUseCase;
-  late StreamSubscription<List<City>> _citiesSubscription;
+  StreamSubscription<List<City>>? _citiesSubscription;
 
   Future<void> _onFetchWeatherForCity(
     FetchWeatherForCity event,
     Emitter<HomeState> emit,
   ) async {
-    final cityKey = HomeState.getCityKey(event.city.lat, event.city.lon);
+    final cityKey = event.city.coordinates;
 
     // Mark this city as loading weather
     emit(state.copyWith(loadingWeather: {...state.loadingWeather, cityKey}));
 
-    try {
-      final weather = await _getWeatherUseCase(
-        lat: event.city.lat,
-        lon: event.city.lon,
-      );
+    final result = await _getWeatherUseCase(
+      lat: event.city.lat,
+      lon: event.city.lon,
+    );
 
-      // Update the weather data map
-      final updatedWeatherData = Map<String, Weather>.from(state.weatherData);
-      updatedWeatherData[cityKey] = weather;
-
-      // Remove from loading set
-      final updatedLoadingWeather = Set<String>.from(state.loadingWeather);
-      updatedLoadingWeather.remove(cityKey);
-
-      emit(
-        state.copyWith(
-          weatherData: updatedWeatherData,
-          loadingWeather: updatedLoadingWeather,
-        ),
-      );
-    } catch (e) {
+    if (result.isFailure) {
       final updatedLoadingWeather = Set<String>.from(state.loadingWeather);
       updatedLoadingWeather.remove(cityKey);
 
       emit(state.copyWith(loadingWeather: updatedLoadingWeather));
+      return;
     }
+
+    final weather = result.value;
+
+    // Update the weather data map
+    final updatedWeatherData = Map<String, Weather>.from(state.weatherData);
+    updatedWeatherData[cityKey] = weather;
+
+    // Remove from loading set
+    final updatedLoadingWeather = Set<String>.from(state.loadingWeather);
+    updatedLoadingWeather.remove(cityKey);
+
+    emit(
+      state.copyWith(
+        weatherData: updatedWeatherData,
+        loadingWeather: updatedLoadingWeather,
+      ),
+    );
   }
 
-  void _onRefreshSavedCities(
-    RefreshSavedCities event,
-    Emitter<HomeState> emit,
-  ) {
-    _citiesSubscription.cancel();
-    _citiesSubscription = _getSavedCitiesUseCase().listen((cities) {
+  void _onLoadSavedCities(LoadSavedCities event, Emitter<HomeState> emit) =>
+      _createCitiesStream(emit);
+
+  Future<void> _createCitiesStream(Emitter<HomeState> emit) async {
+    await _citiesSubscription?.cancel();
+    _citiesSubscription = null;
+
+    final result = _getSavedCitiesUseCase();
+    if (result.isFailure) {
+      emit(
+        state.copyWith(status: HomeStatus.failure, error: () => result.error),
+      );
+      return;
+    }
+
+    _citiesSubscription = result.value.listen((cities) {
       add(CitiesUpdated(cities));
     });
   }
@@ -84,10 +95,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     RemoveSavedCity event,
     Emitter<HomeState> emit,
   ) async {
-    try {
-      await _removeSavedCityUseCase(event.city);
-    } catch (e) {
-      emit(state.copyWith(errorMessage: 'Failed to remove city'));
+    final result = await _removeSavedCityUseCase(event.city);
+    if (result.isFailure) {
+      emit(state.copyWith(error: () => result.error));
     }
   }
 
@@ -95,9 +105,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(state.copyWith(status: HomeStatus.success, cities: event.cities));
 
     for (final city in event.cities) {
-      if (!state.weatherData.containsKey(
-        HomeState.getCityKey(city.lat, city.lon),
-      )) {
+      if (!state.weatherData.containsKey(city.coordinates)) {
         add(FetchWeatherForCity(city: city));
       }
     }
@@ -105,7 +113,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   @override
   Future<void> close() {
-    _citiesSubscription.cancel();
+    _citiesSubscription?.cancel();
     return super.close();
   }
 }

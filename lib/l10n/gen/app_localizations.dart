@@ -121,36 +121,6 @@ abstract class AppLocalizations {
   /// **'Search for cities'**
   String get searchForCities;
 
-  /// Generic error message
-  ///
-  /// In en, this message translates to:
-  /// **'Something went wrong'**
-  String get errorGeneric;
-
-  /// Message suggesting to retry after an error
-  ///
-  /// In en, this message translates to:
-  /// **'Please try again'**
-  String get errorRetry;
-
-  /// Error message when network is unavailable
-  ///
-  /// In en, this message translates to:
-  /// **'No internet connection available'**
-  String get errorNetwork;
-
-  /// Error message when server returns an error
-  ///
-  /// In en, this message translates to:
-  /// **'Server error. Please try again later'**
-  String get errorServer;
-
-  /// Message shown when search returns no results
-  ///
-  /// In en, this message translates to:
-  /// **'No results found'**
-  String get errorNotFound;
-
   /// Hint text for city search field
   ///
   /// In en, this message translates to:
@@ -199,6 +169,78 @@ abstract class AppLocalizations {
   /// **'Pressure'**
   String get weatherPressure;
 
+  /// Generic error message
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get errorGeneric;
+
+  /// Message suggesting to retry after an error
+  ///
+  /// In en, this message translates to:
+  /// **'Please try again'**
+  String get errorRetry;
+
+  /// Error message when network is unavailable
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection available'**
+  String get errorNetwork;
+
+  /// Error message when server returns an error
+  ///
+  /// In en, this message translates to:
+  /// **'Server error. Please try again later'**
+  String get errorServer;
+
+  /// Message shown when search returns no results
+  ///
+  /// In en, this message translates to:
+  /// **'No results found'**
+  String get errorNotFound;
+
+  /// Error message shown for authorization issues
+  ///
+  /// In en, this message translates to:
+  /// **'Authorization error. Please login again.'**
+  String get errorAuthorization;
+
+  /// Error message shown when received data is invalid
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid data received. Please try again.'**
+  String get errorDataFormat;
+
+  /// Generic error message for unknown errors
+  ///
+  /// In en, this message translates to:
+  /// **'An unexpected error occurred. Please try again.'**
+  String get errorUnknown;
+
+  /// Error message shown for client-side errors
+  ///
+  /// In en, this message translates to:
+  /// **'Request error. Please try again.'**
+  String get errorClient;
+
+  /// Error message shown when operation is cancelled
+  ///
+  /// In en, this message translates to:
+  /// **'Operation was cancelled.'**
+  String get errorCancelled;
+
+  /// Error message shown when location permission is denied
+  ///
+  /// In en, this message translates to:
+  /// **'Location permission denied. Weather for your location is unavailable.'**
+  String get errorLocationPermission;
+
+  /// Error message shown for storage-related errors
+  ///
+  /// In en, this message translates to:
+  /// **'Storage error. Please check your device storage.'**
+  String get errorStorage;
+
   /// Label for refresh action
   ///
   /// In en, this message translates to:
@@ -210,6 +252,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Retry'**
   String get actionRetry;
+
+  /// Label for go back action
+  ///
+  /// In en, this message translates to:
+  /// **'Go Back'**
+  String get actionGoBack;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
