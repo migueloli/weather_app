@@ -7,17 +7,27 @@ import 'package:weather_app/core/config/env_config.dart';
 import 'package:weather_app/core/network/api_client.dart';
 import 'package:weather_app/core/network/api_key_interceptor.dart';
 import 'package:weather_app/core/network/dio_api_client.dart';
+import 'package:weather_app/data/datasources/city_local_data_source_impl.dart';
 import 'package:weather_app/data/datasources/city_remote_data_source_impl.dart';
+import 'package:weather_app/data/datasources/contracts/city_local_data_source.dart';
 import 'package:weather_app/data/datasources/contracts/city_remote_data_source.dart';
+import 'package:weather_app/data/datasources/contracts/weather_local_data_source.dart';
+import 'package:weather_app/data/datasources/contracts/weather_remote_data_source.dart';
+import 'package:weather_app/data/datasources/weather_local_data_source_impl.dart';
+import 'package:weather_app/data/datasources/weather_remote_data_source_impl.dart';
 import 'package:weather_app/data/repositories/city_repository.dart';
 import 'package:weather_app/data/repositories/local_city_repository.dart';
+import 'package:weather_app/data/repositories/weather_repository.dart';
 import 'package:weather_app/domain/repositories/city_repository_interface.dart';
 import 'package:weather_app/domain/repositories/local_city_repository_interface.dart';
+import 'package:weather_app/domain/repositories/weather_repository_interface.dart';
+import 'package:weather_app/domain/use_cases/get_weather_use_case.dart';
 import 'package:weather_app/domain/use_cases/manage_saved_cities_use_case.dart';
 import 'package:weather_app/domain/use_cases/search_cities_use_case.dart';
 import 'package:weather_app/objectbox.g.dart';
 import 'package:weather_app/presentation/city_search/bloc/city_search_bloc.dart';
 import 'package:weather_app/presentation/common/blocs/city_save_bloc.dart';
+import 'package:weather_app/presentation/weather_details/bloc/weather_bloc.dart';
 
 final getIt = GetIt.instance;
 
@@ -56,6 +66,18 @@ Future<void> setupDependencies() async {
     () => CityRemoteDataSourceImpl(apiClient: getIt()),
   );
 
+  getIt.registerLazySingleton<WeatherRemoteDataSource>(
+    () => WeatherRemoteDataSourceImpl(apiClient: getIt()),
+  );
+
+  getIt.registerLazySingleton<WeatherLocalDataSource>(
+    () => WeatherLocalDataSourceImpl(store: getIt()),
+  );
+
+  getIt.registerLazySingleton<CityLocalDataSource>(
+    () => CityLocalDataSourceImpl(store: getIt()),
+  );
+
   // Register Repository Implementations
   getIt.registerLazySingleton<CityRepositoryInterface>(
     () => CityRepository(remoteDataSource: getIt()),
@@ -65,7 +87,16 @@ Future<void> setupDependencies() async {
     () => LocalCityRepository(localDataSource: getIt()),
   );
 
+  getIt.registerLazySingleton<WeatherRepositoryInterface>(
+    () =>
+        WeatherRepository(remoteDataSource: getIt(), localDataSource: getIt()),
+  );
+
   // Register Use Cases
+  getIt.registerLazySingleton<GetWeatherUseCase>(
+    () => GetWeatherUseCase(getIt<WeatherRepositoryInterface>()),
+  );
+
   getIt.registerLazySingleton<SearchCitiesUseCase>(
     () => SearchCitiesUseCase(getIt<CityRepositoryInterface>()),
   );
@@ -83,6 +114,10 @@ Future<void> setupDependencies() async {
     () => CitySaveBloc(
       manageSavedCitiesUseCase: getIt<ManageSavedCitiesUseCase>(),
     ),
+  );
+
+  getIt.registerFactory(
+    () => WeatherBloc(getWeatherUseCase: getIt<GetWeatherUseCase>()),
   );
 }
 
