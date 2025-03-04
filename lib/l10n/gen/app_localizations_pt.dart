@@ -21,28 +21,13 @@ class AppLocalizationsPt extends AppLocalizations {
   String get searchForCities => 'Buscar cidades';
 
   @override
+  String get searchForAnotherCity => 'Tente pesquisar por outro nome de cidade';
+
+  @override
   String get weatherSearchHint => 'Buscar por uma cidade';
 
   @override
   String get citySearch => 'Pesquisa de Cidade';
-
-  @override
-  String get weatherTitle => 'Clima';
-
-  @override
-  String get weatherDetails => 'Detalhes do Clima';
-
-  @override
-  String get weatherTemperature => 'Temperatura';
-
-  @override
-  String get weatherHumidity => 'Umidade';
-
-  @override
-  String get weatherWindSpeed => 'Velocidade do Vento';
-
-  @override
-  String get weatherPressure => 'Pressão';
 
   @override
   String get errorGeneric => 'Algo deu errado';
@@ -60,25 +45,25 @@ class AppLocalizationsPt extends AppLocalizations {
   String get errorNotFound => 'Nenhum resultado encontrado';
 
   @override
-  String get errorAuthorization => 'Authorization error. Please login again.';
+  String get errorAuthorization => 'Erro de autorização. Por favor, faça login novamente.';
 
   @override
-  String get errorDataFormat => 'Invalid data received. Please try again.';
+  String get errorDataFormat => 'Dados inválidos recebidos. Por favor, tente novamente.';
 
   @override
-  String get errorUnknown => 'An unexpected error occurred. Please try again.';
+  String get errorUnknown => 'Ocorreu um erro inesperado. Por favor, tente novamente.';
 
   @override
-  String get errorClient => 'Request error. Please try again.';
+  String get errorClient => 'Erro de requisição. Por favor, tente novamente.';
 
   @override
-  String get errorCancelled => 'Operation was cancelled.';
+  String get errorCancelled => 'Operação foi cancelada.';
 
   @override
-  String get errorLocationPermission => 'Location permission denied. Weather for your location is unavailable.';
+  String get errorLocationPermission => 'Permissão de localização negada. O clima para sua localização está indisponível.';
 
   @override
-  String get errorStorage => 'Storage error. Please check your device storage.';
+  String get errorStorage => 'Erro de armazenamento. Por favor, verifique o armazenamento do seu dispositivo.';
 
   @override
   String get actionRefresh => 'Atualizar';
@@ -87,5 +72,5 @@ class AppLocalizationsPt extends AppLocalizations {
   String get actionRetry => 'Tentar Novamente';
 
   @override
-  String get actionGoBack => 'Go Back';
+  String get actionGoBack => 'Voltar';
 }

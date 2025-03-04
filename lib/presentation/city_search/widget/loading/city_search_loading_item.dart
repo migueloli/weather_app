@@ -1,23 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/presentation/common/widgets/shimmer_loading.dart';
 
-class CitySearchSkeleton extends StatelessWidget {
-  const CitySearchSkeleton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 5, // Show 5 skeleton items
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      itemBuilder: (context, index) {
-        return const CitySearchItemSkeleton();
-      },
-    );
-  }
-}
-
-class CitySearchItemSkeleton extends StatelessWidget {
-  const CitySearchItemSkeleton({super.key});
+class CitySearchLoadingItem extends StatelessWidget {
+  const CitySearchLoadingItem({super.key});
 
   @override
   Widget build(BuildContext context) {

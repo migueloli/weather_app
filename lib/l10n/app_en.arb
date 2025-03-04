@@ -20,6 +20,11 @@
   "@searchForCities": {
     "description": "Label for button to search for cities"
   },
+
+  "searchForAnotherCity": "Try searching for another city name",
+  "@searchForAnotherCity": {
+    "description": "Suggestion text shown when city search returns no results"
+  },
   
   "weatherSearchHint": "Search for a city",
   "@weatherSearchHint": {
@@ -29,36 +34,6 @@
   "citySearch": "City Search",
   "@citySearch": {
     "description": "Label for city search"
-  },
-  
-  "weatherTitle": "Weather",
-  "@weatherTitle": {
-    "description": "Title for the weather screen"
-  },
-  
-  "weatherDetails": "Weather Details",
-  "@weatherDetails": {
-    "description": "Title for the weather details screen"
-  },
-  
-  "weatherTemperature": "Temperature",
-  "@weatherTemperature": {
-    "description": "Label for temperature"
-  },
-  
-  "weatherHumidity": "Humidity",
-  "@weatherHumidity": {
-    "description": "Label for humidity"
-  },
-  
-  "weatherWindSpeed": "Wind Speed",
-  "@weatherWindSpeed": {
-    "description": "Label for wind speed"
-  },
-  
-  "weatherPressure": "Pressure",
-  "@weatherPressure": {
-    "description": "Label for pressure"
   },
 
   "errorGeneric": "Something went wrong",

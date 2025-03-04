@@ -121,6 +121,12 @@ abstract class AppLocalizations {
   /// **'Search for cities'**
   String get searchForCities;
 
+  /// Suggestion text shown when city search returns no results
+  ///
+  /// In en, this message translates to:
+  /// **'Try searching for another city name'**
+  String get searchForAnotherCity;
+
   /// Hint text for city search field
   ///
   /// In en, this message translates to:
@@ -132,42 +138,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'City Search'**
   String get citySearch;
-
-  /// Title for the weather screen
-  ///
-  /// In en, this message translates to:
-  /// **'Weather'**
-  String get weatherTitle;
-
-  /// Title for the weather details screen
-  ///
-  /// In en, this message translates to:
-  /// **'Weather Details'**
-  String get weatherDetails;
-
-  /// Label for temperature
-  ///
-  /// In en, this message translates to:
-  /// **'Temperature'**
-  String get weatherTemperature;
-
-  /// Label for humidity
-  ///
-  /// In en, this message translates to:
-  /// **'Humidity'**
-  String get weatherHumidity;
-
-  /// Label for wind speed
-  ///
-  /// In en, this message translates to:
-  /// **'Wind Speed'**
-  String get weatherWindSpeed;
-
-  /// Label for pressure
-  ///
-  /// In en, this message translates to:
-  /// **'Pressure'**
-  String get weatherPressure;
 
   /// Generic error message
   ///

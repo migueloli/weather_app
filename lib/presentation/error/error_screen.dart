@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:weather_app/core/error/app_exception.dart';
+import 'package:weather_app/core/routing/app_router.dart';
 import 'package:weather_app/l10n/gen/app_localizations.dart';
 import 'package:weather_app/presentation/common/widgets/error_view.dart';
 
@@ -14,7 +16,7 @@ class ErrorScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.errorGeneric)),
-      body: ErrorView(error: error),
+      body: ErrorView(error: error, onGoBack: () => context.go(AppRoutes.home)),
     );
   }
 

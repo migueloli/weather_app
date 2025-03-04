@@ -21,28 +21,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get searchForCities => 'Search for cities';
 
   @override
+  String get searchForAnotherCity => 'Try searching for another city name';
+
+  @override
   String get weatherSearchHint => 'Search for a city';
 
   @override
   String get citySearch => 'City Search';
-
-  @override
-  String get weatherTitle => 'Weather';
-
-  @override
-  String get weatherDetails => 'Weather Details';
-
-  @override
-  String get weatherTemperature => 'Temperature';
-
-  @override
-  String get weatherHumidity => 'Humidity';
-
-  @override
-  String get weatherWindSpeed => 'Wind Speed';
-
-  @override
-  String get weatherPressure => 'Pressure';
 
   @override
   String get errorGeneric => 'Something went wrong';

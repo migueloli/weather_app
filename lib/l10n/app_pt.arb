@@ -21,6 +21,21 @@
     "description": "Label for button to search for cities"
   },
 
+  "searchForAnotherCity": "Tente pesquisar por outro nome de cidade",
+  "@searchForAnotherCity": {
+    "description": "Texto de sugestão exibido quando a busca de cidade não retorna resultados"
+  },
+  
+  "weatherSearchHint": "Buscar por uma cidade",
+  "@weatherSearchHint": {
+    "description": "Texto de dica para o campo de busca de cidades"
+  },
+
+  "citySearch": "Pesquisa de Cidade",
+  "@citySearch": {
+    "description": "Rótulo para pesquisa de cidade"
+  },
+
   "errorGeneric": "Algo deu errado",
   "@errorGeneric": {
     "description": "Mensagem de erro genérica"
@@ -45,45 +60,45 @@
   "@errorNotFound": {
     "description": "Mensagem exibida quando a busca não retorna resultados"
   },
-  
-  "weatherSearchHint": "Buscar por uma cidade",
-  "@weatherSearchHint": {
-    "description": "Texto de dica para o campo de busca de cidades"
-  },
 
-  "citySearch": "Pesquisa de Cidade",
-  "@citySearch": {
-    "description": "Rótulo para pesquisa de cidade"
+  "errorAuthorization": "Erro de autorização. Por favor, faça login novamente.",
+  "@errorAuthorization": {
+    "description": "Mensagem de erro exibida para problemas de autorização"
   },
   
-  "weatherTitle": "Clima",
-  "@weatherTitle": {
-    "description": "Título para a tela de clima"
+  "errorDataFormat": "Dados inválidos recebidos. Por favor, tente novamente.",
+  "@errorDataFormat": {
+    "description": "Mensagem de erro exibida quando os dados recebidos são inválidos"
   },
   
-  "weatherDetails": "Detalhes do Clima",
-  "@weatherDetails": {
-    "description": "Título para a tela de detalhes do clima"
+  "errorUnknown": "Ocorreu um erro inesperado. Por favor, tente novamente.",
+  "@errorUnknown": {
+    "description": "Mensagem de erro genérica para erros desconhecidos"
   },
   
-  "weatherTemperature": "Temperatura",
-  "@weatherTemperature": {
-    "description": "Rótulo para temperatura"
+  "errorClient": "Erro de requisição. Por favor, tente novamente.",
+  "@errorClient": {
+    "description": "Mensagem de erro exibida para erros do lado do cliente"
   },
   
-  "weatherHumidity": "Umidade",
-  "@weatherHumidity": {
-    "description": "Rótulo para umidade"
+  "errorCancelled": "Operação foi cancelada.",
+  "@errorCancelled": {
+    "description": "Mensagem de erro exibida quando uma operação é cancelada"
   },
   
-  "weatherWindSpeed": "Velocidade do Vento",
-  "@weatherWindSpeed": {
-    "description": "Rótulo para velocidade do vento"
+  "errorLocationPermission": "Permissão de localização negada. O clima para sua localização está indisponível.",
+  "@errorLocationPermission": {
+    "description": "Mensagem de erro exibida quando a permissão de localização é negada"
   },
   
-  "weatherPressure": "Pressão",
-  "@weatherPressure": {
-    "description": "Rótulo para pressão"
+  "errorStorage": "Erro de armazenamento. Por favor, verifique o armazenamento do seu dispositivo.",
+  "@errorStorage": {
+    "description": "Mensagem de erro exibida para erros relacionados ao armazenamento"
+  },
+  
+  "actionGoBack": "Voltar",
+  "@actionGoBack": {
+    "description": "Rótulo para ação de voltar"
   },
   
   "actionRefresh": "Atualizar",

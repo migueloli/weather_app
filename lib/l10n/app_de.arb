@@ -21,6 +21,21 @@
     "description": "Label for button to search for cities"
   },
 
+  "searchForAnotherCity": "Versuchen Sie, nach einem anderen Stadtnamen zu suchen",
+  "@searchForAnotherCity": {
+    "description": "Vorschlagstext, der angezeigt wird, wenn die Stadtsuche keine Ergebnisse liefert"
+  },
+  
+  "weatherSearchHint": "Nach einer Stadt suchen",
+  "@weatherSearchHint": {
+    "description": "Hinweistext für das Stadtsuche-Feld"
+  },
+
+  "citySearch": "Stadtsuche",
+  "@citySearch": {
+    "description": "Bezeichnung für die Stadtsuche"
+  },
+
   "errorGeneric": "Etwas ist schiefgelaufen",
   "@errorGeneric": {
     "description": "Allgemeine Fehlermeldung"
@@ -45,45 +60,45 @@
   "@errorNotFound": {
     "description": "Nachricht, die angezeigt wird, wenn die Suche keine Ergebnisse liefert"
   },
-  
-  "weatherSearchHint": "Nach einer Stadt suchen",
-  "@weatherSearchHint": {
-    "description": "Hinweistext für das Stadtsuche-Feld"
-  },
 
-  "citySearch": "Stadtsuche",
-  "@citySearch": {
-    "description": "Bezeichnung für die Stadtsuche"
+  "errorAuthorization": "Autorisierungsfehler. Bitte melden Sie sich erneut an.",
+  "@errorAuthorization": {
+    "description": "Fehlermeldung, die bei Autorisierungsproblemen angezeigt wird"
   },
   
-  "weatherTitle": "Wetter",
-  "@weatherTitle": {
-    "description": "Titel für den Wetterbildschirm"
+  "errorDataFormat": "Ungültige Daten empfangen. Bitte versuchen Sie es erneut.",
+  "@errorDataFormat": {
+    "description": "Fehlermeldung, die angezeigt wird, wenn empfangene Daten ungültig sind"
   },
   
-  "weatherDetails": "Wetterdetails",
-  "@weatherDetails": {
-    "description": "Titel für den Wetterdetails-Bildschirm"
+  "errorUnknown": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+  "@errorUnknown": {
+    "description": "Allgemeine Fehlermeldung für unbekannte Fehler"
   },
   
-  "weatherTemperature": "Temperatur",
-  "@weatherTemperature": {
-    "description": "Bezeichnung für Temperatur"
+  "errorClient": "Anforderungsfehler. Bitte versuchen Sie es erneut.",
+  "@errorClient": {
+    "description": "Fehlermeldung, die für clientseitige Fehler angezeigt wird"
   },
   
-  "weatherHumidity": "Luftfeuchtigkeit",
-  "@weatherHumidity": {
-    "description": "Bezeichnung für Luftfeuchtigkeit"
+  "errorCancelled": "Der Vorgang wurde abgebrochen.",
+  "@errorCancelled": {
+    "description": "Fehlermeldung, die angezeigt wird, wenn ein Vorgang abgebrochen wird"
   },
   
-  "weatherWindSpeed": "Windgeschwindigkeit",
-  "@weatherWindSpeed": {
-    "description": "Bezeichnung für Windgeschwindigkeit"
+  "errorLocationPermission": "Standortberechtigung verweigert. Wetter für Ihren Standort ist nicht verfügbar.",
+  "@errorLocationPermission": {
+    "description": "Fehlermeldung, die angezeigt wird, wenn die Standortberechtigung verweigert wird"
   },
   
-  "weatherPressure": "Luftdruck",
-  "@weatherPressure": {
-    "description": "Bezeichnung für Luftdruck"
+  "errorStorage": "Speicherfehler. Bitte überprüfen Sie den Speicher Ihres Geräts.",
+  "@errorStorage": {
+    "description": "Fehlermeldung, die für speicherbezogene Fehler angezeigt wird"
+  },
+  
+  "actionGoBack": "Zurück",
+  "@actionGoBack": {
+    "description": "Bezeichnung für Zurück-Aktion"
   },
   
   "actionRefresh": "Aktualisieren",
