@@ -36,6 +36,11 @@
     "description": "Label for city search"
   },
 
+  "weatherDataUnavailable": "Weather data unavailable",
+  "@weatherDataUnavailable": {
+    "description": "Message shown when weather data cannot be displayed"
+  },
+
   "errorGeneric": "Something went wrong",
   "@errorGeneric": {
     "description": "Generic error message"

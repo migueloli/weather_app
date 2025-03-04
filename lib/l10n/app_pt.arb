@@ -36,6 +36,11 @@
     "description": "Rótulo para pesquisa de cidade"
   },
 
+  "weatherDataUnavailable": "Dados meteorológicos indisponíveis",
+  "@weatherDataUnavailable": {
+    "description": "Mensagem exibida quando os dados meteorológicos não podem ser exibidos"
+  },
+
   "errorGeneric": "Algo deu errado",
   "@errorGeneric": {
     "description": "Mensagem de erro genérica"

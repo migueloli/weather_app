@@ -36,6 +36,11 @@
     "description": "Bezeichnung für die Stadtsuche"
   },
 
+  "weatherDataUnavailable": "Wetterdaten nicht verfügbar",
+  "@weatherDataUnavailable": {
+    "description": "Meldung, die angezeigt wird, wenn Wetterdaten nicht angezeigt werden können"
+  },
+
   "errorGeneric": "Etwas ist schiefgelaufen",
   "@errorGeneric": {
     "description": "Allgemeine Fehlermeldung"

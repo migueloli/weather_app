@@ -139,6 +139,12 @@ abstract class AppLocalizations {
   /// **'City Search'**
   String get citySearch;
 
+  /// Message shown when weather data cannot be displayed
+  ///
+  /// In en, this message translates to:
+  /// **'Weather data unavailable'**
+  String get weatherDataUnavailable;
+
   /// Generic error message
   ///
   /// In en, this message translates to:

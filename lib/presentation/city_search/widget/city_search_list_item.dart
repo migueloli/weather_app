@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:weather_app/core/routing/app_router.dart';
 import 'package:weather_app/data/models/city.dart';
 import 'package:weather_app/presentation/city_search/bloc/city_search_bloc.dart';
 import 'package:weather_app/presentation/city_search/bloc/city_search_event.dart';
@@ -58,7 +59,7 @@ class CitySearchListItem extends StatelessWidget {
         ),
         onTap: () {
           // Navigate to weather details screen
-          context.push('/weather?lat=${city.lat}&lon=${city.lon}');
+          context.push(AppRoutes.weatherDetails(city.lat, city.lon));
         },
       ),
     );

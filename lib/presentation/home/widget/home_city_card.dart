@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/data/models/city.dart';
 import 'package:weather_app/data/models/weather.dart';
+import 'package:weather_app/l10n/gen/app_localizations.dart';
 
 class HomeCityCard extends StatelessWidget {
   const HomeCityCard({
@@ -21,6 +22,8 @@ class HomeCityCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Card(
       elevation: 2,
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
@@ -134,7 +137,7 @@ class HomeCityCard extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     child: Text(
-                      'Weather data unavailable',
+                      l10n.weatherDataUnavailable,
                       style: Theme.of(
                         context,
                       ).textTheme.bodySmall?.copyWith(color: Colors.grey),

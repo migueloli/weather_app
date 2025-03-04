@@ -30,6 +30,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get citySearch => 'City Search';
 
   @override
+  String get weatherDataUnavailable => 'Weather data unavailable';
+
+  @override
   String get errorGeneric => 'Something went wrong';
 
   @override
