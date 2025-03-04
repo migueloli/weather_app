@@ -26,6 +26,7 @@ import 'package:weather_app/domain/use_cases/get_saved_cities_use_case.dart';
 import 'package:weather_app/domain/use_cases/get_weather_updated_timestamp_use_case.dart';
 import 'package:weather_app/domain/use_cases/get_weather_use_case.dart';
 import 'package:weather_app/domain/use_cases/remove_saved_city_use_case.dart';
+import 'package:weather_app/domain/use_cases/save_city_use_case.dart';
 import 'package:weather_app/domain/use_cases/search_cities_use_case.dart';
 import 'package:weather_app/objectbox.g.dart';
 import 'package:weather_app/presentation/city_search/bloc/city_search_bloc.dart';
@@ -112,8 +113,12 @@ Future<void> setupDependencies() async {
     () => SearchCitiesUseCase(getIt()),
   );
 
-  getIt.registerFactory(
+  getIt.registerLazySingleton(
     () => RemoveSavedCityUseCase(localCityRepository: getIt()),
+  );
+
+  getIt.registerLazySingleton(
+    () => SaveCityUseCase(localCityRepository: getIt()),
   );
 
   getIt.registerFactory(

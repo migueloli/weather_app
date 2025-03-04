@@ -63,13 +63,7 @@ class HomeBody extends StatelessWidget {
                 weather: weather,
                 isLoading: isLoading,
                 onTap: () {
-                  context.pushNamed(
-                    'weather-details',
-                    queryParameters: {
-                      'lat': city.lat.toString(),
-                      'lon': city.lon.toString(),
-                    },
-                  );
+                  context.push(AppRoutes.weatherDetails(city.lat, city.lon));
                 },
                 onRemove: () {
                   homeBloc.add(RemoveSavedCity(city: city));
