@@ -63,3 +63,7 @@ dart run build_runner build --delete-conflicting-outputs
 ```sh
 flutter run
 ```
+
+## 📸 Images
+
+<img src="screenshots/wireframe.png" alt="Wireframe" height="200">
