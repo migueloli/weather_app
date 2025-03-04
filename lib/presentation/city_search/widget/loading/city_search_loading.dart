@@ -7,7 +7,7 @@ class CitySearchLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      itemCount: 5, // Show 5 skeleton items
+      itemCount: 5,
       padding: const EdgeInsets.symmetric(vertical: 8),
       itemBuilder: (context, index) {
         return const CitySearchLoadingItem();

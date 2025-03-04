@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/data/models/city.dart';
 import 'package:weather_app/data/models/weather.dart';
 import 'package:weather_app/l10n/gen/app_localizations.dart';
+import 'package:weather_app/presentation/home/widget/home_city_card_weather.dart';
 
 class HomeCityCard extends StatelessWidget {
   const HomeCityCard({
@@ -20,10 +21,32 @@ class HomeCityCard extends StatelessWidget {
   final VoidCallback? onRemove;
   final bool isLoading;
 
+  String _getDayAbbreviation(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final now = DateTime.now();
+
+    switch (now.weekday) {
+      case DateTime.monday:
+        return l10n.dayMon;
+      case DateTime.tuesday:
+        return l10n.dayTue;
+      case DateTime.wednesday:
+        return l10n.dayWed;
+      case DateTime.thursday:
+        return l10n.dayThu;
+      case DateTime.friday:
+        return l10n.dayFri;
+      case DateTime.saturday:
+        return l10n.daySat;
+      case DateTime.sunday:
+        return l10n.daySun;
+      default:
+        return '';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-
     return Card(
       elevation: 2,
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
@@ -36,10 +59,27 @@ class HomeCityCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // City info row
+              // City info row with day abbreviation
               Row(
                 children: [
-                  const Icon(Icons.location_city, size: 24),
+                  // Day abbreviation
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor.withAlpha(32),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Text(
+                      _getDayAbbreviation(context),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                    ),
+                  ),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Column(
@@ -63,87 +103,12 @@ class HomeCityCard extends StatelessWidget {
                     IconButton(
                       icon: const Icon(Icons.delete_outline),
                       onPressed: onRemove,
-                      tooltip: 'Remove city',
                     ),
                 ],
               ),
 
               const Divider(height: 24),
-
-              // Weather info section
-              if (isLoading)
-                const Center(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8),
-                    child: SizedBox(
-                      height: 24,
-                      width: 24,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    ),
-                  ),
-                )
-              else if (weather != null)
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    if (weather!.weather.isNotEmpty)
-                      Image.network(
-                        weather!.weather.first.iconUrl,
-                        width: 64,
-                        height: 64,
-                        errorBuilder:
-                            (_, _, _) => const Icon(Icons.wb_sunny, size: 48),
-                      ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '${weather!.main.temp.round()}°C',
-                            style: Theme.of(context).textTheme.headlineSmall
-                                ?.copyWith(fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            weather!.weather.isNotEmpty
-                                ? weather!.weather.first.main
-                                : '',
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                          const SizedBox(height: 4),
-                          Row(
-                            children: [
-                              const Icon(Icons.water_drop, size: 14),
-                              const SizedBox(width: 4),
-                              Text(
-                                '${weather!.main.humidity}%',
-                                style: Theme.of(context).textTheme.bodySmall,
-                              ),
-                              const SizedBox(width: 12),
-                              const Icon(Icons.air, size: 14),
-                              const SizedBox(width: 4),
-                              Text(
-                                '${weather!.wind.speed} m/s',
-                                style: Theme.of(context).textTheme.bodySmall,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                )
-              else
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    child: Text(
-                      l10n.weatherDataUnavailable,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodySmall?.copyWith(color: Colors.grey),
-                    ),
-                  ),
-                ),
+              HomeCityCardWeather(isLoading: isLoading, weather: weather),
             ],
           ),
         ),

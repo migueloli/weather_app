@@ -33,6 +33,27 @@ class AppLocalizationsPt extends AppLocalizations {
   String get weatherDataUnavailable => 'Dados meteorológicos indisponíveis';
 
   @override
+  String get dayMon => 'Seg';
+
+  @override
+  String get dayTue => 'Ter';
+
+  @override
+  String get dayWed => 'Qua';
+
+  @override
+  String get dayThu => 'Qui';
+
+  @override
+  String get dayFri => 'Sex';
+
+  @override
+  String get daySat => 'Sáb';
+
+  @override
+  String get daySun => 'Dom';
+
+  @override
   String get errorGeneric => 'Algo deu errado';
 
   @override

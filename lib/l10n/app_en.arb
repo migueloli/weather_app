@@ -41,6 +41,35 @@
     "description": "Message shown when weather data cannot be displayed"
   },
 
+  "dayMon": "Mon",
+  "@dayMon": {
+    "description": "Monday abbreviation"
+  },
+  "dayTue": "Tue",
+  "@dayTue": {
+    "description": "Tuesday abbreviation"
+  },
+  "dayWed": "Wed",
+  "@dayWed": {
+    "description": "Wednesday abbreviation"
+  },
+  "dayThu": "Thu",
+  "@dayThu": {
+    "description": "Thursday abbreviation"
+  },
+  "dayFri": "Fri",
+  "@dayFri": {
+    "description": "Friday abbreviation"
+  },
+  "daySat": "Sat",
+  "@daySat": {
+    "description": "Saturday abbreviation"
+  },
+  "daySun": "Sun",
+  "@daySun": {
+    "description": "Sunday abbreviation"
+  },
+
   "errorGeneric": "Something went wrong",
   "@errorGeneric": {
     "description": "Generic error message"

@@ -41,6 +41,35 @@
     "description": "Meldung, die angezeigt wird, wenn Wetterdaten nicht angezeigt werden können"
   },
 
+  "dayMon": "Mo",
+  "@dayMon": {
+    "description": "Montag Abkürzung"
+  },
+  "dayTue": "Di",
+  "@dayTue": {
+    "description": "Dienstag Abkürzung"
+  },
+  "dayWed": "Mi",
+  "@dayWed": {
+    "description": "Mittwoch Abkürzung"
+  },
+  "dayThu": "Do",
+  "@dayThu": {
+    "description": "Donnerstag Abkürzung"
+  },
+  "dayFri": "Fr",
+  "@dayFri": {
+    "description": "Freitag Abkürzung"
+  },
+  "daySat": "Sa",
+  "@daySat": {
+    "description": "Samstag Abkürzung"
+  },
+  "daySun": "So",
+  "@daySun": {
+    "description": "Sonntag Abkürzung"
+  },
+
   "errorGeneric": "Etwas ist schiefgelaufen",
   "@errorGeneric": {
     "description": "Allgemeine Fehlermeldung"

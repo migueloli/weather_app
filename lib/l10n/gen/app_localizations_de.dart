@@ -33,6 +33,27 @@ class AppLocalizationsDe extends AppLocalizations {
   String get weatherDataUnavailable => 'Wetterdaten nicht verfügbar';
 
   @override
+  String get dayMon => 'Mo';
+
+  @override
+  String get dayTue => 'Di';
+
+  @override
+  String get dayWed => 'Mi';
+
+  @override
+  String get dayThu => 'Do';
+
+  @override
+  String get dayFri => 'Fr';
+
+  @override
+  String get daySat => 'Sa';
+
+  @override
+  String get daySun => 'So';
+
+  @override
   String get errorGeneric => 'Etwas ist schiefgelaufen';
 
   @override

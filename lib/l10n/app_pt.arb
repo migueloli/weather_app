@@ -41,6 +41,35 @@
     "description": "Mensagem exibida quando os dados meteorológicos não podem ser exibidos"
   },
 
+  "dayMon": "Seg",
+  "@dayMon": {
+    "description": "Abreviação de Segunda-feira"
+  },
+  "dayTue": "Ter",
+  "@dayTue": {
+    "description": "Abreviação de Terça-feira"
+  },
+  "dayWed": "Qua",
+  "@dayWed": {
+    "description": "Abreviação de Quarta-feira"
+  },
+  "dayThu": "Qui",
+  "@dayThu": {
+    "description": "Abreviação de Quinta-feira"
+  },
+  "dayFri": "Sex",
+  "@dayFri": {
+    "description": "Abreviação de Sexta-feira"
+  },
+  "daySat": "Sáb",
+  "@daySat": {
+    "description": "Abreviação de Sábado"
+  },
+  "daySun": "Dom",
+  "@daySun": {
+    "description": "Abreviação de Domingo"
+  },
+
   "errorGeneric": "Algo deu errado",
   "@errorGeneric": {
     "description": "Mensagem de erro genérica"

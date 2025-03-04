@@ -145,6 +145,48 @@ abstract class AppLocalizations {
   /// **'Weather data unavailable'**
   String get weatherDataUnavailable;
 
+  /// Monday abbreviation
+  ///
+  /// In en, this message translates to:
+  /// **'Mon'**
+  String get dayMon;
+
+  /// Tuesday abbreviation
+  ///
+  /// In en, this message translates to:
+  /// **'Tue'**
+  String get dayTue;
+
+  /// Wednesday abbreviation
+  ///
+  /// In en, this message translates to:
+  /// **'Wed'**
+  String get dayWed;
+
+  /// Thursday abbreviation
+  ///
+  /// In en, this message translates to:
+  /// **'Thu'**
+  String get dayThu;
+
+  /// Friday abbreviation
+  ///
+  /// In en, this message translates to:
+  /// **'Fri'**
+  String get dayFri;
+
+  /// Saturday abbreviation
+  ///
+  /// In en, this message translates to:
+  /// **'Sat'**
+  String get daySat;
+
+  /// Sunday abbreviation
+  ///
+  /// In en, this message translates to:
+  /// **'Sun'**
+  String get daySun;
+
   /// Generic error message
   ///
   /// In en, this message translates to:
