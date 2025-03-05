@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:get_it/get_it.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weather_app/core/config/env_config.dart';
 import 'package:weather_app/core/network/api_client.dart';
 import 'package:weather_app/core/network/api_key_interceptor.dart';
@@ -36,7 +37,10 @@ final getIt = GetIt.instance;
 Future<void> setupDependencies() async {
   // Register ObjectBox Store asynchronously & wait for completion
   final store = await _initObjectBox();
-  getIt.registerSingleton<Store>(store);
+  getIt.registerSingleton<Store>(store, dispose: (store) => store.close());
+
+  final sharedPreferences = await SharedPreferences.getInstance();
+  getIt.registerSingleton<SharedPreferences>(sharedPreferences);
 
   // Register API Client
   getIt.registerLazySingleton<Dio>(() {

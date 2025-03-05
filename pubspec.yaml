@@ -28,6 +28,7 @@ dependencies:
   objectbox_flutter_libs: ^4.1.0
   path: ^1.8.0
   path_provider: ^2.1.0
+  shared_preferences: ^2.5.2
   stream_transform: ^2.1.1
 
 dev_dependencies:
