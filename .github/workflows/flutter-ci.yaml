@@ -107,19 +107,19 @@ jobs:
       - name: 🌐 Build Web
         run: flutter build web --release
 
-      - name: 📤 Upload Android APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: android-release
-          path: build/app/outputs/flutter-apk/app-release.apk
-          retention-days: 7
+      # - name: 📤 Upload Android APK
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: android-release
+      #     path: build/app/outputs/flutter-apk/app-release.apk
+      #     retention-days: 7
 
-      - name: 📤 Upload Web Build
-        uses: actions/upload-artifact@v4
-        with:
-          name: web-release
-          path: build/web
-          retention-days: 7
+      # - name: 📤 Upload Web Build
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: web-release
+      #     path: build/web
+      #     retention-days: 7
 
   build-ios:
     name: 🍏 Build iOS
@@ -144,16 +144,16 @@ jobs:
       - name: 📱 Build iOS
         run: flutter build ios --release --no-codesign
 
-      - name: 📝 Create Build Report
-        run: |
-          mkdir -p reports
-          echo "iOS build completed at $(date)" > reports/ios_build_report.txt
-          echo "Flutter version: $(flutter --version | head -n 1)" >> reports/ios_build_report.txt
-          echo "Xcode version: $(xcodebuild -version | head -n 1)" >> reports/ios_build_report.txt
+      # - name: 📝 Create Build Report
+      #   run: |
+      #     mkdir -p reports
+      #     echo "iOS build completed at $(date)" > reports/ios_build_report.txt
+      #     echo "Flutter version: $(flutter --version | head -n 1)" >> reports/ios_build_report.txt
+      #     echo "Xcode version: $(xcodebuild -version | head -n 1)" >> reports/ios_build_report.txt
 
-      - name: 📤 Upload iOS Build Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: ios-build-report
-          path: reports/ios_build_report.txt
-          retention-days: 7
+      # - name: 📤 Upload iOS Build Report
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: ios-build-report
+      #     path: reports/ios_build_report.txt
+      #     retention-days: 7
