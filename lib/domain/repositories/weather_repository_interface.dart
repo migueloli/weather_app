@@ -21,5 +21,8 @@ abstract class WeatherRepositoryInterface {
     String? lang,
   });
 
-  Result<int?, AppException> getLastUpdatedTimestamp(double lat, double lon);
+  Future<Result<int?, AppException>> getLastUpdatedTimestamp(
+    double lat,
+    double lon,
+  );
 }

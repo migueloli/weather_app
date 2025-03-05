@@ -35,7 +35,7 @@ class WeatherRepository implements WeatherRepositoryInterface {
     try {
       // Check local cache first, unless force refresh is specified
       if (!forceRefresh) {
-        final cachedWeather = _localDataSource.getWeather(lat, lon);
+        final cachedWeather = await _localDataSource.getWeather(lat, lon);
         if (cachedWeather != null) {
           unawaited(_refreshWeatherInBackground(lat, lon, units, lang));
           return Result.success(cachedWeather);
@@ -112,9 +112,14 @@ class WeatherRepository implements WeatherRepositoryInterface {
   }
 
   @override
-  Result<int?, AppException> getLastUpdatedTimestamp(double lat, double lon) {
+  Future<Result<int?, AppException>> getLastUpdatedTimestamp(
+    double lat,
+    double lon,
+  ) async {
     try {
-      return Result.success(_localDataSource.getLastUpdatedTimestamp(lat, lon));
+      return Result.success(
+        await _localDataSource.getLastUpdatedTimestamp(lat, lon),
+      );
     } on Exception catch (e, st) {
       return Result.failure(ErrorHandler.handleError(e, st));
     }

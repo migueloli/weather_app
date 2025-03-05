@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:weather_app/data/datasources/contracts/weather_local_data_source.dart';
 import 'package:weather_app/data/entity/weather_entity.dart';
 import 'package:weather_app/data/models/weather.dart';
@@ -12,7 +14,7 @@ class WeatherLocalDataSourceImpl implements WeatherLocalDataSource {
 
   // Save weather data
   @override
-  Future<bool> saveWeather(Weather weather) async {
+  FutureOr<bool> saveWeather(Weather weather) async {
     final weatherEntity = WeatherEntity.fromWeather(weather);
 
     // Check if entry exists for these coordinates
@@ -36,7 +38,7 @@ class WeatherLocalDataSourceImpl implements WeatherLocalDataSource {
 
   // Get weather for coordinates
   @override
-  Weather? getWeather(double lat, double lon) {
+  FutureOr<Weather?> getWeather(double lat, double lon) {
     final coordinatesString = '[$lat, $lon]';
     final query =
         _weatherBox
@@ -55,7 +57,7 @@ class WeatherLocalDataSourceImpl implements WeatherLocalDataSource {
 
   // Get the timestamp of when the weather was last updated
   @override
-  int? getLastUpdatedTimestamp(double lat, double lon) {
+  FutureOr<int?> getLastUpdatedTimestamp(double lat, double lon) {
     final coordinatesString = '[$lat, $lon]';
     final query =
         _weatherBox

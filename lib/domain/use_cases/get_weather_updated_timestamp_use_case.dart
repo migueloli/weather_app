@@ -7,7 +7,7 @@ class GetWeatherUpdatedTimestampUseCase {
 
   final WeatherRepositoryInterface _weatherRepository;
 
-  Result<int?, AppException> call(double lat, double lon) {
+  Future<Result<int?, AppException>> call(double lat, double lon) {
     return _weatherRepository.getLastUpdatedTimestamp(lat, lon);
   }
 }

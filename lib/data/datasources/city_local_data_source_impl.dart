@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:weather_app/data/datasources/contracts/city_local_data_source.dart';
 import 'package:weather_app/data/entity/city_entity.dart';
 import 'package:weather_app/objectbox.g.dart';
@@ -10,7 +12,7 @@ class CityLocalDataSourceImpl implements CityLocalDataSource {
   late final Box<CityEntity> _cityBox;
 
   @override
-  Future<bool> saveCity(CityEntity city) async {
+  FutureOr<bool> saveCity(CityEntity city) async {
     final coordinatesString = '[${city.lat}, ${city.lon}]';
     final query =
         _cityBox
@@ -28,7 +30,7 @@ class CityLocalDataSourceImpl implements CityLocalDataSource {
   }
 
   @override
-  Future<bool> removeCity(double lat, double lon) async {
+  FutureOr<bool> removeCity(double lat, double lon) async {
     final coordinatesString = '[$lat, $lon]';
 
     final query =
@@ -58,7 +60,7 @@ class CityLocalDataSourceImpl implements CityLocalDataSource {
   }
 
   @override
-  bool isCitySaved(double lat, double lon) {
+  FutureOr<bool> isCitySaved(double lat, double lon) {
     // Create coordinates string in the same format as in the entity
     final coordinatesString = '[$lat, $lon]';
 
@@ -74,7 +76,7 @@ class CityLocalDataSourceImpl implements CityLocalDataSource {
   }
 
   @override
-  int getCityCount() {
+  FutureOr<int> getCityCount() {
     return _cityBox.count();
   }
 

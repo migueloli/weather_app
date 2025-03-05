@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:weather_app/core/error/app_exception.dart';
 import 'package:weather_app/core/utils/result.dart';
 import 'package:weather_app/data/models/city.dart';
@@ -8,9 +10,9 @@ class SearchCitiesUseCase {
 
   final CityRepositoryInterface _cityRepository;
 
-  Future<Result<List<City>, AppException>> call(String query) {
+  FutureOr<Result<List<City>, AppException>> call(String query) {
     if (query.trim().isEmpty) {
-      return Future.value(Result.success([]));
+      return Result.success([]);
     }
     return _cityRepository.searchCities(query);
   }

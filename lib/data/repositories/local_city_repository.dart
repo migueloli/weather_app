@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:weather_app/core/error/app_exception.dart';
 import 'package:weather_app/core/error/error_handler.dart';
 import 'package:weather_app/core/utils/result.dart';
@@ -35,32 +37,32 @@ class LocalCityRepository implements LocalCityRepositoryInterface {
   }
 
   @override
-  Result<List<City>, AppException> getAllCities({bool sortByRecent = true}) {
+  Future<Result<List<City>, AppException>> getAllCities({
+    bool sortByRecent = true,
+  }) async {
     try {
-      return Result.success(
-        _localDataSource
-            .getAllCities(sortByRecent: sortByRecent)
-            .map((city) => city.toCity())
-            .toList(),
+      final cities = await _localDataSource.getAllCities(
+        sortByRecent: sortByRecent,
       );
+      return Result.success(cities.map((city) => city.toCity()).toList());
     } on Exception catch (e, st) {
       return Result.failure(ErrorHandler.handleError(e, st));
     }
   }
 
   @override
-  Result<bool, AppException> isCitySaved(double lat, double lon) {
+  Future<Result<bool, AppException>> isCitySaved(double lat, double lon) async {
     try {
-      return Result.success(_localDataSource.isCitySaved(lat, lon));
+      return Result.success(await _localDataSource.isCitySaved(lat, lon));
     } on Exception catch (e, st) {
       return Result.failure(ErrorHandler.handleError(e, st));
     }
   }
 
   @override
-  Result<int, AppException> getCityCount() {
+  Future<Result<int, AppException>> getCityCount() async {
     try {
-      return Result.success(_localDataSource.getCityCount());
+      return Result.success(await _localDataSource.getCityCount());
     } on Exception catch (e, st) {
       return Result.failure(ErrorHandler.handleError(e, st));
     }
@@ -70,8 +72,12 @@ class LocalCityRepository implements LocalCityRepositoryInterface {
   Result<Stream<List<City>>, AppException> getAllCitiesStream() {
     try {
       return Result.success(
-        _localDataSource.getSavedCitiesStream().map(
-          (city) => city.map((e) => e.toCity()).toList(),
+        _localDataSource.getSavedCitiesStream().transform(
+          StreamTransformer.fromHandlers(
+            handleData: (city, sink) {
+              sink.add(city.map((e) => e.toCity()).toList());
+            },
+          ),
         ),
       );
     } on Exception catch (e, st) {

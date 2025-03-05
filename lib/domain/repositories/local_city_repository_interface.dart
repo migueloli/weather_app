@@ -7,8 +7,10 @@ abstract class LocalCityRepositoryInterface {
 
   Future<Result<bool, AppException>> saveCity(City city);
   Future<Result<bool, AppException>> removeCity(City city);
-  Result<List<City>, AppException> getAllCities({bool sortByRecent = true});
+  Future<Result<List<City>, AppException>> getAllCities({
+    bool sortByRecent = true,
+  });
   Result<Stream<List<City>>, AppException> getAllCitiesStream();
-  Result<bool, AppException> isCitySaved(double lat, double lon);
-  Result<int, AppException> getCityCount();
+  Future<Result<bool, AppException>> isCitySaved(double lat, double lon);
+  Future<Result<int, AppException>> getCityCount();
 }
