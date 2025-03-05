@@ -23,6 +23,12 @@ jobs:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Create .env file
+        run: |
+          touch .env
+          echo "API_KEY=dummy_key_for_ci" > .env
+          echo "API_BASE_URL=https://api.example.com" >> .env
+
       - name: 🔧 Setup Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -31,12 +37,6 @@ jobs:
 
       - name: 📦 Install Dependencies
         run: flutter pub get
-
-      - name: Create .env file
-        run: |
-          touch .env
-          echo "API_KEY=dummy_key_for_ci" > .env
-          echo "API_BASE_URL=https://api.example.com" >> .env
 
       - name: 🔍 Analyze Dart
         run: flutter analyze
@@ -52,6 +52,12 @@ jobs:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Create .env file
+        run: |
+          touch .env
+          echo "API_KEY=dummy_key_for_ci" > .env
+          echo "API_BASE_URL=https://api.example.com" >> .env
+
       - name: 🔧 Setup Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -63,12 +69,6 @@ jobs:
 
       - name: 🏗️ Generate Code
         run: flutter pub run build_runner build --delete-conflicting-outputs
-
-      - name: Create .env file
-        run: |
-          touch .env
-          echo "API_KEY=dummy_key_for_ci" > .env
-          echo "API_BASE_URL=https://api.example.com" >> .env
 
       - name: ✅ Run Tests with Coverage
         run: flutter test --coverage
@@ -94,6 +94,12 @@ jobs:
     steps:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Create .env file
+        run: |
+          touch .env
+          echo "API_KEY=dummy_key_for_ci" > .env
+          echo "API_BASE_URL=https://api.example.com" >> .env
 
       - name: 🔧 Setup Flutter
         uses: subosito/flutter-action@v2
@@ -134,6 +140,12 @@ jobs:
     steps:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Create .env file
+        run: |
+          touch .env
+          echo "API_KEY=dummy_key_for_ci" > .env
+          echo "API_BASE_URL=https://api.example.com" >> .env
 
       - name: 🔧 Setup Flutter
         uses: subosito/flutter-action@v2
