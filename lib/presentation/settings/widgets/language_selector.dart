@@ -19,6 +19,8 @@ class LanguageSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Column(
       children:
           _languages.map((language) {
@@ -33,7 +35,7 @@ class LanguageSelector extends StatelessWidget {
                   onLanguageChanged(value);
                 }
               },
-              activeColor: Theme.of(context).primaryColor,
+              activeColor: theme.colorScheme.primaryContainer,
               selected: isSelected,
               dense: true,
             );

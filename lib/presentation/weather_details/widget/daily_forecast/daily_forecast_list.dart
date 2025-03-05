@@ -12,6 +12,8 @@ class DailyForecastList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+
     final today = DateTime.now();
     final dailyData = forecast.getDailyForecast();
 
@@ -27,20 +29,22 @@ class DailyForecastList extends StatelessWidget {
           ),
           child: Text(
             l10n.dailyForecast,
-            style: Theme.of(
-              context,
-            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+            style: theme.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         Card(
-          color: Theme.of(context).primaryColor.withAlpha(200),
+          color: theme.colorScheme.primaryContainer.withAlpha(200),
           margin: const EdgeInsets.symmetric(horizontal: 16),
           child: ListView.separated(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             itemCount: dailyData.length,
-            separatorBuilder: (context, index) => const SizedBox(height: 8),
+            separatorBuilder:
+                (context, index) =>
+                    Divider(color: theme.colorScheme.onPrimaryContainer),
             itemBuilder: (context, index) {
               final data = dailyData[index];
               final isToday =

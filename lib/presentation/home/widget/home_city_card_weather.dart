@@ -18,6 +18,7 @@ class HomeCityCardWeather extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
 
     if (isLoading) {
       return const HomeCityCardWeatherLoading();
@@ -29,9 +30,7 @@ class HomeCityCardWeather extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 12),
           child: Text(
             l10n.weatherDataUnavailable,
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: Colors.grey),
+            style: theme.textTheme.bodySmall?.copyWith(color: Colors.grey),
           ),
         ),
       );
@@ -58,7 +57,7 @@ class HomeCityCardWeather extends StatelessWidget {
                 children: [
                   Text(
                     '${weather!.main.temp.round()}${unitSystem.temperatureUnit}',
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    style: theme.textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -66,7 +65,7 @@ class HomeCityCardWeather extends StatelessWidget {
                     weather!.weather.isNotEmpty
                         ? weather!.weather.first.main
                         : '',
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: theme.textTheme.bodyMedium,
                   ),
                   const SizedBox(height: 4),
                   Row(
@@ -75,14 +74,14 @@ class HomeCityCardWeather extends StatelessWidget {
                       const SizedBox(width: 4),
                       Text(
                         '${weather!.main.humidity}%',
-                        style: Theme.of(context).textTheme.bodySmall,
+                        style: theme.textTheme.bodySmall,
                       ),
                       const SizedBox(width: 12),
                       const Icon(Icons.air, size: 14),
                       const SizedBox(width: 4),
                       Text(
                         '${weather!.wind.speed} ${unitSystem.speedUnit}',
-                        style: Theme.of(context).textTheme.bodySmall,
+                        style: theme.textTheme.bodySmall,
                       ),
                     ],
                   ),

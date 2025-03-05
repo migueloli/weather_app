@@ -15,6 +15,8 @@ class HourlyForecastItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final dateTime = DateTime.parse(forecastEntry.dtTxt);
     final timeFormat = DateFormat('HH:mm');
     final formattedTime = timeFormat.format(dateTime);
@@ -26,9 +28,9 @@ class HourlyForecastItem extends StatelessWidget {
       children: [
         Text(
           formattedTime,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+          style: theme.textTheme.bodyMedium?.copyWith(
             fontWeight: FontWeight.bold,
-            color: Theme.of(context).scaffoldBackgroundColor,
+            color: theme.colorScheme.onPrimaryContainer,
           ),
         ),
         const SizedBox(height: 8),
@@ -46,9 +48,9 @@ class HourlyForecastItem extends StatelessWidget {
           builder: (context, unitSystem) {
             return Text(
               '${forecastEntry.main.temp.round()}${unitSystem.temperatureUnit}',
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
-                color: Theme.of(context).scaffoldBackgroundColor,
+                color: theme.colorScheme.onPrimaryContainer,
               ),
             );
           },

@@ -19,13 +19,14 @@ class WeatherHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
     final weatherCondition = weather.weather.firstOrNull;
 
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 24),
       decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor,
+        color: theme.colorScheme.primaryContainer,
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(30),
           bottomRight: Radius.circular(30),
@@ -41,25 +42,25 @@ class WeatherHeader extends StatelessWidget {
                 width: 100,
                 height: 100,
                 errorBuilder:
-                    (_, __, ___) => const Icon(
+                    (_, __, ___) => Icon(
                       Icons.cloud_off_outlined,
                       size: 100,
-                      color: Colors.white,
+                      color: theme.colorScheme.onPrimaryContainer,
                     ),
               ),
             const SizedBox(height: 8),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               decoration: BoxDecoration(
-                color: Colors.white.withAlpha(30),
+                color: theme.colorScheme.onPrimaryContainer.withAlpha(30),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Text(
                 _getWeekdayAndCityName(context),
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: theme.colorScheme.onPrimaryContainer,
                 ),
               ),
             ),
@@ -70,10 +71,10 @@ class WeatherHeader extends StatelessWidget {
               children: [
                 Text(
                   '${weather.main.temp.round()}',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 48,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: theme.colorScheme.onPrimaryContainer,
                   ),
                 ),
                 const Text(

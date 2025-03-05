@@ -30,9 +30,12 @@ class WeatherApp extends StatelessWidget {
               useMaterial3: true,
             ),
             darkTheme: ThemeData.from(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+              colorScheme: ColorScheme.fromSeed(
+                seedColor: Colors.blue,
+                brightness: Brightness.dark,
+              ),
               useMaterial3: true,
-            ).copyWith(brightness: Brightness.dark),
+            ),
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             locale: Locale(state.settings.language),

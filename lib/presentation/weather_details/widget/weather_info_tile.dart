@@ -19,6 +19,8 @@ class WeatherInfoTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
@@ -26,10 +28,10 @@ class WeatherInfoTile extends StatelessWidget {
         Icon(
           icon,
           size: 32,
-          color: iconColor ?? Theme.of(context).primaryColor,
+          color: iconColor ?? theme.colorScheme.primaryContainer,
         ),
         const SizedBox(height: 16),
-        Text(label, style: Theme.of(context).textTheme.bodySmall),
+        Text(label, style: theme.textTheme.bodySmall),
         const SizedBox(height: 4),
         Text.rich(
           TextSpan(
@@ -39,14 +41,14 @@ class WeatherInfoTile extends StatelessWidget {
                     ? [
                       TextSpan(
                         text: ' $unit',
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        style: theme.textTheme.bodyMedium,
                       ),
                     ]
                     : null,
           ),
-          style: Theme.of(
-            context,
-          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+          style: theme.textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ],
     );

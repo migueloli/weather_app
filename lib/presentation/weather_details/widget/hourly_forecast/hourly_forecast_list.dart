@@ -12,6 +12,7 @@ class HourlyForecastList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -20,13 +21,13 @@ class HourlyForecastList extends StatelessWidget {
           padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
           child: Text(
             l10n.hourlyForecast,
-            style: Theme.of(
-              context,
-            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+            style: theme.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         Card(
-          color: Theme.of(context).primaryColor.withAlpha(200),
+          color: theme.colorScheme.primaryContainer.withAlpha(200),
           margin: const EdgeInsets.symmetric(horizontal: 16),
           child: SizedBox(
             height: 132,

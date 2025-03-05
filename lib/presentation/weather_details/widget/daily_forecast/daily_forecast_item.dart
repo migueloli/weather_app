@@ -21,6 +21,8 @@ class DailyForecastItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final formattedDay =
         isToday
             ? AppLocalizations.of(context)!.today
@@ -31,18 +33,8 @@ class DailyForecastItem extends StatelessWidget {
 
     final weatherCondition = dailyData.weatherCondition;
 
-    return Container(
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: BoxDecoration(
-        color: isToday ? Theme.of(context).primaryColor.withAlpha(25) : null,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color:
-              isToday
-                  ? Theme.of(context).primaryColor.withAlpha(76)
-                  : Colors.grey.withAlpha(25),
-        ),
-      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -52,7 +44,7 @@ class DailyForecastItem extends StatelessWidget {
               formattedDay,
               style: TextStyle(
                 fontWeight: isToday ? FontWeight.bold : FontWeight.normal,
-                color: Theme.of(context).scaffoldBackgroundColor,
+                color: theme.colorScheme.onPrimaryContainer,
               ),
             ),
           ),
@@ -73,13 +65,15 @@ class DailyForecastItem extends StatelessWidget {
                     '${dailyData.maxTemp.round()}${unitSystem.temperatureUnit}',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Theme.of(context).scaffoldBackgroundColor,
+                      color: theme.colorScheme.onPrimaryContainer,
                     ),
                   ),
                   const SizedBox(width: 8),
                   Text(
                     '${dailyData.minTemp.round()}${unitSystem.temperatureUnit}',
-                    style: TextStyle(color: Colors.grey.shade200),
+                    style: TextStyle(
+                      color: theme.colorScheme.onPrimaryContainer,
+                    ),
                   ),
                 ],
               );

@@ -19,6 +19,7 @@ class ErrorView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
 
     return Center(
       child: Padding(
@@ -35,7 +36,7 @@ class ErrorView extends StatelessWidget {
             Text(
               error?.getLocalizedMessage(context) ?? l10n.errorGeneric,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleMedium,
+              style: theme.textTheme.titleMedium,
             ),
             const SizedBox(height: 24),
             if (onRetry != null)

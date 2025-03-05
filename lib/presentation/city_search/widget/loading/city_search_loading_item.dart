@@ -6,6 +6,8 @@ class CitySearchLoadingItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return ShimmerLoading(
       isLoading: true,
       child: Padding(
@@ -21,7 +23,7 @@ class CitySearchLoadingItem extends StatelessWidget {
                     height: 20,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: theme.colorScheme.onPrimaryContainer,
                       borderRadius: BorderRadius.circular(4),
                     ),
                   ),
@@ -30,7 +32,7 @@ class CitySearchLoadingItem extends StatelessWidget {
                     height: 14,
                     width: 140,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: theme.colorScheme.onPrimaryContainer,
                       borderRadius: BorderRadius.circular(4),
                     ),
                   ),
@@ -42,8 +44,8 @@ class CitySearchLoadingItem extends StatelessWidget {
             Container(
               height: 24,
               width: 24,
-              decoration: const BoxDecoration(
-                color: Colors.white,
+              decoration: BoxDecoration(
+                color: theme.colorScheme.onPrimaryContainer,
                 shape: BoxShape.circle,
               ),
             ),
@@ -52,8 +54,8 @@ class CitySearchLoadingItem extends StatelessWidget {
             Container(
               height: 16,
               width: 16,
-              decoration: const BoxDecoration(
-                color: Colors.white,
+              decoration: BoxDecoration(
+                color: theme.colorScheme.onPrimaryContainer,
                 shape: BoxShape.circle,
               ),
             ),

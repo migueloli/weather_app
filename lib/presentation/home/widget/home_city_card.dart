@@ -23,6 +23,8 @@ class HomeCityCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Card(
       elevation: 2,
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
@@ -45,7 +47,7 @@ class HomeCityCard extends StatelessWidget {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor.withAlpha(32),
+                      color: theme.colorScheme.primary.withAlpha(32),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
@@ -55,7 +57,7 @@ class HomeCityCard extends StatelessWidget {
                       ),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Theme.of(context).primaryColor,
+                        color: theme.colorScheme.primary,
                       ),
                     ),
                   ),
@@ -66,14 +68,15 @@ class HomeCityCard extends StatelessWidget {
                       children: [
                         Text(
                           city.name,
-                          style: Theme.of(context).textTheme.titleMedium
-                              ?.copyWith(fontWeight: FontWeight.bold),
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         Text(
                           city.state != null
                               ? '${city.state}, ${city.country}'
                               : city.country,
-                          style: Theme.of(context).textTheme.bodySmall,
+                          style: theme.textTheme.bodySmall,
                         ),
                       ],
                     ),

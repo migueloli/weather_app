@@ -5,13 +5,15 @@ class WeatherRefreshLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return SliverToBoxAdapter(
       child: Positioned(
         top: 0,
         left: 0,
         right: 0,
         child: LinearProgressIndicator(
-          backgroundColor: Theme.of(context).primaryColor.withAlpha(50),
+          backgroundColor: theme.colorScheme.primaryContainer.withAlpha(50),
         ),
       ),
     );
