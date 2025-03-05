@@ -2,14 +2,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/l10n/gen/app_localizations.dart';
+import 'package:weather_app/presentation/common/widgets/empty_state.dart';
 import 'package:weather_app/presentation/common/widgets/error_view.dart';
+import 'package:weather_app/presentation/weather_details/bloc/forecast/weather_forecast_bloc.dart';
+import 'package:weather_app/presentation/weather_details/bloc/forecast/weather_forecast_event.dart';
 import 'package:weather_app/presentation/weather_details/bloc/weather_details_bloc.dart';
 import 'package:weather_app/presentation/weather_details/bloc/weather_details_event.dart';
 import 'package:weather_app/presentation/weather_details/bloc/weather_details_state.dart';
-import 'package:weather_app/presentation/weather_details/widget/daily_forecast/daily_forecast_list.dart';
-import 'package:weather_app/presentation/weather_details/widget/hourly_forecast/hourly_forecast_list.dart';
-import 'package:weather_app/presentation/weather_details/widget/loading_view.dart';
+import 'package:weather_app/presentation/weather_details/widget/loading/current_weather_loading.dart';
 import 'package:weather_app/presentation/weather_details/widget/weather_details_complementary_data.dart';
+import 'package:weather_app/presentation/weather_details/widget/weather_details_forecast.dart';
 import 'package:weather_app/presentation/weather_details/widget/weather_header.dart';
 import 'package:weather_app/presentation/weather_details/widget/weather_refresh_loading.dart';
 
@@ -34,7 +36,7 @@ class WeatherDetailsBody extends StatelessWidget {
         final isLoading = state.status == WeatherDetailsStatus.loading;
 
         if (isLoading && state.weather == null) {
-          return const LoadingView();
+          return const CurrentWeatherLoading();
         }
 
         if (state.status == WeatherDetailsStatus.failure &&
@@ -43,22 +45,27 @@ class WeatherDetailsBody extends StatelessWidget {
             error: state.error,
             onRetry:
                 () => context.read<WeatherDetailsBloc>().add(
-                  LoadWeatherDetails(lat: lat, lon: long),
+                  const LoadWeatherDetails(),
                 ),
           );
         }
 
         final weather = state.weather;
         if (weather == null) {
-          return Center(child: Text(l10n.weatherDataUnavailable));
+          return EmptyState(
+            title: l10n.noSavedCities,
+            subtitle: l10n.addCityToSeeWeather,
+            icon: Icons.location_city,
+            action: ElevatedButton.icon(
+              onPressed: () => _refreshWeatherDetails(context),
+              icon: const Icon(Icons.refresh),
+              label: Text(l10n.actionRetry),
+            ),
+          );
         }
 
         return RefreshIndicator(
-          onRefresh: () async {
-            context.read<WeatherDetailsBloc>().add(
-              const RefreshWeatherDetails(),
-            );
-          },
+          onRefresh: () async => _refreshWeatherDetails(context),
           child: CustomScrollView(
             slivers: [
               SliverAppBar(
@@ -83,23 +90,17 @@ class WeatherDetailsBody extends StatelessWidget {
                   child: WeatherDetailsComplementaryData(weather: weather),
                 ),
               ),
-              // Hourly Forecast Section
-              if (state.forecast != null)
-                SliverToBoxAdapter(
-                  child: HourlyForecastList(forecast: state.forecast!),
-                ),
-              if (state.forecast != null)
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 24),
-                    child: DailyForecastList(forecast: state.forecast!),
-                  ),
-                ),
+              const SliverToBoxAdapter(child: WeatherDetailsForecast()),
             ],
           ),
         );
       },
     );
+  }
+
+  void _refreshWeatherDetails(BuildContext context) {
+    context.read<WeatherDetailsBloc>().add(const RefreshWeatherDetails());
+    context.read<WeatherForecastBloc>().add(const RefreshWeatherForecast());
   }
 
   @override

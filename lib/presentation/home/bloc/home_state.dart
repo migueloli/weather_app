@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/core/error/app_exception.dart';
 import 'package:weather_app/data/models/city.dart';
-import 'package:weather_app/data/models/weather.dart';
 
 enum HomeStatus { initial, loading, success, failure }
 
@@ -10,49 +9,25 @@ class HomeState extends Equatable {
   const HomeState({
     this.status = HomeStatus.initial,
     this.cities = const [],
-    this.weatherData = const {},
-    this.loadingWeather = const {},
     this.error,
   });
 
   final HomeStatus status;
   final List<City> cities;
-  final Map<String, Weather> weatherData;
-  final Set<String> loadingWeather;
   final AppException? error;
-
-  // Get weather for a specific city
-  Weather? getWeatherForCity(City city) {
-    return weatherData[city.coordinates];
-  }
-
-  // Check if weather is loading for a city
-  bool isLoadingWeatherForCity(City city) {
-    return loadingWeather.contains(city.coordinates);
-  }
 
   HomeState copyWith({
     HomeStatus? status,
     List<City>? cities,
-    Map<String, Weather>? weatherData,
-    Set<String>? loadingWeather,
     ValueGetter<AppException?>? error,
   }) {
     return HomeState(
       status: status ?? this.status,
       cities: cities ?? this.cities,
-      weatherData: weatherData ?? this.weatherData,
-      loadingWeather: loadingWeather ?? this.loadingWeather,
       error: error != null ? error() : this.error,
     );
   }
 
   @override
-  List<Object?> get props => [
-    status,
-    cities,
-    weatherData,
-    loadingWeather,
-    error,
-  ];
+  List<Object?> get props => [status, cities, error];
 }

@@ -67,13 +67,9 @@ class HomeBody extends StatelessWidget {
             itemCount: state.cities.length,
             itemBuilder: (context, index) {
               final city = state.cities[index];
-              final weather = state.getWeatherForCity(city);
-              final isLoading = state.isLoadingWeatherForCity(city);
 
               return HomeCityCard(
                 city: city,
-                weather: weather,
-                isLoading: isLoading,
                 onTap: () {
                   context.push(
                     AppRoutes.weatherDetails(city.lat, city.lon, city.name),

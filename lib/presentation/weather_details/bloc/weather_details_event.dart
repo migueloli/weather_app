@@ -8,13 +8,7 @@ abstract class WeatherDetailsEvent extends Equatable {
 }
 
 class LoadWeatherDetails extends WeatherDetailsEvent {
-  const LoadWeatherDetails({required this.lat, required this.lon});
-
-  final double lat;
-  final double lon;
-
-  @override
-  List<Object?> get props => [lat, lon];
+  const LoadWeatherDetails();
 }
 
 class RefreshWeatherDetails extends WeatherDetailsEvent {

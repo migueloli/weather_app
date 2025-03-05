@@ -7,6 +7,7 @@ class EmptyState extends StatelessWidget {
     this.subtitle,
     this.icon = Icons.search_off,
     this.action,
+    this.isSmall = false,
     super.key,
   });
 
@@ -14,10 +15,30 @@ class EmptyState extends StatelessWidget {
   final String? subtitle;
   final IconData icon;
   final Widget? action;
+  final bool isSmall;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
+    if (isSmall) {
+      return Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, size: 24, color: Colors.grey.shade400),
+            const SizedBox(height: 8),
+            Text(
+              title,
+              style: theme.textTheme.titleSmall,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 4),
+            if (action != null) ...[const SizedBox(height: 8), action!],
+          ],
+        ),
+      );
+    }
 
     return Center(
       child: Padding(
@@ -55,5 +76,6 @@ class EmptyState extends StatelessWidget {
     properties.add(StringProperty('title', title));
     properties.add(StringProperty('subtitle', subtitle));
     properties.add(DiagnosticsProperty<IconData>('icon', icon));
+    properties.add(DiagnosticsProperty<bool>('isSmall', isSmall));
   }
 }

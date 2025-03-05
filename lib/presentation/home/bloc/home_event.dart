@@ -21,15 +21,6 @@ class RemoveSavedCity extends HomeEvent {
   List<Object?> get props => [city];
 }
 
-class FetchWeatherForCity extends HomeEvent {
-  const FetchWeatherForCity({required this.city});
-
-  final City city;
-
-  @override
-  List<Object?> get props => [city];
-}
-
 class CitiesUpdated extends HomeEvent {
   const CitiesUpdated(this.cities);
 
@@ -37,8 +28,4 @@ class CitiesUpdated extends HomeEvent {
 
   @override
   List<Object?> get props => [cities];
-}
-
-class RefreshAllWeather extends HomeEvent {
-  const RefreshAllWeather();
 }
