@@ -64,6 +64,12 @@ jobs:
       - name: 🏗️ Generate Code
         run: flutter pub run build_runner build --delete-conflicting-outputs
 
+      - name: Create .env file
+        run: |
+          touch .env
+          echo "API_KEY=dummy_key_for_ci" > .env
+          echo "API_BASE_URL=https://api.example.com" >> .env
+
       - name: ✅ Run Tests with Coverage
         run: flutter test --coverage
 
