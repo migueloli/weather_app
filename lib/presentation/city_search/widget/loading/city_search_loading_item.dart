@@ -14,7 +14,6 @@ class CitySearchLoadingItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Row(
           children: [
-            // City name placeholder
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +39,6 @@ class CitySearchLoadingItem extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 16),
-            // Bookmark icon placeholder
             Container(
               height: 24,
               width: 24,
@@ -50,7 +48,6 @@ class CitySearchLoadingItem extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 16),
-            // Arrow icon placeholder
             Container(
               height: 16,
               width: 16,

@@ -19,12 +19,10 @@ class Forecast extends Equatable {
   final List<ForecastEntry> list;
   final ForecastCity city;
 
-  // Helper method to group forecast entries by date for daily view
   List<DailyForecastData> getDailyForecast() {
     final Map<String, List<ForecastEntry>> groupedByDay = {};
 
     for (final entry in list) {
-      // Get date string (YYYY-MM-DD) from timestamp
       final date = DateTime.fromMillisecondsSinceEpoch(entry.dt * 1000);
       final dateString =
           '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
@@ -36,7 +34,6 @@ class Forecast extends Equatable {
       groupedByDay[dateString]!.add(entry);
     }
 
-    // Convert the grouped data to DailyForecastData objects
     return groupedByDay.entries.map((entry) {
         final entries = entry.value;
 
@@ -53,7 +50,6 @@ class Forecast extends Equatable {
           }
         }
 
-        // Use noon data or the middle entry for the day's representation
         final representativeEntry =
             entries.length > 2 ? entries[entries.length ~/ 2] : entries.first;
 
@@ -68,7 +64,7 @@ class Forecast extends Equatable {
           entries: entries,
         );
       }).toList()
-      ..sort((a, b) => a.date.compareTo(b.date)); // Sort by date
+      ..sort((a, b) => a.date.compareTo(b.date));
   }
 
   @override

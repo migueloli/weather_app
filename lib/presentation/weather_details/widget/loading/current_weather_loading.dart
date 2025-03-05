@@ -23,7 +23,6 @@ class CurrentWeatherLoading extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Day placeholder
               Container(
                 width: 80,
                 height: 16,
@@ -33,7 +32,6 @@ class CurrentWeatherLoading extends StatelessWidget {
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),
-              // Weather icon placeholder
               Container(
                 width: 100,
                 height: 100,
@@ -43,7 +41,6 @@ class CurrentWeatherLoading extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
               ),
-              // Weather description placeholder
               Container(
                 width: 120,
                 height: 24,
@@ -53,7 +50,6 @@ class CurrentWeatherLoading extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 24),
-              // Temperature placeholder
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -68,7 +64,6 @@ class CurrentWeatherLoading extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 16),
-              // Min/Max placeholder
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -38,7 +38,6 @@ class WeatherEntity {
     return Weather.fromJson(json);
   }
 
-  // Check if the data is stale (older than 1 hour)
   bool get isStale {
     final now = DateTime.now().millisecondsSinceEpoch;
     const hourInMillis = 60 * 60 * 1000;

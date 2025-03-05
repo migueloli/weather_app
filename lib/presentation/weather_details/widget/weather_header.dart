@@ -42,7 +42,7 @@ class WeatherHeader extends StatelessWidget {
                 width: 100,
                 height: 100,
                 errorBuilder:
-                    (_, __, ___) => Icon(
+                    (_, _, _) => Icon(
                       Icons.cloud_off_outlined,
                       size: 100,
                       color: theme.colorScheme.onPrimaryContainer,

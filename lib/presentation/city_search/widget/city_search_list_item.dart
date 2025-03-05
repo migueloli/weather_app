@@ -33,7 +33,6 @@ class CitySearchListItem extends StatelessWidget {
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Save/unsave button with animation
             AnimatedSwitcher(
               duration: const Duration(milliseconds: 300),
               child: IconButton(
@@ -56,7 +55,6 @@ class CitySearchListItem extends StatelessWidget {
           ],
         ),
         onTap: () {
-          // Navigate to weather details screen
           context.push(
             AppRoutes.weatherDetails(city.lat, city.lon, city.displayName),
           );

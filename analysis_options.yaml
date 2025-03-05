@@ -23,7 +23,8 @@ analyzer:
   # Exclude generated files from analysis
   exclude:
     - "**/*.g.dart"
-    - "**/*.freezed.dart"
+    - lib/l10n/gen/**
+    - lib/objectbox.g.dart
     - lib/generated_plugin_registrant.dart
 
 linter:

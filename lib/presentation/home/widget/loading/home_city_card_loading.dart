@@ -16,10 +16,8 @@ class HomeCityCardLoading extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Row with day abbreviation placeholder and city name placeholder
               Row(
                 children: [
-                  // Day abbreviation placeholder
                   Container(
                     width: 40,
                     height: 24,
@@ -39,12 +37,10 @@ class HomeCityCardLoading extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  // City name and country placeholders
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // City name placeholder
                         Container(
                           width: 150,
                           height: 24,
@@ -54,7 +50,6 @@ class HomeCityCardLoading extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 8),
-                        // Country placeholder
                         Container(
                           width: 100,
                           height: 16,

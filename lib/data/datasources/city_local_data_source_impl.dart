@@ -61,7 +61,6 @@ class CityLocalDataSourceImpl implements CityLocalDataSource {
 
   @override
   FutureOr<bool> isCitySaved(double lat, double lon) {
-    // Create coordinates string in the same format as in the entity
     final coordinatesString = '[$lat, $lon]';
 
     final query =

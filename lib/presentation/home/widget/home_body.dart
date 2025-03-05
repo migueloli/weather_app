@@ -27,7 +27,6 @@ class HomeBody extends StatelessWidget {
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           if (state.status == HomeStatus.loading && state.cities.isEmpty) {
-            // Show shimmer loading placeholders instead of CircularProgressIndicator
             return ListView.builder(
               padding: const EdgeInsets.all(8),
               itemCount: 3, // Show 3 placeholder cards

@@ -8,7 +8,6 @@ class HomeCityCardWeatherPlaceholder extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        // Weather icon placeholder
         Container(
           width: 64,
           height: 64,
@@ -42,7 +41,6 @@ class HomeCityCardWeatherPlaceholder extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              // Humidity and wind info placeholder
               Row(
                 children: [
                   Container(

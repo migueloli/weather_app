@@ -33,7 +33,6 @@ class WeatherRepositoryImpl implements WeatherRepository {
     bool forceRefresh = false,
   }) async {
     try {
-      // Check local cache first, unless force refresh is specified
       if (!forceRefresh) {
         final cachedWeather = await _localDataSource.getWeather(lat, lon);
         if (cachedWeather != null) {

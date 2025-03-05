@@ -13,18 +13,15 @@ extension AppExceptionMessageExtension on AppException? {
 
     if (this == null) return l10n.errorGeneric;
 
-    // For API exceptions, we might want to use the server message
     if (this is ApiException && (this! as ApiException).message.isNotEmpty) {
       return (this! as ApiException).message;
     }
 
-    // For network exceptions with custom messages
     if (this is NetworkException &&
         (this! as NetworkException).message.isNotEmpty) {
       return (this! as NetworkException).message;
     }
 
-    // General message based on exception type
     return switch (this!.type) {
       AppExceptionType.networkConnection => l10n.errorNetwork,
       AppExceptionType.serverError => l10n.errorServer,

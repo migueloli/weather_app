@@ -9,13 +9,11 @@ class ForecastLoading extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Hourly forecast section loading
         ShimmerLoading(
           isLoading: true,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Title placeholder
               Container(
                 width: 150,
                 height: 24,
@@ -46,10 +44,7 @@ class ForecastLoading extends StatelessWidget {
             ],
           ),
         ),
-
         const SizedBox(height: 16),
-
-        // Daily forecast section loading
         ShimmerLoading(
           isLoading: true,
           child: Column(
@@ -65,7 +60,6 @@ class ForecastLoading extends StatelessWidget {
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),
-              // Daily forecast items
               ...List.generate(
                 5,
                 (index) => Container(

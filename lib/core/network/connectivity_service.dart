@@ -4,10 +4,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 
 class ConnectivityService {
   ConnectivityService() {
-    // Initialize with the current status
     _checkConnectionStatus();
-
-    // Listen for connectivity changes
     _connectivity.onConnectivityChanged.listen((result) {
       _checkConnectionStatus();
     });
@@ -17,10 +14,8 @@ class ConnectivityService {
   final StreamController<bool> _connectionStatusController =
       StreamController<bool>.broadcast();
 
-  // Public stream that broadcasts connectivity status
   Stream<bool> get connectionStatusStream => _connectionStatusController.stream;
 
-  // Check and update the current connection status
   Future<void> _checkConnectionStatus() async {
     try {
       final result = await _connectivity.checkConnectivity();

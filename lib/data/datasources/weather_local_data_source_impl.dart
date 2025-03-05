@@ -28,7 +28,6 @@ class WeatherLocalDataSourceImpl implements WeatherLocalDataSource {
     query.close();
 
     if (existingEntity != null) {
-      // Update existing entry
       weatherEntity.id = existingEntity.id;
     }
 

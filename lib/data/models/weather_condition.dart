@@ -1,3 +1,4 @@
+import 'package:weather_app/core/config/env_config.dart';
 import 'package:weather_app/core/utils/json_types.dart';
 
 class WeatherCondition {
@@ -25,5 +26,5 @@ class WeatherCondition {
     return {'id': id, 'main': main, 'description': description, 'icon': icon};
   }
 
-  String get iconUrl => 'https://openweathermap.org/img/wn/$icon@2x.png';
+  String get iconUrl => '${EnvConfig.weatherApiBaseUrl}/img/wn/$icon@2x.png';
 }
