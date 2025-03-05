@@ -16,7 +16,6 @@ class UnitSystemSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final theme = Theme.of(context);
 
     return Column(
       children: [
@@ -30,7 +29,6 @@ class UnitSystemSelector extends StatelessWidget {
               onUnitSystemChanged(value);
             }
           },
-          activeColor: theme.colorScheme.primaryContainer,
           selected: currentUnitSystem == UnitSystem.metric,
           dense: true,
         ),
@@ -44,7 +42,6 @@ class UnitSystemSelector extends StatelessWidget {
               onUnitSystemChanged(value);
             }
           },
-          activeColor: theme.colorScheme.primaryContainer,
           selected: currentUnitSystem == UnitSystem.imperial,
           dense: true,
         ),
