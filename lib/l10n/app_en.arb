@@ -76,12 +76,12 @@
     "description": "Label for maximum temperature"
   },
 
-  "hourlyForecast": "24-Hour Forecast",
+  "hourlyForecast": "Hourly Forecast",
   "@hourlyForecast": {
     "description": "Label for hourly weather forecast section"
   },
   
-  "dailyForecast": "5-Day Forecast",
+  "dailyForecast": "Daily Forecast",
   "@dailyForecast": {
     "description": "Label for daily weather forecast section"
   },

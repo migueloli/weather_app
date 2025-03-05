@@ -21,7 +21,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get searchForCities => 'Buscar cidades';
 
   @override
-  String get searchForAnotherCity => 'Tente pesquisar por outro nome de cidade';
+  String get searchForAnotherCity => 'Tente buscar outra cidade';
 
   @override
   String get weatherSearchHint => 'Buscar por uma cidade';
@@ -54,10 +54,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get weatherMax => 'Máx';
 
   @override
-  String get hourlyForecast => 'Previsão Horária';
+  String get hourlyForecast => 'Previsão por hora';
 
   @override
-  String get dailyForecast => 'Previsão de 7 Dias';
+  String get dailyForecast => 'Previsão diária';
 
   @override
   String get today => 'Hoje';
@@ -126,13 +126,13 @@ class AppLocalizationsPt extends AppLocalizations {
   String get daySunday => 'Domingo';
 
   @override
-  String get errorGeneric => 'Algo deu errado';
+  String get errorGeneric => 'Ocorreu um erro';
 
   @override
   String get errorRetry => 'Por favor, tente novamente';
 
   @override
-  String get errorNetwork => 'Sem conexão com a internet';
+  String get errorNetwork => 'Sem conexão com a Internet';
 
   @override
   String get errorServer => 'Erro no servidor. Por favor, tente mais tarde';

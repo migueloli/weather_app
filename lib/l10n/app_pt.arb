@@ -75,12 +75,12 @@
     "description": "Rótulo para temperatura máxima"
   },
 
-  "hourlyForecast": "Previsão para 24 horas",
+  "hourlyForecast": "Previsão por hora",
   "@hourlyForecast": {
     "description": "Rótulo para a seção de previsão do tempo por hora"
   },
 
-  "dailyForecast": "Previsão para 5 dias",
+  "dailyForecast": "Previsão diária",
   "@dailyForecast": {
     "description": "Rótulo para a seção de previsão do tempo diária"
   },

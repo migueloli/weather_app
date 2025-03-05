@@ -54,10 +54,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get weatherMax => 'Max';
 
   @override
-  String get hourlyForecast => '24-Hour Forecast';
+  String get hourlyForecast => 'Hourly Forecast';
 
   @override
-  String get dailyForecast => '5-Day Forecast';
+  String get dailyForecast => 'Daily Forecast';
 
   @override
   String get today => 'Today';

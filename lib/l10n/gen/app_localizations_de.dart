@@ -57,7 +57,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get hourlyForecast => 'Stündliche Vorhersage';
 
   @override
-  String get dailyForecast => '7-Tage-Vorhersage';
+  String get dailyForecast => 'Tägliche Vorhersage';
 
   @override
   String get today => 'Heute';

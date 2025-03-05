@@ -80,7 +80,7 @@
     "description": "Bezeichnung für den Abschnitt mit stündlicher Wettervorhersage"
   },
   
-  "dailyForecast": "7-Tage-Vorhersage",
+  "dailyForecast": "Tägliche Vorhersage",
   "@dailyForecast": {
     "description": "Bezeichnung für den Abschnitt mit täglicher Wettervorhersage"
   },

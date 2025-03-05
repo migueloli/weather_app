@@ -190,13 +190,13 @@ abstract class AppLocalizations {
   /// Label for hourly weather forecast section
   ///
   /// In en, this message translates to:
-  /// **'24-Hour Forecast'**
+  /// **'Hourly Forecast'**
   String get hourlyForecast;
 
   /// Label for daily weather forecast section
   ///
   /// In en, this message translates to:
-  /// **'5-Day Forecast'**
+  /// **'Daily Forecast'**
   String get dailyForecast;
 
   /// Label for today in daily forecast
