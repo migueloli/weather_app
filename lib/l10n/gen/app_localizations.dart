@@ -175,6 +175,18 @@ abstract class AppLocalizations {
   /// **'Feels Like'**
   String get weatherFeelsLike;
 
+  /// Label for minimum temperature
+  ///
+  /// In en, this message translates to:
+  /// **'Min'**
+  String get weatherMin;
+
+  /// Label for maximum temperature
+  ///
+  /// In en, this message translates to:
+  /// **'Max'**
+  String get weatherMax;
+
   /// Label for hourly weather forecast section
   ///
   /// In en, this message translates to:

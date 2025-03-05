@@ -1,8 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/core/utils/weekday_formatter.dart';
+import 'package:weather_app/data/entity/unity_system.dart';
+import 'package:weather_app/data/extensions/unity_system_extension.dart';
 import 'package:weather_app/data/models/weather.dart';
-import 'package:weather_app/presentation/weather_details/widget/weather_details_min_max.dart';
+import 'package:weather_app/l10n/gen/app_localizations.dart';
+import 'package:weather_app/presentation/settings/bloc/settings_bloc.dart';
+import 'package:weather_app/presentation/settings/bloc/settings_state.dart';
+import 'package:weather_app/presentation/weather_details/widget/weather_details_temperature_item.dart';
 
 class WeatherHeader extends StatelessWidget {
   const WeatherHeader({required this.weather, super.key, this.cityName});
@@ -12,6 +18,7 @@ class WeatherHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final weatherCondition = weather.weather.firstOrNull;
 
     return Container(
@@ -87,21 +94,28 @@ class WeatherHeader extends StatelessWidget {
               ),
             ],
             const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                WeatherDetailsMinMax(
-                  icon: Icons.arrow_upward,
-                  temp: '${weather.main.tempMax.round()}°C',
-                  label: 'Max',
-                ),
-                const SizedBox(width: 24),
-                WeatherDetailsMinMax(
-                  icon: Icons.arrow_downward,
-                  temp: '${weather.main.tempMin.round()}°C',
-                  label: 'Min',
-                ),
-              ],
+            BlocSelector<SettingsBloc, SettingsState, UnitSystem>(
+              selector: (state) => state.settings.unitSystem,
+              builder: (context, unitSystem) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    WeatherDetailsTemperatureItem(
+                      icon: Icons.arrow_upward,
+                      temp:
+                          '${weather.main.tempMax.round()}${unitSystem.temperatureUnit}',
+                      label: l10n.weatherMax, // 'Max',
+                    ),
+                    const SizedBox(width: 24),
+                    WeatherDetailsTemperatureItem(
+                      icon: Icons.arrow_downward,
+                      temp:
+                          '${weather.main.tempMin.round()}${unitSystem.temperatureUnit}',
+                      label: l10n.weatherMin, //'Min',
+                    ),
+                  ],
+                );
+              },
             ),
           ],
         ),

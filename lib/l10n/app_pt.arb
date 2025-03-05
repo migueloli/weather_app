@@ -21,7 +21,7 @@
     "description": "Rótulo para botão de buscar cidades"
   },
 
-  "searchForAnotherCity": "Tente pesquisar por outro nome de cidade",
+  "searchForAnotherCity": "Tente buscar outra cidade",
   "@searchForAnotherCity": {
     "description": "Texto de sugestão exibido quando a busca de cidade não retorna resultados"
   },
@@ -66,12 +66,21 @@
     "description": "Rótulo para medição de temperatura percebida"
   },
 
-  "hourlyForecast": "Previsão Horária",
+  "weatherMin": "Mín",
+  "@weatherMin": {
+    "description": "Rótulo para temperatura mínima"
+  },
+  "weatherMax": "Máx",
+  "@weatherMax": {
+    "description": "Rótulo para temperatura máxima"
+  },
+
+  "hourlyForecast": "Previsão para 24 horas",
   "@hourlyForecast": {
     "description": "Rótulo para a seção de previsão do tempo por hora"
   },
 
-  "dailyForecast": "Previsão de 7 Dias",
+  "dailyForecast": "Previsão para 5 dias",
   "@dailyForecast": {
     "description": "Rótulo para a seção de previsão do tempo diária"
   },
@@ -186,7 +195,7 @@
     "description": "Nome completo de Domingo"
   },
 
-  "errorGeneric": "Algo deu errado",
+  "errorGeneric": "Ocorreu um erro",
   "@errorGeneric": {
     "description": "Mensagem de erro genérica"
   },
@@ -196,7 +205,7 @@
     "description": "Mensagem sugerindo tentar novamente após um erro"
   },
 
-  "errorNetwork": "Sem conexão com a internet",
+  "errorNetwork": "Sem conexão com a Internet",
   "@errorNetwork": {
     "description": "Mensagem de erro quando a rede não está disponível"
   },
@@ -215,7 +224,7 @@
   "@errorAuthorization": {
     "description": "Mensagem de erro exibida para problemas de autorização"
   },
-  
+
   "errorDataFormat": "Dados inválidos recebidos. Por favor, tente novamente.",
   "@errorDataFormat": {
     "description": "Mensagem de erro exibida quando os dados recebidos são inválidos"
@@ -235,12 +244,12 @@
   "@errorCancelled": {
     "description": "Mensagem de erro exibida quando uma operação é cancelada"
   },
-  
+
   "errorLocationPermission": "Permissão de localização negada. O clima para sua localização está indisponível.",
   "@errorLocationPermission": {
     "description": "Mensagem de erro exibida quando a permissão de localização é negada"
   },
-  
+
   "errorStorage": "Erro de armazenamento. Por favor, verifique o armazenamento do seu dispositivo.",
   "@errorStorage": {
     "description": "Mensagem de erro exibida para erros relacionados ao armazenamento"

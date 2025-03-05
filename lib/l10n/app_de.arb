@@ -66,6 +66,15 @@
     "description": "Label für gefühlte Temperaturmessung"
   },
 
+  "weatherMin": "Min",
+  "@weatherMin": {
+    "description": "Bezeichnung für Mindesttemperatur"
+  },
+  "weatherMax": "Max",
+  "@weatherMax": {
+    "description": "Bezeichnung für Höchsttemperatur"
+  },
+
   "hourlyForecast": "Stündliche Vorhersage",
   "@hourlyForecast": {
     "description": "Bezeichnung für den Abschnitt mit stündlicher Wettervorhersage"
@@ -240,7 +249,7 @@
   "@errorLocationPermission": {
     "description": "Fehlermeldung, die angezeigt wird, wenn die Standortberechtigung verweigert wird"
   },
-  
+
   "errorStorage": "Speicherfehler. Bitte überprüfen Sie den Speicher Ihres Geräts.",
   "@errorStorage": {
     "description": "Fehlermeldung, die für speicherbezogene Fehler angezeigt wird"

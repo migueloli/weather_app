@@ -66,6 +66,16 @@
     "description": "Label for perceived temperature measurement"
   },
 
+  "weatherMin": "Min",
+  "@weatherMin": {
+    "description": "Label for minimum temperature"
+  },
+
+  "weatherMax": "Max",
+  "@weatherMax": {
+    "description": "Label for maximum temperature"
+  },
+
   "hourlyForecast": "24-Hour Forecast",
   "@hourlyForecast": {
     "description": "Label for hourly weather forecast section"

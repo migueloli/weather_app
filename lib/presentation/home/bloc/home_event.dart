@@ -38,3 +38,7 @@ class CitiesUpdated extends HomeEvent {
   @override
   List<Object?> get props => [cities];
 }
+
+class RefreshAllWeather extends HomeEvent {
+  const RefreshAllWeather();
+}

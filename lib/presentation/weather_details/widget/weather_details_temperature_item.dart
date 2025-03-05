@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class WeatherDetailsMinMax extends StatelessWidget {
-  const WeatherDetailsMinMax({
+class WeatherDetailsTemperatureItem extends StatelessWidget {
+  const WeatherDetailsTemperatureItem({
     required this.icon,
     required this.temp,
     required this.label,

@@ -1,8 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/core/utils/weekday_formatter.dart';
+import 'package:weather_app/data/entity/unity_system.dart';
+import 'package:weather_app/data/extensions/unity_system_extension.dart';
 import 'package:weather_app/data/models/daily_forecast_data.dart';
 import 'package:weather_app/l10n/gen/app_localizations.dart';
+import 'package:weather_app/presentation/settings/bloc/settings_bloc.dart';
+import 'package:weather_app/presentation/settings/bloc/settings_state.dart';
 
 class DailyForecastItem extends StatelessWidget {
   const DailyForecastItem({
@@ -59,21 +64,26 @@ class DailyForecastItem extends StatelessWidget {
               errorBuilder:
                   (_, _, _) => const Icon(Icons.cloud_off_outlined, size: 40),
             ),
-          Row(
-            children: [
-              Text(
-                '${dailyData.maxTemp.round()}°',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                ),
-              ),
-              const SizedBox(width: 8),
-              Text(
-                '${dailyData.minTemp.round()}°',
-                style: TextStyle(color: Colors.grey.shade200),
-              ),
-            ],
+          BlocSelector<SettingsBloc, SettingsState, UnitSystem>(
+            selector: (state) => state.settings.unitSystem,
+            builder: (context, unitSystem) {
+              return Row(
+                children: [
+                  Text(
+                    '${dailyData.maxTemp.round()}${unitSystem.temperatureUnit}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    '${dailyData.minTemp.round()}${unitSystem.temperatureUnit}',
+                    style: TextStyle(color: Colors.grey.shade200),
+                  ),
+                ],
+              );
+            },
           ),
         ],
       ),

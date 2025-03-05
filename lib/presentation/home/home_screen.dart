@@ -6,6 +6,7 @@ import 'package:weather_app/core/routing/app_router.dart';
 import 'package:weather_app/l10n/gen/app_localizations.dart';
 import 'package:weather_app/presentation/home/bloc/home_bloc.dart';
 import 'package:weather_app/presentation/home/widget/home_body.dart';
+import 'package:weather_app/presentation/settings/bloc/settings_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
             getSavedCitiesUseCase: getIt(),
             removeSavedCityUseCase: getIt(),
             getWeatherUseCase: getIt(),
+            settingsBloc: context.read<SettingsBloc>(),
           ),
       child: Scaffold(
         appBar: AppBar(

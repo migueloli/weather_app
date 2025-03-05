@@ -48,6 +48,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get weatherFeelsLike => 'Gefühlte Temperatur';
 
   @override
+  String get weatherMin => 'Min';
+
+  @override
+  String get weatherMax => 'Max';
+
+  @override
   String get hourlyForecast => 'Stündliche Vorhersage';
 
   @override
