@@ -6,10 +6,10 @@ import 'package:weather_app/core/utils/result.dart';
 import 'package:weather_app/data/datasources/contracts/city_local_data_source.dart';
 import 'package:weather_app/data/entity/city_entity.dart';
 import 'package:weather_app/data/models/city.dart';
-import 'package:weather_app/domain/repositories/local_city_repository_interface.dart';
+import 'package:weather_app/domain/repositories/local_city_repository.dart';
 
-class LocalCityRepository implements LocalCityRepositoryInterface {
-  const LocalCityRepository({required CityLocalDataSource localDataSource})
+class LocalCityRepositoryImpl implements LocalCityRepository {
+  const LocalCityRepositoryImpl({required CityLocalDataSource localDataSource})
     : _localDataSource = localDataSource;
 
   final CityLocalDataSource _localDataSource;

@@ -19,14 +19,14 @@ import 'package:weather_app/data/datasources/contracts/weather_remote_data_sourc
 import 'package:weather_app/data/datasources/settings_data_source_impl.dart';
 import 'package:weather_app/data/datasources/weather_local_data_source_impl.dart';
 import 'package:weather_app/data/datasources/weather_remote_data_source_impl.dart';
-import 'package:weather_app/data/repositories/city_repository.dart';
-import 'package:weather_app/data/repositories/local_city_repository.dart';
-import 'package:weather_app/data/repositories/settings_repository.dart';
-import 'package:weather_app/data/repositories/weather_repository.dart';
-import 'package:weather_app/domain/repositories/city_repository_interface.dart';
-import 'package:weather_app/domain/repositories/local_city_repository_interface.dart';
-import 'package:weather_app/domain/repositories/settings_repository_interface.dart';
-import 'package:weather_app/domain/repositories/weather_repository_interface.dart';
+import 'package:weather_app/data/repositories/city_repository_impl.dart';
+import 'package:weather_app/data/repositories/local_city_repository_impl.dart';
+import 'package:weather_app/data/repositories/settings_repository_impl.dart';
+import 'package:weather_app/data/repositories/weather_repository_impl.dart';
+import 'package:weather_app/domain/repositories/city_repository.dart';
+import 'package:weather_app/domain/repositories/local_city_repository.dart';
+import 'package:weather_app/domain/repositories/settings_repository.dart';
+import 'package:weather_app/domain/repositories/weather_repository.dart';
 import 'package:weather_app/domain/use_cases/get_forecast_use_case.dart';
 import 'package:weather_app/domain/use_cases/get_saved_cities_use_case.dart';
 import 'package:weather_app/domain/use_cases/get_settings_use_case.dart';
@@ -102,25 +102,27 @@ Future<void> setupDependencies() async {
   );
 
   // Register Repository Implementations
-  getIt.registerLazySingleton<CityRepositoryInterface>(
-    () =>
-        CityRepository(remoteDataSource: getIt(), connectivityService: getIt()),
+  getIt.registerLazySingleton<CityRepository>(
+    () => CityRepositoryImpl(
+      remoteDataSource: getIt(),
+      connectivityService: getIt(),
+    ),
   );
 
-  getIt.registerLazySingleton<LocalCityRepositoryInterface>(
-    () => LocalCityRepository(localDataSource: getIt()),
+  getIt.registerLazySingleton<LocalCityRepository>(
+    () => LocalCityRepositoryImpl(localDataSource: getIt()),
   );
 
-  getIt.registerLazySingleton<WeatherRepositoryInterface>(
-    () => WeatherRepository(
+  getIt.registerLazySingleton<WeatherRepository>(
+    () => WeatherRepositoryImpl(
       remoteDataSource: getIt(),
       localDataSource: getIt(),
       connectivityService: getIt(),
     ),
   );
 
-  getIt.registerLazySingleton<SettingsRepositoryInterface>(
-    () => SettingsRepository(settingsDataSource: getIt()),
+  getIt.registerLazySingleton<SettingsRepository>(
+    () => SettingsRepositoryImpl(settingsDataSource: getIt()),
   );
 
   // Register Use Cases

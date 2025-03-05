@@ -1,14 +1,13 @@
 import 'package:weather_app/core/error/app_exception.dart';
 import 'package:weather_app/core/utils/result.dart';
 import 'package:weather_app/data/models/forecast.dart';
-import 'package:weather_app/domain/repositories/weather_repository_interface.dart';
+import 'package:weather_app/domain/repositories/weather_repository.dart';
 
 class GetForecastUseCase {
-  const GetForecastUseCase({
-    required WeatherRepositoryInterface weatherRepository,
-  }) : _weatherRepository = weatherRepository;
+  const GetForecastUseCase({required WeatherRepository weatherRepository})
+    : _weatherRepository = weatherRepository;
 
-  final WeatherRepositoryInterface _weatherRepository;
+  final WeatherRepository _weatherRepository;
 
   Future<Result<Forecast, AppException>> call({
     required double lat,

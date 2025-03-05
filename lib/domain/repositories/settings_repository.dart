@@ -5,8 +5,8 @@ import 'package:weather_app/core/utils/result.dart';
 import 'package:weather_app/data/entity/unity_system.dart';
 import 'package:weather_app/data/models/app_settings.dart';
 
-abstract class SettingsRepositoryInterface {
-  const SettingsRepositoryInterface();
+abstract class SettingsRepository {
+  const SettingsRepository();
 
   Stream<AppSettings> get settingsStream;
 

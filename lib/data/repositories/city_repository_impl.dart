@@ -5,10 +5,10 @@ import 'package:weather_app/core/network/connectivity_service.dart';
 import 'package:weather_app/core/utils/result.dart';
 import 'package:weather_app/data/datasources/contracts/city_remote_data_source.dart';
 import 'package:weather_app/data/models/city.dart';
-import 'package:weather_app/domain/repositories/city_repository_interface.dart';
+import 'package:weather_app/domain/repositories/city_repository.dart';
 
-class CityRepository implements CityRepositoryInterface {
-  const CityRepository({
+class CityRepositoryImpl implements CityRepository {
+  const CityRepositoryImpl({
     required CityRemoteDataSource remoteDataSource,
     required ConnectivityService connectivityService,
   }) : _remoteDataSource = remoteDataSource,

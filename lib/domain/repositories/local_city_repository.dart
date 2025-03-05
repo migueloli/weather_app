@@ -2,8 +2,8 @@ import 'package:weather_app/core/error/app_exception.dart';
 import 'package:weather_app/core/utils/result.dart';
 import 'package:weather_app/data/models/city.dart';
 
-abstract class LocalCityRepositoryInterface {
-  const LocalCityRepositoryInterface();
+abstract class LocalCityRepository {
+  const LocalCityRepository();
 
   Future<Result<bool, AppException>> saveCity(City city);
   Future<Result<bool, AppException>> removeCity(City city);

@@ -9,10 +9,10 @@ import 'package:weather_app/data/datasources/contracts/weather_local_data_source
 import 'package:weather_app/data/datasources/contracts/weather_remote_data_source.dart';
 import 'package:weather_app/data/models/forecast.dart';
 import 'package:weather_app/data/models/weather.dart';
-import 'package:weather_app/domain/repositories/weather_repository_interface.dart';
+import 'package:weather_app/domain/repositories/weather_repository.dart';
 
-class WeatherRepository implements WeatherRepositoryInterface {
-  const WeatherRepository({
+class WeatherRepositoryImpl implements WeatherRepository {
+  const WeatherRepositoryImpl({
     required WeatherRemoteDataSource remoteDataSource,
     required WeatherLocalDataSource localDataSource,
     required ConnectivityService connectivityService,

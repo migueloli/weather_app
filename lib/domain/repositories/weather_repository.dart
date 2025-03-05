@@ -3,8 +3,8 @@ import 'package:weather_app/core/utils/result.dart';
 import 'package:weather_app/data/models/forecast.dart';
 import 'package:weather_app/data/models/weather.dart';
 
-abstract class WeatherRepositoryInterface {
-  const WeatherRepositoryInterface();
+abstract class WeatherRepository {
+  const WeatherRepository();
 
   Future<Result<Weather, AppException>> getWeather({
     required double lat,

@@ -7,10 +7,10 @@ import 'package:weather_app/core/utils/result.dart';
 import 'package:weather_app/data/datasources/contracts/settings_data_source.dart';
 import 'package:weather_app/data/entity/unity_system.dart';
 import 'package:weather_app/data/models/app_settings.dart';
-import 'package:weather_app/domain/repositories/settings_repository_interface.dart';
+import 'package:weather_app/domain/repositories/settings_repository.dart';
 
-class SettingsRepository implements SettingsRepositoryInterface {
-  SettingsRepository({required SettingsDataSource settingsDataSource})
+class SettingsRepositoryImpl implements SettingsRepository {
+  SettingsRepositoryImpl({required SettingsDataSource settingsDataSource})
     : _settingsDataSource = settingsDataSource {
     updateSettingsStream();
   }
