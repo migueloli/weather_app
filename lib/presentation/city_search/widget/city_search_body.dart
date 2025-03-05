@@ -29,7 +29,12 @@ class _CitySearchBodyState extends State<CitySearchBody> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.only(
+            top: 16,
+            left: 16,
+            right: 16,
+            bottom: MediaQuery.paddingOf(context).bottom,
+          ),
           child: TextField(
             textInputAction: TextInputAction.search,
             controller: _searchController,

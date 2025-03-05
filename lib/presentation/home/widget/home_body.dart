@@ -62,7 +62,12 @@ class HomeBody extends StatelessWidget {
           }
 
           return ListView.builder(
-            padding: const EdgeInsets.all(8),
+            padding: EdgeInsets.only(
+              left: 8,
+              top: 8,
+              right: 8,
+              bottom: MediaQuery.viewPaddingOf(context).bottom,
+            ),
             itemCount: state.cities.length,
             itemBuilder: (context, index) {
               final city = state.cities[index];
