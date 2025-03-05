@@ -3,7 +3,9 @@ import 'package:weather_app/core/utils/result.dart';
 import 'package:weather_app/domain/repositories/weather_repository_interface.dart';
 
 class GetWeatherUpdatedTimestampUseCase {
-  const GetWeatherUpdatedTimestampUseCase(this._weatherRepository);
+  const GetWeatherUpdatedTimestampUseCase({
+    required WeatherRepositoryInterface weatherRepository,
+  }) : _weatherRepository = weatherRepository;
 
   final WeatherRepositoryInterface _weatherRepository;
 

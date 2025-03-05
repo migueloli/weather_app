@@ -6,7 +6,8 @@ import 'package:weather_app/data/models/city.dart';
 import 'package:weather_app/domain/repositories/city_repository_interface.dart';
 
 class SearchCitiesUseCase {
-  const SearchCitiesUseCase(this._cityRepository);
+  const SearchCitiesUseCase({required CityRepositoryInterface cityRepository})
+    : _cityRepository = cityRepository;
 
   final CityRepositoryInterface _cityRepository;
 

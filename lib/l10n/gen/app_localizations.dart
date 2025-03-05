@@ -193,6 +193,48 @@ abstract class AppLocalizations {
   /// **'Today'**
   String get today;
 
+  /// Title for the settings screen
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// Label for language settings
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// Label for unit system settings
+  ///
+  /// In en, this message translates to:
+  /// **'Unit System'**
+  String get unitSystem;
+
+  /// Label for metric unit system
+  ///
+  /// In en, this message translates to:
+  /// **'Metric'**
+  String get metric;
+
+  /// Label for imperial unit system
+  ///
+  /// In en, this message translates to:
+  /// **'Imperial'**
+  String get imperial;
+
+  /// Label for temperature
+  ///
+  /// In en, this message translates to:
+  /// **'Temperature'**
+  String get temperature;
+
+  /// Label for speed
+  ///
+  /// In en, this message translates to:
+  /// **'Speed'**
+  String get speed;
+
   /// Monday abbreviation
   ///
   /// In en, this message translates to:

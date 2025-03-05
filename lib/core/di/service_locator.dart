@@ -13,29 +13,36 @@ import 'package:weather_app/data/datasources/city_local_data_source_impl.dart';
 import 'package:weather_app/data/datasources/city_remote_data_source_impl.dart';
 import 'package:weather_app/data/datasources/contracts/city_local_data_source.dart';
 import 'package:weather_app/data/datasources/contracts/city_remote_data_source.dart';
+import 'package:weather_app/data/datasources/contracts/settings_data_source.dart';
 import 'package:weather_app/data/datasources/contracts/weather_local_data_source.dart';
 import 'package:weather_app/data/datasources/contracts/weather_remote_data_source.dart';
+import 'package:weather_app/data/datasources/settings_data_source_impl.dart';
 import 'package:weather_app/data/datasources/weather_local_data_source_impl.dart';
 import 'package:weather_app/data/datasources/weather_remote_data_source_impl.dart';
 import 'package:weather_app/data/repositories/city_repository.dart';
 import 'package:weather_app/data/repositories/local_city_repository.dart';
+import 'package:weather_app/data/repositories/settings_repository.dart';
 import 'package:weather_app/data/repositories/weather_repository.dart';
 import 'package:weather_app/domain/repositories/city_repository_interface.dart';
 import 'package:weather_app/domain/repositories/local_city_repository_interface.dart';
+import 'package:weather_app/domain/repositories/settings_repository_interface.dart';
 import 'package:weather_app/domain/repositories/weather_repository_interface.dart';
 import 'package:weather_app/domain/use_cases/get_forecast_use_case.dart';
 import 'package:weather_app/domain/use_cases/get_saved_cities_use_case.dart';
+import 'package:weather_app/domain/use_cases/get_settings_use_case.dart';
 import 'package:weather_app/domain/use_cases/get_weather_updated_timestamp_use_case.dart';
 import 'package:weather_app/domain/use_cases/get_weather_use_case.dart';
 import 'package:weather_app/domain/use_cases/remove_saved_city_use_case.dart';
 import 'package:weather_app/domain/use_cases/save_city_use_case.dart';
+import 'package:weather_app/domain/use_cases/save_language_use_case.dart';
+import 'package:weather_app/domain/use_cases/save_unit_system_use_case.dart';
 import 'package:weather_app/domain/use_cases/search_cities_use_case.dart';
 import 'package:weather_app/objectbox.g.dart';
 
 final getIt = GetIt.instance;
 
 Future<void> setupDependencies() async {
-  // Register ObjectBox Store asynchronously & wait for completion
+  // Register local storages asynchronously & wait for completion
   final store = await _initObjectBox();
   getIt.registerSingleton<Store>(store, dispose: (store) => store.close());
 
@@ -89,6 +96,10 @@ Future<void> setupDependencies() async {
     () => CityLocalDataSourceImpl(store: getIt()),
   );
 
+  getIt.registerLazySingleton<SettingsDataSource>(
+    () => SettingsDataSourceImpl(sharedPreferences: getIt()),
+  );
+
   // Register Repository Implementations
   getIt.registerLazySingleton<CityRepositoryInterface>(
     () =>
@@ -107,17 +118,21 @@ Future<void> setupDependencies() async {
     ),
   );
 
+  getIt.registerLazySingleton<SettingsRepositoryInterface>(
+    () => SettingsRepository(settingsDataSource: getIt()),
+  );
+
   // Register Use Cases
   getIt.registerLazySingleton<GetWeatherUseCase>(
-    () => GetWeatherUseCase(getIt()),
+    () => GetWeatherUseCase(weatherRepository: getIt()),
   );
 
   getIt.registerLazySingleton<GetWeatherUpdatedTimestampUseCase>(
-    () => GetWeatherUpdatedTimestampUseCase(getIt()),
+    () => GetWeatherUpdatedTimestampUseCase(weatherRepository: getIt()),
   );
 
   getIt.registerLazySingleton<SearchCitiesUseCase>(
-    () => SearchCitiesUseCase(getIt()),
+    () => SearchCitiesUseCase(cityRepository: getIt()),
   );
 
   getIt.registerLazySingleton(
@@ -132,6 +147,19 @@ Future<void> setupDependencies() async {
     () => GetForecastUseCase(weatherRepository: getIt()),
   );
 
+  getIt.registerLazySingleton(
+    () => GetSettingsUseCase(settingsRepository: getIt()),
+  );
+
+  getIt.registerLazySingleton(
+    () => SaveUnitSystemUseCase(settingsRepository: getIt()),
+  );
+
+  getIt.registerLazySingleton(
+    () => SaveLanguageUseCase(settingsRepository: getIt()),
+  );
+
+  // Register no singleton Use Cases
   getIt.registerFactory(
     () => GetSavedCitiesUseCase(localCityRepository: getIt()),
   );

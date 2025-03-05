@@ -31,12 +31,18 @@ class _HomeScreenState extends State<HomeScreen> {
           title: Text(l10n.appTitle),
           actions: [
             IconButton(
-              icon: const Icon(Icons.add),
-              onPressed: () => context.push(AppRoutes.citySearch),
+              icon: const Icon(Icons.settings),
+              onPressed: () => context.push(AppRoutes.settings),
+              tooltip: l10n.settings,
             ),
           ],
         ),
         body: const HomeBody(),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => context.push(AppRoutes.citySearch),
+          tooltip: l10n.searchForCities,
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }

@@ -4,7 +4,9 @@ import 'package:weather_app/data/models/weather.dart';
 import 'package:weather_app/domain/repositories/weather_repository_interface.dart';
 
 class GetWeatherUseCase {
-  const GetWeatherUseCase(this._weatherRepository);
+  const GetWeatherUseCase({
+    required WeatherRepositoryInterface weatherRepository,
+  }) : _weatherRepository = weatherRepository;
 
   final WeatherRepositoryInterface _weatherRepository;
 

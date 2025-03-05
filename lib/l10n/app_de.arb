@@ -8,17 +8,17 @@
 
   "noSavedCities": "Keine gespeicherten Städte",
   "@noSavedCities": {
-    "description": "Title for empty state when no cities are saved"
+    "description": "Titel für den leeren Zustand, wenn keine Städte gespeichert sind"
   },
 
   "addCityToSeeWeather": "Fügen Sie eine Stadt hinzu, um Wetterinformationen zu sehen",
   "@addCityToSeeWeather": {
-    "description": "Subtitle for empty state suggesting to add cities"
+    "description": "Untertitel für leeren Zustand, der vorschlägt, Städte hinzuzufügen"
   },
 
   "searchForCities": "Städte suchen",
   "@searchForCities": {
-    "description": "Label for button to search for cities"
+    "description": "Beschriftung für die Schaltfläche zum Suchen nach Städten"
   },
 
   "searchForAnotherCity": "Versuchen Sie, nach einem anderen Stadtnamen zu suchen",
@@ -79,6 +79,41 @@
   "today": "Heute",
   "@today": {
     "description": "Bezeichnung für heute in der täglichen Vorhersage"
+  },
+
+  "settings": "Einstellungen",
+  "@settings": {
+    "description": "Titel für den Einstellungsbildschirm"
+  },
+  
+  "language": "Sprache",
+  "@language": {
+    "description": "Bezeichnung für Spracheinstellungen"
+  },
+  
+  "unitSystem": "Einheitensystem",
+  "@unitSystem": {
+    "description": "Bezeichnung für Einstellungen des Einheitensystems"
+  },
+  
+  "metric": "Metrisch",
+  "@metric": {
+    "description": "Bezeichnung für metrisches Einheitensystem"
+  },
+  
+  "imperial": "Imperial",
+  "@imperial": {
+    "description": "Bezeichnung für imperiales Einheitensystem"
+  },
+  
+  "temperature": "Temperatur",
+  "@temperature": {
+    "description": "Bezeichnung für Temperatur"
+  },
+  
+  "speed": "Geschwindigkeit",
+  "@speed": {
+    "description": "Bezeichnung für Geschwindigkeit"
   },
 
   "dayMon": "Mo",

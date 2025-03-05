@@ -57,6 +57,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get today => 'Today';
 
   @override
+  String get settings => 'Settings';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get unitSystem => 'Unit System';
+
+  @override
+  String get metric => 'Metric';
+
+  @override
+  String get imperial => 'Imperial';
+
+  @override
+  String get temperature => 'Temperature';
+
+  @override
+  String get speed => 'Speed';
+
+  @override
   String get dayMon => 'Mon';
 
   @override

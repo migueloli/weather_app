@@ -81,6 +81,41 @@
     "description": "Label for today in daily forecast"
   },
 
+  "settings": "Settings",
+  "@settings": {
+    "description": "Title for the settings screen"
+  },
+  
+  "language": "Language",
+  "@language": {
+    "description": "Label for language settings"
+  },
+  
+  "unitSystem": "Unit System",
+  "@unitSystem": {
+    "description": "Label for unit system settings"
+  },
+  
+  "metric": "Metric",
+  "@metric": {
+    "description": "Label for metric unit system"
+  },
+  
+  "imperial": "Imperial",
+  "@imperial": {
+    "description": "Label for imperial unit system"
+  },
+  
+  "temperature": "Temperature",
+  "@temperature": {
+    "description": "Label for temperature"
+  },
+  
+  "speed": "Speed",
+  "@speed": {
+    "description": "Label for speed"
+  },
+
   "dayMon": "Mon",
   "@dayMon": {
     "description": "Monday abbreviation"

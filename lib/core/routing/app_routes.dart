@@ -4,7 +4,9 @@ abstract class AppRoutes {
   const AppRoutes._();
 
   static const String home = '/';
+
   static const String citySearch = '/city-search';
+
   static const String _weatherDetails = '/weather-details';
   static String weatherDetails(double lat, double long, [String? cityName]) =>
       Uri(
@@ -15,4 +17,6 @@ abstract class AppRoutes {
           if (cityName != null) 'cityName': cityName,
         },
       ).toString();
+
+  static String get settings => '/settings';
 }
