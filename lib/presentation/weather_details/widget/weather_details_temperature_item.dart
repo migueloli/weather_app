@@ -35,7 +35,10 @@ class WeatherDetailsTemperatureItem extends StatelessWidget {
             ),
             Text(
               label,
-              style: const TextStyle(fontSize: 12, color: Colors.white70),
+              style: TextStyle(
+                fontSize: 12,
+                color: theme.colorScheme.onPrimaryContainer,
+              ),
             ),
           ],
         ),

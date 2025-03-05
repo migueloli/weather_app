@@ -77,9 +77,12 @@ class WeatherHeader extends StatelessWidget {
                     color: theme.colorScheme.onPrimaryContainer,
                   ),
                 ),
-                const Text(
+                Text(
                   '°C',
-                  style: TextStyle(fontSize: 24, color: Colors.white70),
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: theme.colorScheme.onPrimaryContainer,
+                  ),
                 ),
               ],
             ),
@@ -87,10 +90,10 @@ class WeatherHeader extends StatelessWidget {
               const SizedBox(height: 8),
               Text(
                 weatherCondition.main,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
-                  color: Colors.white70,
+                  color: theme.colorScheme.onPrimaryContainer,
                 ),
               ),
             ],
@@ -105,14 +108,14 @@ class WeatherHeader extends StatelessWidget {
                       icon: Icons.arrow_upward,
                       temp:
                           '${weather.main.tempMax.round()}${unitSystem.temperatureUnit}',
-                      label: l10n.weatherMax, // 'Max',
+                      label: l10n.weatherMax,
                     ),
                     const SizedBox(width: 24),
                     WeatherDetailsTemperatureItem(
                       icon: Icons.arrow_downward,
                       temp:
                           '${weather.main.tempMin.round()}${unitSystem.temperatureUnit}',
-                      label: l10n.weatherMin, //'Min',
+                      label: l10n.weatherMin,
                     ),
                   ],
                 );

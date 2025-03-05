@@ -69,7 +69,7 @@ class WeatherDetailsBody extends StatelessWidget {
           child: CustomScrollView(
             slivers: [
               SliverAppBar(
-                expandedHeight: 330 + MediaQuery.viewInsetsOf(context).top,
+                expandedHeight: 320,
                 pinned: true,
                 flexibleSpace: FlexibleSpaceBar(
                   background: WeatherHeader(
@@ -91,6 +91,11 @@ class WeatherDetailsBody extends StatelessWidget {
                 ),
               ),
               const SliverToBoxAdapter(child: WeatherDetailsForecast()),
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: MediaQuery.viewPaddingOf(context).bottom,
+                ),
+              ),
             ],
           ),
         );
