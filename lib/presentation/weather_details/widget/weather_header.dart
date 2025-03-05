@@ -77,12 +77,17 @@ class WeatherHeader extends StatelessWidget {
                     color: theme.colorScheme.onPrimaryContainer,
                   ),
                 ),
-                Text(
-                  '°C',
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: theme.colorScheme.onPrimaryContainer,
-                  ),
+                BlocSelector<SettingsBloc, SettingsState, UnitSystem>(
+                  selector: (state) => state.settings.unitSystem,
+                  builder: (context, unitSystem) {
+                    return Text(
+                      unitSystem.temperatureUnit,
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: theme.colorScheme.onPrimaryContainer,
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
