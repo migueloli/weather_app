@@ -42,7 +42,7 @@ jobs:
         run: flutter analyze
 
       - name: 🧹 Check Formatting
-        run: dart format --output=none --set-exit-if-changed .
+        run: dart format --output=none --set-exit-if-changed $(find . -name "*.dart" -not -path "*/l10n/gen/*" -not -path "*/objectbox.g.dart")
 
   test:
     name: ✅ Test
