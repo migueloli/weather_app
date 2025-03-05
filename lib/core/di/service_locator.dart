@@ -35,6 +35,7 @@ import 'package:weather_app/domain/use_cases/get_weather_use_case.dart';
 import 'package:weather_app/domain/use_cases/remove_saved_city_use_case.dart';
 import 'package:weather_app/domain/use_cases/save_city_use_case.dart';
 import 'package:weather_app/domain/use_cases/save_language_use_case.dart';
+import 'package:weather_app/domain/use_cases/save_theme_mode_use_case.dart';
 import 'package:weather_app/domain/use_cases/save_unit_system_use_case.dart';
 import 'package:weather_app/domain/use_cases/search_cities_use_case.dart';
 import 'package:weather_app/objectbox.g.dart';
@@ -157,6 +158,10 @@ Future<void> setupDependencies() async {
 
   getIt.registerLazySingleton(
     () => SaveLanguageUseCase(settingsRepository: getIt()),
+  );
+
+  getIt.registerLazySingleton(
+    () => SaveThemeModeUseCase(settingsRepository: getIt()),
   );
 
   // Register no singleton Use Cases

@@ -247,6 +247,30 @@ abstract class AppLocalizations {
   /// **'Speed'**
   String get speed;
 
+  /// Label for theme mode settings
+  ///
+  /// In en, this message translates to:
+  /// **'Theme Mode'**
+  String get themeMode;
+
+  /// Label for system theme mode option
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get themeSystem;
+
+  /// Label for light theme mode option
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get themeLight;
+
+  /// Label for dark theme mode option
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get themeDark;
+
   /// Monday abbreviation
   ///
   /// In en, this message translates to:

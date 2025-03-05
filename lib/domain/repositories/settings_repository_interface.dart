@@ -13,4 +13,5 @@ abstract class SettingsRepositoryInterface {
   Future<Result<AppSettings, AppException>> getSettings();
   Future<Result<bool, AppException>> saveLanguage(String language);
   Future<Result<bool, AppException>> saveUnitSystem(UnitSystem unitSystem);
+  Future<Result<bool, AppException>> saveThemeMode(String themeMode);
 }

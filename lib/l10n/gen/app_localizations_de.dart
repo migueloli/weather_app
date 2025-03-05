@@ -84,6 +84,18 @@ class AppLocalizationsDe extends AppLocalizations {
   String get speed => 'Geschwindigkeit';
 
   @override
+  String get themeMode => 'Darstellungsmodus';
+
+  @override
+  String get themeSystem => 'System';
+
+  @override
+  String get themeLight => 'Hell';
+
+  @override
+  String get themeDark => 'Dunkel';
+
+  @override
   String get dayMon => 'Mo';
 
   @override

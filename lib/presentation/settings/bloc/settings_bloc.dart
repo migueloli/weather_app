@@ -1,8 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/domain/use_cases/get_settings_use_case.dart';
 import 'package:weather_app/domain/use_cases/save_language_use_case.dart';
+import 'package:weather_app/domain/use_cases/save_theme_mode_use_case.dart';
 import 'package:weather_app/domain/use_cases/save_unit_system_use_case.dart';
 import 'package:weather_app/presentation/settings/bloc/settings_event.dart';
 import 'package:weather_app/presentation/settings/bloc/settings_state.dart';
@@ -12,28 +11,22 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     required GetSettingsUseCase getSettingsUseCase,
     required SaveLanguageUseCase saveLanguageUseCase,
     required SaveUnitSystemUseCase saveUnitSystemUseCase,
+    required SaveThemeModeUseCase saveThemeModeUseCase,
   }) : _getSettingsUseCase = getSettingsUseCase,
        _saveLanguageUseCase = saveLanguageUseCase,
        _saveUnitSystemUseCase = saveUnitSystemUseCase,
+       _saveThemeModeUseCase = saveThemeModeUseCase,
        super(const SettingsState()) {
     on<LoadSettings>(_onLoadSettings);
-    on<ChangeLanguage>(_onChangeLanguage);
-    on<ChangeUnitSystem>(_onChangeUnitSystem);
-
-    _settingsSubscription = _getSettingsUseCase.settingsStream.listen((
-      settings,
-    ) {
-      add(const LoadSettings());
-    });
-
-    // Load settings immediately
-    add(const LoadSettings());
+    on<ChangeLanguage>(_onSaveLanguage);
+    on<ChangeUnitSystem>(_onSaveUnitSystem);
+    on<ChangeThemeMode>(_onSaveThemeMode);
   }
 
   final GetSettingsUseCase _getSettingsUseCase;
   final SaveLanguageUseCase _saveLanguageUseCase;
   final SaveUnitSystemUseCase _saveUnitSystemUseCase;
-  late StreamSubscription<dynamic> _settingsSubscription;
+  final SaveThemeModeUseCase _saveThemeModeUseCase;
 
   Future<void> _onLoadSettings(
     LoadSettings event,
@@ -42,64 +35,77 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     emit(state.copyWith(status: SettingsStatus.loading));
 
     final result = await _getSettingsUseCase();
-    if (result.isFailure) {
-      emit(
-        state.copyWith(
-          status: SettingsStatus.failure,
-          error: () => result.error,
-        ),
-      );
-      return;
-    }
 
     emit(
-      state.copyWith(status: SettingsStatus.success, settings: result.value),
+      state.copyWith(
+        status:
+            result.isSuccess ? SettingsStatus.success : SettingsStatus.failure,
+        error: result.isFailure ? () => result.error : null,
+        settings: result.isSuccess ? result.value : null,
+      ),
     );
   }
 
-  Future<void> _onChangeLanguage(
+  Future<void> _onSaveLanguage(
     ChangeLanguage event,
     Emitter<SettingsState> emit,
   ) async {
     emit(state.copyWith(status: SettingsStatus.loading));
 
     final result = await _saveLanguageUseCase(event.language);
-    if (result.isFailure) {
-      emit(
-        state.copyWith(
-          status: SettingsStatus.failure,
-          error: () => result.error,
-        ),
-      );
-      return;
-    }
 
-    // Settings will be updated via stream subscription
+    emit(
+      state.copyWith(
+        status:
+            result.isSuccess ? SettingsStatus.success : SettingsStatus.failure,
+        error: result.isFailure ? () => result.error : null,
+        settings:
+            result.isSuccess
+                ? state.settings.copyWith(language: event.language)
+                : null,
+      ),
+    );
   }
 
-  Future<void> _onChangeUnitSystem(
+  Future<void> _onSaveUnitSystem(
     ChangeUnitSystem event,
     Emitter<SettingsState> emit,
   ) async {
     emit(state.copyWith(status: SettingsStatus.loading));
 
     final result = await _saveUnitSystemUseCase(event.unitSystem);
-    if (result.isFailure) {
-      emit(
-        state.copyWith(
-          status: SettingsStatus.failure,
-          error: () => result.error,
-        ),
-      );
-      return;
-    }
 
-    // Settings will be updated via stream subscription
+    emit(
+      state.copyWith(
+        status:
+            result.isSuccess ? SettingsStatus.success : SettingsStatus.failure,
+        error: result.isFailure ? () => result.error : null,
+        settings:
+            result.isSuccess
+                ? state.settings.copyWith(unitSystem: event.unitSystem)
+                : null,
+      ),
+    );
   }
 
-  @override
-  Future<void> close() {
-    _settingsSubscription.cancel();
-    return super.close();
+  Future<void> _onSaveThemeMode(
+    ChangeThemeMode event,
+    Emitter<SettingsState> emit,
+  ) async {
+    emit(state.copyWith(status: SettingsStatus.loading));
+
+    final result = await _saveThemeModeUseCase(event.themeMode);
+
+    emit(
+      state.copyWith(
+        status:
+            result.isSuccess ? SettingsStatus.success : SettingsStatus.failure,
+        error: result.isFailure ? () => result.error : null,
+        settings:
+            result.isSuccess
+                ? state.settings.copyWith(themeMode: () => event.themeMode.name)
+                : null,
+      ),
+    );
   }
 }

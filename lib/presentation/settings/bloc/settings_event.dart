@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:weather_app/data/entity/unity_system.dart';
 
 abstract class SettingsEvent extends Equatable {
@@ -28,4 +29,13 @@ class ChangeUnitSystem extends SettingsEvent {
 
   @override
   List<Object?> get props => [unitSystem];
+}
+
+class ChangeThemeMode extends SettingsEvent {
+  const ChangeThemeMode(this.themeMode);
+
+  final ThemeMode themeMode;
+
+  @override
+  List<Object?> get props => [themeMode];
 }

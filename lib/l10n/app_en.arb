@@ -126,6 +126,23 @@
     "description": "Label for speed"
   },
 
+  "themeMode": "Theme Mode",
+  "@themeMode": {
+    "description": "Label for theme mode settings"
+  },
+  "themeSystem": "System",
+  "@themeSystem": {
+    "description": "Label for system theme mode option"
+  },
+  "themeLight": "Light",
+  "@themeLight": {
+    "description": "Label for light theme mode option"
+  },
+  "themeDark": "Dark",
+  "@themeDark": {
+    "description": "Label for dark theme mode option"
+  },
+
   "dayMon": "Mon",
   "@dayMon": {
     "description": "Monday abbreviation"

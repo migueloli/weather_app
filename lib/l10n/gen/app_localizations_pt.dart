@@ -84,6 +84,18 @@ class AppLocalizationsPt extends AppLocalizations {
   String get speed => 'Velocidade';
 
   @override
+  String get themeMode => 'Modo de Tema';
+
+  @override
+  String get themeSystem => 'Sistema';
+
+  @override
+  String get themeLight => 'Claro';
+
+  @override
+  String get themeDark => 'Escuro';
+
+  @override
   String get dayMon => 'Seg';
 
   @override

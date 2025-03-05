@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/core/di/service_locator.dart';
+import 'package:weather_app/core/extensions/theme_mode_extension.dart';
 import 'package:weather_app/core/routing/app_router.dart';
 import 'package:weather_app/l10n/gen/app_localizations.dart';
 import 'package:weather_app/presentation/settings/bloc/settings_bloc.dart';
@@ -18,6 +19,7 @@ class WeatherApp extends StatelessWidget {
             getSettingsUseCase: getIt(),
             saveLanguageUseCase: getIt(),
             saveUnitSystemUseCase: getIt(),
+            saveThemeModeUseCase: getIt(),
           )..add(const LoadSettings()),
       child: BlocBuilder<SettingsBloc, SettingsState>(
         builder: (context, state) {
@@ -35,6 +37,9 @@ class WeatherApp extends StatelessWidget {
                 brightness: Brightness.dark,
               ),
               useMaterial3: true,
+            ),
+            themeMode: ThemeMode.values.byNameWithDefault(
+              state.settings.themeMode,
             ),
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,

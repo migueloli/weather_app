@@ -125,6 +125,23 @@
     "description": "Bezeichnung für Geschwindigkeit"
   },
 
+  "themeMode": "Darstellungsmodus",
+  "@themeMode": {
+    "description": "Bezeichnung für Darstellungsmodus-Einstellungen"
+  },
+  "themeSystem": "System",
+  "@themeSystem": {
+    "description": "Bezeichnung für System-Darstellungsmodus-Option"
+  },
+  "themeLight": "Hell",
+  "@themeLight": {
+    "description": "Bezeichnung für hellen Darstellungsmodus-Option"
+  },
+  "themeDark": "Dunkel",
+  "@themeDark": {
+    "description": "Bezeichnung für dunklen Darstellungsmodus-Option"
+  },
+
   "dayMon": "Mo",
   "@dayMon": {
     "description": "Montag Abkürzung"

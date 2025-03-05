@@ -125,6 +125,23 @@
     "description": "Rótulo para velocidade"
   },
 
+  "themeMode": "Modo de Tema",
+  "@themeMode": {
+    "description": "Rótulo para configurações de modo de tema"
+  },
+  "themeSystem": "Sistema",
+  "@themeSystem": {
+    "description": "Rótulo para opção de tema do sistema"
+  },
+  "themeLight": "Claro",
+  "@themeLight": {
+    "description": "Rótulo para opção de tema claro"
+  },
+  "themeDark": "Escuro",
+  "@themeDark": {
+    "description": "Rótulo para opção de tema escuro"
+  },
+
   "dayMon": "Seg",
   "@dayMon": {
     "description": "Abreviação de Segunda-feira"

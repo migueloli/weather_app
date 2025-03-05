@@ -10,6 +10,7 @@ class SettingsDataSourceImpl implements SettingsDataSource {
 
   static const String _languageKey = 'app_language';
   static const String _unitSystemKey = 'unit_system';
+  static const String _themeModeKey = 'theme_mode';
 
   final SharedPreferences _prefs;
 
@@ -25,6 +26,11 @@ class SettingsDataSourceImpl implements SettingsDataSource {
   }
 
   @override
+  FutureOr<String?> getThemeMode() {
+    return _prefs.getString(_themeModeKey);
+  }
+
+  @override
   FutureOr<bool> saveLanguage(String language) async {
     return _prefs.setString(_languageKey, language);
   }
@@ -32,5 +38,10 @@ class SettingsDataSourceImpl implements SettingsDataSource {
   @override
   FutureOr<bool> saveUnitSystem(UnitSystem unitSystem) async {
     return _prefs.setInt(_unitSystemKey, unitSystem.index);
+  }
+
+  @override
+  FutureOr<bool> saveThemeMode(String themeMode) async {
+    return _prefs.setString(_themeModeKey, themeMode);
   }
 }
