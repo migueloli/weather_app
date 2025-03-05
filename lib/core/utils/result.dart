@@ -16,7 +16,7 @@ class Result<T, E> {
   final T? _success;
   final E? _error;
   final bool isSuccess;
-  bool get isFailure => isSuccess;
+  bool get isFailure => !isSuccess;
 
   /// Returns the success value if this is a success result, throws otherwise.
   T get value {

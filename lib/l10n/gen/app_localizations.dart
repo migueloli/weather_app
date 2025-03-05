@@ -145,6 +145,54 @@ abstract class AppLocalizations {
   /// **'Weather data unavailable'**
   String get weatherDataUnavailable;
 
+  /// Label for temperature measurement
+  ///
+  /// In en, this message translates to:
+  /// **'Temperature'**
+  String get weatherTemperature;
+
+  /// Label for humidity measurement
+  ///
+  /// In en, this message translates to:
+  /// **'Humidity'**
+  String get weatherHumidity;
+
+  /// Label for wind speed measurement
+  ///
+  /// In en, this message translates to:
+  /// **'Wind Speed'**
+  String get weatherWindSpeed;
+
+  /// Label for atmospheric pressure measurement
+  ///
+  /// In en, this message translates to:
+  /// **'Pressure'**
+  String get weatherPressure;
+
+  /// Label for perceived temperature measurement
+  ///
+  /// In en, this message translates to:
+  /// **'Feels Like'**
+  String get weatherFeelsLike;
+
+  /// Label for hourly weather forecast section
+  ///
+  /// In en, this message translates to:
+  /// **'24-Hour Forecast'**
+  String get hourlyForecast;
+
+  /// Label for daily weather forecast section
+  ///
+  /// In en, this message translates to:
+  /// **'5-Day Forecast'**
+  String get dailyForecast;
+
+  /// Label for today in daily forecast
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get today;
+
   /// Monday abbreviation
   ///
   /// In en, this message translates to:
@@ -186,6 +234,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sun'**
   String get daySun;
+
+  /// Full name of Monday
+  ///
+  /// In en, this message translates to:
+  /// **'Monday'**
+  String get dayMonday;
+
+  /// Full name of Tuesday
+  ///
+  /// In en, this message translates to:
+  /// **'Tuesday'**
+  String get dayTuesday;
+
+  /// Full name of Wednesday
+  ///
+  /// In en, this message translates to:
+  /// **'Wednesday'**
+  String get dayWednesday;
+
+  /// Full name of Thursday
+  ///
+  /// In en, this message translates to:
+  /// **'Thursday'**
+  String get dayThursday;
+
+  /// Full name of Friday
+  ///
+  /// In en, this message translates to:
+  /// **'Friday'**
+  String get dayFriday;
+
+  /// Full name of Saturday
+  ///
+  /// In en, this message translates to:
+  /// **'Saturday'**
+  String get daySaturday;
+
+  /// Full name of Sunday
+  ///
+  /// In en, this message translates to:
+  /// **'Sunday'**
+  String get daySunday;
 
   /// Generic error message
   ///

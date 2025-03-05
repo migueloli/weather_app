@@ -41,33 +41,114 @@
     "description": "Mensagem exibida quando os dados meteorológicos não podem ser exibidos"
   },
 
+  "weatherTemperature": "Temperatura",
+  "@weatherTemperature": {
+    "description": "Rótulo para medição de temperatura"
+  },
+  
+  "weatherHumidity": "Umidade",
+  "@weatherHumidity": {
+    "description": "Rótulo para medição de umidade"
+  },
+  
+  "weatherWindSpeed": "Velocidade do Vento",
+  "@weatherWindSpeed": {
+    "description": "Rótulo para medição de velocidade do vento"
+  },
+  
+  "weatherPressure": "Pressão",
+  "@weatherPressure": {
+    "description": "Rótulo para medição de pressão atmosférica"
+  },
+  
+  "weatherFeelsLike": "Sensação Térmica",
+  "@weatherFeelsLike": {
+    "description": "Rótulo para medição de temperatura percebida"
+  },
+
+  "hourlyForecast": "Previsão Horária",
+  "@hourlyForecast": {
+    "description": "Rótulo para a seção de previsão do tempo por hora"
+  },
+
+  "dailyForecast": "Previsão de 7 Dias",
+  "@dailyForecast": {
+    "description": "Rótulo para a seção de previsão do tempo diária"
+  },
+  
+  "today": "Hoje",
+  "@today": {
+    "description": "Rótulo para hoje na previsão diária"
+  },
+
   "dayMon": "Seg",
   "@dayMon": {
     "description": "Abreviação de Segunda-feira"
   },
+
   "dayTue": "Ter",
   "@dayTue": {
     "description": "Abreviação de Terça-feira"
   },
+
   "dayWed": "Qua",
   "@dayWed": {
     "description": "Abreviação de Quarta-feira"
   },
+
   "dayThu": "Qui",
   "@dayThu": {
     "description": "Abreviação de Quinta-feira"
   },
+
   "dayFri": "Sex",
   "@dayFri": {
     "description": "Abreviação de Sexta-feira"
   },
+
   "daySat": "Sáb",
   "@daySat": {
     "description": "Abreviação de Sábado"
   },
+
   "daySun": "Dom",
   "@daySun": {
     "description": "Abreviação de Domingo"
+  },
+
+  "dayMonday": "Segunda-feira",
+  "@dayMonday": {
+    "description": "Nome completo de Segunda-feira"
+  },
+
+  "dayTuesday": "Terça-feira",
+  "@dayTuesday": {
+    "description": "Nome completo de Terça-feira"
+  },
+
+  "dayWednesday": "Quarta-feira",
+  "@dayWednesday": {
+    "description": "Nome completo de Quarta-feira"
+  },
+
+  "dayThursday": "Quinta-feira",
+  "@dayThursday": {
+    "description": "Nome completo de Quinta-feira"
+  },
+
+  "dayFriday": "Sexta-feira",
+  "@dayFriday": {
+    "description": "Nome completo de Sexta-feira"
+  },
+
+  "daySaturday": "Sábado",
+  "@daySaturday": {
+    "description": "Nome completo de Sábado"
+  },
+
+  "daySunday": "Domingo",
+  "@daySunday": {
+    "description": "Nome completo de Domingo"
   },
 
   "errorGeneric": "Algo deu errado",

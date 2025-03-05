@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:weather_app/core/utils/weekday_formatter.dart';
 import 'package:weather_app/data/models/city.dart';
 import 'package:weather_app/data/models/weather.dart';
-import 'package:weather_app/l10n/gen/app_localizations.dart';
 import 'package:weather_app/presentation/home/widget/home_city_card_weather.dart';
 
 class HomeCityCard extends StatelessWidget {
@@ -20,30 +20,6 @@ class HomeCityCard extends StatelessWidget {
   final VoidCallback? onTap;
   final VoidCallback? onRemove;
   final bool isLoading;
-
-  String _getDayAbbreviation(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-    final now = DateTime.now();
-
-    switch (now.weekday) {
-      case DateTime.monday:
-        return l10n.dayMon;
-      case DateTime.tuesday:
-        return l10n.dayTue;
-      case DateTime.wednesday:
-        return l10n.dayWed;
-      case DateTime.thursday:
-        return l10n.dayThu;
-      case DateTime.friday:
-        return l10n.dayFri;
-      case DateTime.saturday:
-        return l10n.daySat;
-      case DateTime.sunday:
-        return l10n.daySun;
-      default:
-        return '';
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +49,10 @@ class HomeCityCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
-                      _getDayAbbreviation(context),
+                      WeekdayFormatter.getWeekdayAbreviation(
+                        context,
+                        DateTime.now().weekday,
+                      ),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Theme.of(context).primaryColor,

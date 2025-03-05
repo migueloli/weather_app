@@ -6,6 +6,13 @@ abstract class AppRoutes {
   static const String home = '/';
   static const String citySearch = '/city-search';
   static const String _weatherDetails = '/weather-details';
-  static String weatherDetails(double lat, double long) =>
-      '$_weatherDetails?lat=$lat&long=$long';
+  static String weatherDetails(double lat, double long, [String? cityName]) =>
+      Uri(
+        path: _weatherDetails,
+        queryParameters: {
+          'lat': '$lat',
+          'long': '$long',
+          if (cityName != null) 'cityName': cityName,
+        },
+      ).toString();
 }

@@ -41,33 +41,114 @@
     "description": "Message shown when weather data cannot be displayed"
   },
 
+  "weatherTemperature": "Temperature",
+  "@weatherTemperature": {
+    "description": "Label for temperature measurement"
+  },
+  
+  "weatherHumidity": "Humidity",
+  "@weatherHumidity": {
+    "description": "Label for humidity measurement"
+  },
+  
+  "weatherWindSpeed": "Wind Speed",
+  "@weatherWindSpeed": {
+    "description": "Label for wind speed measurement"
+  },
+  
+  "weatherPressure": "Pressure",
+  "@weatherPressure": {
+    "description": "Label for atmospheric pressure measurement"
+  },
+  
+  "weatherFeelsLike": "Feels Like",
+  "@weatherFeelsLike": {
+    "description": "Label for perceived temperature measurement"
+  },
+
+  "hourlyForecast": "24-Hour Forecast",
+  "@hourlyForecast": {
+    "description": "Label for hourly weather forecast section"
+  },
+  
+  "dailyForecast": "5-Day Forecast",
+  "@dailyForecast": {
+    "description": "Label for daily weather forecast section"
+  },
+  
+  "today": "Today",
+  "@today": {
+    "description": "Label for today in daily forecast"
+  },
+
   "dayMon": "Mon",
   "@dayMon": {
     "description": "Monday abbreviation"
   },
+
   "dayTue": "Tue",
   "@dayTue": {
     "description": "Tuesday abbreviation"
   },
+
   "dayWed": "Wed",
   "@dayWed": {
     "description": "Wednesday abbreviation"
   },
+
   "dayThu": "Thu",
   "@dayThu": {
     "description": "Thursday abbreviation"
   },
+
   "dayFri": "Fri",
   "@dayFri": {
     "description": "Friday abbreviation"
   },
+
   "daySat": "Sat",
   "@daySat": {
     "description": "Saturday abbreviation"
   },
+
   "daySun": "Sun",
   "@daySun": {
     "description": "Sunday abbreviation"
+  },
+
+  "dayMonday": "Monday",
+  "@dayMonday": {
+    "description": "Full name of Monday"
+  },
+  
+  "dayTuesday": "Tuesday",
+  "@dayTuesday": {
+    "description": "Full name of Tuesday"
+  },
+  
+  "dayWednesday": "Wednesday",
+  "@dayWednesday": {
+    "description": "Full name of Wednesday"
+  },
+  
+  "dayThursday": "Thursday",
+  "@dayThursday": {
+    "description": "Full name of Thursday"
+  },
+  
+  "dayFriday": "Friday",
+  "@dayFriday": {
+    "description": "Full name of Friday"
+  },
+  
+  "daySaturday": "Saturday",
+  "@daySaturday": {
+    "description": "Full name of Saturday"
+  },
+
+  "daySunday": "Sunday",
+  "@daySunday": {
+    "description": "Full name of Sunday"
   },
 
   "errorGeneric": "Something went wrong",

@@ -13,7 +13,13 @@ class CitySearchScreen extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
 
     return BlocProvider(
-      create: (context) => getIt<CitySearchBloc>(),
+      create:
+          (context) => CitySearchBloc(
+            searchCitiesUseCase: getIt(),
+            saveCityUseCase: getIt(),
+            getSavedCitiesUseCase: getIt(),
+            removeSavedCityUseCase: getIt(),
+          ),
       child: Scaffold(
         appBar: AppBar(title: Text(l10n.weatherSearchHint)),
         body: const CitySearchBody(),

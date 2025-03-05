@@ -43,9 +43,7 @@ class CitySearchListItem extends StatelessWidget {
                   color: isSaved ? Colors.blue : null,
                 ),
                 onPressed: () {
-                  final citySearchBloc = BlocProvider.of<CitySearchBloc>(
-                    context,
-                  );
+                  final citySearchBloc = context.read<CitySearchBloc>();
                   if (isSaved) {
                     citySearchBloc.add(RemoveCity(city));
                   } else {
@@ -59,7 +57,9 @@ class CitySearchListItem extends StatelessWidget {
         ),
         onTap: () {
           // Navigate to weather details screen
-          context.push(AppRoutes.weatherDetails(city.lat, city.lon));
+          context.push(
+            AppRoutes.weatherDetails(city.lat, city.lon, city.displayName),
+          );
         },
       ),
     );

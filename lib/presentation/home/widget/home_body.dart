@@ -18,7 +18,7 @@ class HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final homeBloc = BlocProvider.of<HomeBloc>(context);
+    final homeBloc = context.read<HomeBloc>();
 
     return RefreshIndicator(
       onRefresh: () async {
@@ -75,7 +75,9 @@ class HomeBody extends StatelessWidget {
                 weather: weather,
                 isLoading: isLoading,
                 onTap: () {
-                  context.push(AppRoutes.weatherDetails(city.lat, city.lon));
+                  context.push(
+                    AppRoutes.weatherDetails(city.lat, city.lon, city.name),
+                  );
                 },
                 onRemove: () {
                   homeBloc.add(RemoveSavedCity(city: city));

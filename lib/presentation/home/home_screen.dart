@@ -20,7 +20,12 @@ class _HomeScreenState extends State<HomeScreen> {
     final l10n = AppLocalizations.of(context)!;
 
     return BlocProvider(
-      create: (context) => getIt<HomeBloc>(),
+      create:
+          (context) => HomeBloc(
+            getSavedCitiesUseCase: getIt(),
+            removeSavedCityUseCase: getIt(),
+            getWeatherUseCase: getIt(),
+          ),
       child: Scaffold(
         appBar: AppBar(
           title: Text(l10n.appTitle),

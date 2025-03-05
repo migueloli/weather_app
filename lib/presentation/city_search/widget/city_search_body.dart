@@ -24,7 +24,7 @@ class _CitySearchBodyState extends State<CitySearchBody> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final citySearchBloc = BlocProvider.of<CitySearchBloc>(context);
+    final citySearchBloc = context.read<CitySearchBloc>();
 
     return Column(
       children: [

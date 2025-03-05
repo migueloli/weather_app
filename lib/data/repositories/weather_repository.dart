@@ -2,9 +2,12 @@ import 'dart:async';
 
 import 'package:weather_app/core/error/app_exception.dart';
 import 'package:weather_app/core/error/error_handler.dart';
+import 'package:weather_app/core/error/network_exception.dart';
+import 'package:weather_app/core/network/connectivity_service.dart';
 import 'package:weather_app/core/utils/result.dart';
 import 'package:weather_app/data/datasources/contracts/weather_local_data_source.dart';
 import 'package:weather_app/data/datasources/contracts/weather_remote_data_source.dart';
+import 'package:weather_app/data/models/forecast.dart';
 import 'package:weather_app/data/models/weather.dart';
 import 'package:weather_app/domain/repositories/weather_repository_interface.dart';
 
@@ -12,11 +15,14 @@ class WeatherRepository implements WeatherRepositoryInterface {
   const WeatherRepository({
     required WeatherRemoteDataSource remoteDataSource,
     required WeatherLocalDataSource localDataSource,
+    required ConnectivityService connectivityService,
   }) : _remoteDataSource = remoteDataSource,
-       _localDataSource = localDataSource;
+       _localDataSource = localDataSource,
+       _connectivityService = connectivityService;
 
   final WeatherRemoteDataSource _remoteDataSource;
   final WeatherLocalDataSource _localDataSource;
+  final ConnectivityService _connectivityService;
 
   @override
   Future<Result<Weather, AppException>> getWeather({
@@ -31,13 +37,15 @@ class WeatherRepository implements WeatherRepositoryInterface {
       if (!forceRefresh) {
         final cachedWeather = _localDataSource.getWeather(lat, lon);
         if (cachedWeather != null) {
-          // Return cached data, but still fetch fresh data in the background
           unawaited(_refreshWeatherInBackground(lat, lon, units, lang));
           return Result.success(cachedWeather);
         }
       }
 
-      // No cache or force refresh requested, fetch from API
+      if (!await _connectivityService.hasConnection()) {
+        throw const NetworkException();
+      }
+
       final weather = await _remoteDataSource.getWeather(
         lat: lat,
         lon: lon,
@@ -45,7 +53,6 @@ class WeatherRepository implements WeatherRepositoryInterface {
         lang: lang,
       );
 
-      // Save to local storage
       await _localDataSource.saveWeather(weather);
 
       return Result.success(weather);
@@ -62,6 +69,10 @@ class WeatherRepository implements WeatherRepositoryInterface {
     String? lang,
   ) async {
     try {
+      if (!await _connectivityService.hasConnection()) {
+        throw const NetworkException();
+      }
+
       final weather = await _remoteDataSource.getWeather(
         lat: lat,
         lon: lon,
@@ -72,6 +83,31 @@ class WeatherRepository implements WeatherRepositoryInterface {
       await _localDataSource.saveWeather(weather);
     } on Exception {
       // Silently fail for background updates
+    }
+  }
+
+  @override
+  Future<Result<Forecast, AppException>> getForecast({
+    required double lat,
+    required double lon,
+    String units = 'metric',
+    String? lang,
+  }) async {
+    try {
+      if (!await _connectivityService.hasConnection()) {
+        throw const NetworkException();
+      }
+
+      final forecast = await _remoteDataSource.getForecast(
+        lat: lat,
+        lon: lon,
+        units: units,
+        lang: lang,
+      );
+
+      return Result.success(forecast);
+    } on Exception catch (e, st) {
+      return Result.failure(ErrorHandler.handleError(e, st));
     }
   }
 

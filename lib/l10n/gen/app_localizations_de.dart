@@ -33,6 +33,30 @@ class AppLocalizationsDe extends AppLocalizations {
   String get weatherDataUnavailable => 'Wetterdaten nicht verfügbar';
 
   @override
+  String get weatherTemperature => 'Temperatur';
+
+  @override
+  String get weatherHumidity => 'Luftfeuchtigkeit';
+
+  @override
+  String get weatherWindSpeed => 'Windgeschwindigkeit';
+
+  @override
+  String get weatherPressure => 'Luftdruck';
+
+  @override
+  String get weatherFeelsLike => 'Gefühlte Temperatur';
+
+  @override
+  String get hourlyForecast => 'Stündliche Vorhersage';
+
+  @override
+  String get dailyForecast => '7-Tage-Vorhersage';
+
+  @override
+  String get today => 'Heute';
+
+  @override
   String get dayMon => 'Mo';
 
   @override
@@ -52,6 +76,27 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get daySun => 'So';
+
+  @override
+  String get dayMonday => 'Montag';
+
+  @override
+  String get dayTuesday => 'Dienstag';
+
+  @override
+  String get dayWednesday => 'Mittwoch';
+
+  @override
+  String get dayThursday => 'Donnerstag';
+
+  @override
+  String get dayFriday => 'Freitag';
+
+  @override
+  String get daySaturday => 'Samstag';
+
+  @override
+  String get daySunday => 'Sonntag';
 
   @override
   String get errorGeneric => 'Etwas ist schiefgelaufen';

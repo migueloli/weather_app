@@ -32,6 +32,7 @@ abstract class AppRouter {
             (context, state) => WeatherDetailsScreen(
               lat: double.parse(state.uri.queryParameters['lat']!),
               long: double.parse(state.uri.queryParameters['long']!),
+              cityName: state.uri.queryParameters['cityName'],
             ),
       ),
     ],
